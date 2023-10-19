@@ -1,0 +1,3 @@
+displayName = Default Bingo Goal Pack (Bingosync goals)
+author = Starwort, kbuzsaki
+version = 0.1
