@@ -1,1 +1,314 @@
+# Goals from: https://github.com/kbuzsaki/bingosync/blob/main/bingosync-app/generators/terraria_generator.js
 
+# Difficulty 0
+DownEoC: Defeat {$NPCName.EyeofCthulhu}
+DownKS: Defeat {$NPCName.KingSlime}
+PutFoodOnPlate: Place any food item on a plate
+Get999OfTile: Obtain a stack of at least 999 of any tile
+FillPiggyBank: Fill the inventory of a {$ItemName.PiggyBank}
+EatCookedFish: Consume {$ItemName.CookedFish}
+Suffocate7s: Have {$BuffName.Suffocation} for 7 seconds
+Progress.Suffocate7s: Have {$BuffName.Suffocation}: {0}s left
+DieToThorns: Die to thorns
+
+# Difficulty 1
+Get2Spears: Obtain 2 different spears
+Progress.Get2Spears: Unique spears: Collected {0}
+Get2Plat: Obtain 2 {$ItemName.PlatinumCoin}s
+DieToAltar: Die to hammering a {$MapObject.DemonAltar} or {$MapObject.CrimsonAltar}
+Equip5Accessories: Equip 5 different accessories
+Progress.Equip5Accessories: Equip unique accessories: Equipped {0}
+GetModifiedWoodSwordBowHammer: Craft a {$ItemName.WoodenSword}, {$ItemName.WoodenBow}, and {$ItemName.WoodenHammer} - each with a Prefix
+Progress.GetModifiedWoodSwordBowHammer: Craft prefixed tools: Crafted {0}
+ExplodeVillagerEnemySelf: Kill a Town NPC, enemy, and yourself with explosive bunnies
+Progress.ExplodeVillagerEnemySelf: Kill entities with explosive bunnies: Killed {0}
+GetCookedMarshmallow: Obtain a {$ItemName.CookedMarshmallow}
+NoChopTrees: Never use an axe to fully chop a tree
+OpponentChopTrees: The opponent uses an axe to fully chop a tree
+
+# Difficulty 2
+CompleteFishingQuest: Complete 1 fishing quest
+Get3FrogLegs: Craft 3 {$ItemName.SauteedFrogLegs}
+GetRockLobster: Obtain {$ItemName.RockLobster}
+PlaceAllSandcastles: Place all 4 kinds of sandcastle
+Progress.PlaceAllSandcastles: Place unique sandcastles: {0}/4
+PlantAllHerbs: Plant all 7 kinds of herb using seeds
+Progress.PlantAllHerbs: Plant herbs using seeds: Planted {0} ({1}/7)
+InvFullOfBlocks: Have each slot in your inventory be taken up by a different building block
+Have12Buffs: Have 12 different effects at once
+# Skipped because it wouldn't play well on a shared world:
+# No5Villagers: Never have more than 5 Town NPCs housed at once
+
+# Difficulty 3
+KillAnglerWithBoulder: Cause the {$NPCName.Angler} to "leave the world" with a boulder
+Stack4BarsOnDungeon: Place 4 regular bars ({$RandomWorldName_Noun.Gold}/{$RandomWorldName_Noun.Platinum} or worse) on top of each other on top of the {$RandomWorldName_Location.Dungeon}
+DrownWithBreathingReed: Drown while holding a {$ItemName.BreathingReed}
+WearCactusArmour: Wear a full set of {$ItemName.Cactus} armour
+GrowGemTree: Plant any gemcorn and have it grow into a gem tree
+Progress.GrowGemTree: Planted a gemcorn!
+BadProgress.GrowGemTree: The gemcorn was destroyed!
+TrashSharkBait: Trash a {$ItemName.SharkBait}
+FillHouseWithBars: Fill an NPC house with bars
+GetAllCampfires: Have all Pre-Hardmode biome campfires in your inventory at once (excluding Aether, Bone, and Ultrabright)
+Progress.GetAllCampfires: Obtained campfire: {0} ({1}/9)
+
+# Difficulty 4
+DownEvilBoss: Defeat {$NPCName.EaterofWorldsBody} or {$NPCName.BrainofCthulhu}
+WearEvilArmour: Wear a full set of Shadow or Crimson armour
+KillEvilCritter: Kill a critter that has turned evil
+FindBothIslandTypes: Find a floating island house, and a sky lake
+Sell100Hellstone: Sell 100 {$ItemName.Hellstone}
+# Skipped because I have no idea how to implement it:
+# PurifyEvilOrb: Gain access to a {$ItemName.ShadowOrb} or {$ItemName.CrimsonHeart} using {$ItemName.PurificationPowder}
+SellFlamingMace: Sell a {$ItemName.FlamingMace}
+# Skipped because it's a duplicate:
+# PlaceAllSandcastles: Place all 4 kinds of sandcastle
+
+# Difficulty 5
+BreakLivingTreeLeaves: Destroy all the leaf blocks from a living tree
+EatGrubSoup: Consume {$ItemName.GrubSoup}
+Get4CritterContainers: Catch and contain 4 unique critters in {$ItemName.Terrarium}s/{$ItemName.Bottle}s
+GetLemonadeOrAppleJuice: Craft either {$ItemName.Lemonade} or {$ItemName.AppleJuice}
+WearVanityWinnerSet: Wear any Vanity Contest winner set
+Get4Shrooms: Obtain 4 unique types of mushrooms
+# ({$ItemName.GlowingMushroom}, {$ItemName.GreenMushroom}, {$ItemName.Mushroom}, {$ItemName.StrangeGlowingMushroom}, {$ItemName.TealMushroom}, {$ItemName.ViciousMushroom}, {$ItemName.VileMushroom})
+Get3Watches: Obtain 3 different kinds of Watch
+GetTrash: Obtain all 3 kinds of fishing junk
+
+# Difficulty 6
+MakePotions: {
+	Magic: Craft potions: {$BuffName.MagicPower}, {$BuffName.ManaRegeneration}
+	Explore: Craft potions: {$BuffName.Mining}, {$BuffName.Shine}, {$BuffName.NightOwl}
+	Water: Craft Potions: {$BuffName.WaterWalking}, {$BuffName.Flipper}
+	Trans: Craft a {$ItemName.GenderChangePotion}
+	Titan: Craft a {$ItemName.TitanPotion}
+}
+FindBiome: {
+	SurfaceMushroom: Be in a Surface Mushroom biome
+	EvilOcean: Be in a Crimson/Corruption Ocean biome
+	# TODO: reduce difficulty tier? These can be natural
+	EvilDesert: Be in a Crimson/Corruption Desert biome
+}
+
+# Difficulty 7
+DeadMenTellNoTales: Fall victim to a {$ItemName.DeadMansChest}
+Get5WoodArmour: Collect 5 unique wood armour sets
+WearPumpkin: Wear a full set of {$ItemName.Pumpkin} armour
+WearFossil: Wear a full set of Fossil armour
+GetSummons: Obtain 2 unique summoning staves
+Get100Gel: Have 100 gel in your inventory
+StackHighTierBars: Place a {$ItemName.CrimtaneBar} or {$ItemName.DemoniteBar}, a {$ItemName.MeteoriteBar}, and a {$ItemName.HellstoneBar} on top of each other in the snow biome
+Get4GrassSeeds: Obtain 4 unique types of grass seeds
+
+# Difficulty 8
+GetGemCritterCage: Catch and contain any gem critter
+Get99Seeds: Obtain 99 {$ItemName.Seed}s (ammo)
+# Lockout only:
+HelpGolfer: Rescue the {$NPCName.Golfer}
+Get6Arrows: Obtain 6 unique types of arrows
+GetSilverBullets: Obtain both a {$ItemName.SilverBullet} and a {$ItemName.TungstenBullet}
+Get8Hooks: Obtain 8 unique grappling hooks
+# Skipped because I don't know how to implement it in a sensible way:
+# HoneyDrownNPC: Drown a Town NPC in honey
+Have5Debuffs: Have 5 debuffs at once
+
+# Difficulty 9
+HaveMaxHealth: Have at least 400 max health
+HaveMaxMana: Have at least 200 max mana
+UseFairy: Catch a fairy and use it underground
+DownArmy: Defeat the {$LegacyInterface.88}
+UsePoisonDart: Shoot an enemy with a {$ItemName.PoisonDart} from a {$ItemName.Blowpipe} or {$ItemName.Blowgun}
+Get5Minecarts: Obtain 5 different minecarts
+DownKSMelee: Defeat {$NPCName.KingSlime} using only swords and/or spears
+GetTorchGodsFavour: Obtain {$ItemName.TorchGodsFavor}
+
+# Difficulty 10
+MakePiano: Craft any {$ItemName.Piano}
+ThrowBonesAtTargetDummy: Throw 35 {$ItemName.Bone}s at a {$ItemName.TargetDummy}
+DownSkele: Defeat {$NPCName.SkeletronHead}
+NoEquipAccessories: Never equip an accessory
+OpponentEquipAccessories: The opponent equips an accessory
+NoPlatforms: Never place a platform
+OpponentPlatforms: The opponent places a platform
+# skipping the BINGO bit because that seems like hell to implement
+GetAnnouncementBox: Obtain an {$ItemName.AnnouncementBox}
+TrashDungeonWeapon: Trash any {$RandomWorldName_Location.Dungeon} weapon
+TrashWaterBolt: Trash a {$ItemName.WaterBolt}
+
+# Difficulty 11
+RockBottom: Reach the very bottom of the Underworld
+# Lockout only:
+HelpStylist: Rescue the {$NPCName.Stylist}
+IntoOrbit: Reach the very top of Space
+DownKSSpace: Defeat {$NPCName.KingSlime} in Space
+See3BlazingWheels: Have 3 {$NPCName.BlazingWheel}s on screen at once
+TraverseWholeWorld: Touch both the left and right edges of the world
+FindTemple: Go to the entrance of, or inside, the Lihzahrd Temple
+Get5GemStaves: Obtain at least 5 of the 9 Gem Staves
+
+# Difficulty 12
+WearNecro: Wear a full set of Necro armour
+WearHeroHat: Wear the {$ItemName.HerosHat}
+LavaBath: Submerge yourself in lava, and stay there for 10 seconds
+GetManaFlower: Obtain a {$ItemName.ManaFlower}
+NoTorches: Never place or hold a torch
+OpponentTorches: Opponent places or holds a torch
+PlaceArt: Buy and place any painting
+DownQB: Defeat {$NPCName.QueenBee}
+DownEoCMelee: Defeat {$NPCName.EyeofCthulhu} using only swords and/or spears
+
+# Difficulty 13
+Get2Crates: Obtain 2 unique crates
+Stinky: Throw a {$ItemName.StinkPotion} on yourself
+Loot6GoldChests: Open 6 {$ItemName.GoldChest}s
+Get4Yoyos: Obtain 4 unique yoyos
+Complete2FishingQuests: Complete 2 fishing quests
+DieToDG: Get killed by the {$NPCName.DungeonGuardian}
+KillVillagerWithDG: Kill any Town NPC with the {$NPCName.DungeonGuardian}
+DrinkFlask: Consume any flask
+
+# Difficulty 14
+Have2Pylons: Obtain 2 different Pylons
+# Skipped because it wouldn't play well on a shared world:
+# Have10Villagers: Have 10 Town NPCs in your world
+KillClothier: Kill the {$NPCName.Clothier}
+Get40Def: Have at least 40 defence
+PetDog: Pet the {$NPCName.TownDog}
+GetMoss: Obtain any kind of glowing moss
+GetFountain: Purchase any Water Fountain
+UpgradeSkull: Craft any upgrade to the {$ItemName.ObsidianSkull}
+
+# Difficulty 15
+GetTragicUmbrella: Purchase the {$ItemName.TragicUmbrella}
+GetQuadShotgun: Purchase the {$ItemName.QuadBarrelShotgun}
+UseFogboundDye: Equip {$ItemName.FogboundDye}
+Get5GoldGraves: Obtain 5 unique types of golden tombstones
+KillWithCoffin: Kill a monster using the {$ItemName.CoffinMinecart}
+ExcavateWithShovel: Craft a {$ItemName.GravediggerShovel} and destroy 500 blocks with it
+MakeEvilOrbDrop: Craft a {$ItemName.BandofStarpower} or {$ItemName.PanicNecklace}
+KillGraveyardMobs: Kill a {$NPCName.MaggotZombie}, a {$NPCName.Ghost}, and a {$NPCName.Raven}
+
+# Difficulty 16
+FillEquipPage2: Have a pet, light pet, minecart, grappling hook, and mount all equipped at the same time
+Get5Toilets: Obtain 5 different kinds of {$ItemName.Toilet}
+GetBINGO: Obtain text statues which spell out "BINGO"
+# Skipped because I can't think of a fair way to implement it
+# FillMannequin: Keep 3 accessories and a vanity item from the {$NPCName.Clothier} on a {$ItemName.Mannequin} or {$ItemName.Womannequin}
+KillWithSandgun: Kill an enemy using a {$ItemName.Sandgun}
+Place99Anvils: Get a stack of 99 of any kind of {$MapObject.Anvil}, then place them all
+GetTongued: Have debuff: {$BuffName.TheTongue}
+Hellevator: Fall from the Surface all the way to the Underworld, without breaking your fall
+
+# Difficulty 17
+DownEoCHell: Defeat {$NPCName.EyeofCthulhu} in the Underworld
+DownWoF: Defeat {$NPCName.WallofFlesh}
+DownSkeleJungle: Defeat {$NPCName.SkeletronHead} in the Jungle
+DownQBLowMaxLife: Defeat {$NPCName.QueenBee} with no more than 200 max health
+DownEoCQB: Summon {$NPCName.EyeofCthulhu} and {$NPCName.QueenBee} at the same time, and defeat them both
+DownEvilBossUpsideDown: Defeat {$NPCName.EaterofWorldsBody} or {$NPCName.BrainofCthulhu}, only dealing damage while upside down
+# Skipped because I have no idea how to implement them:
+# BreakFloatingIsland: Destroy an entire floating island (including walls)
+# BreakBeeHive: Destroy an entire bee hive (including walls) without dying in the process
+
+# Difficulty 18
+NoTraps: Never take damage from a trap
+OpponentTraps: The opponent takes damage from a trap
+GetLightRedItem: Obtain any item with a rarity of [c/FF9696:Light Red]
+VoidStorage: Obtain a {$ItemName.VoidVault} or {$ItemName.VoidBag}
+DoubleCactusTrap: Kill 2 or more enemies with a single {$ProjectileName.RollingCactus}
+Have5Minions: Have 5 or more minions summoned at once (not sentries)
+GetPhaseblade: Obtain any kind of Phaseblade
+GetPhoenixBlaster: Obtain the {$ItemName.PhoenixBlaster}
+Loot3ShadowChests: Open 3 {$ItemName.ShadowChest}s
+
+# Difficulty 19
+GetGolfTrophy: Obtain any golf trophy
+Complete3FishingQuests: Complete 3 fishing quests
+Obtain3Flails: Have 3 different flails in your inventory at once
+CapSpawnsWithBees: Obtain 30 beehives, enough to cap spawns
+MakePotions: {
+	DifficultyReduce: Craft potions: {$BuffName.Featherfall}, {$BuffName.Calm}
+	Return: Craft a {$ItemName.PotionOfReturn}
+	BuilderEndurance: Craft potions: {$BuffName.Builder}, {$BuffName.Endurance}
+	Shark: Craft potions: {$BuffName.Gills}, {$BuffName.Hunter}
+}
+
+# Difficulty 20
+DownAnyBossOnMinecart: Defeat any boss, dealing damage only when on a minecart
+DownEoCThrowingOnly: Defeat {$NPCName.EyeofCthulhu}, dealing damage only with thrown weapons other than explosives
+DownEvilBossWithGun: Defeat {$NPCName.EaterofWorldsBody} or {$NPCName.BrainofCthulhu}, dealing damage only with the {$ItemName.Musket} or {$ItemName.TheUndertaker}
+# Skipped because I can't think of a way to implement this fairly
+# DownAnyBossWithTraps: Defeat any boss, dealing damage only with traps, boulders, and NPCs
+DownSkeleMage: Defeat {$NPCName.SkeletronHead} using only magic weapons
+DownAnyBossWithClass1: For each of the following classes: Ranger, Summoner - defeat at least one unique boss using only that class
+DownAnyBossWithClass2: For each of the following classes: Melee, Mage - defeat at least one unique boss using only that class
+DownQBWithWhips: Defeat {$NPCName.QueenBee} using only whips
+
+# Difficulty 21
+DownWoFNoArmour: Defeat {$NPCName.WallofFlesh}, dealing damage only when you have 0 defence
+DownQBEnraged: Defeat {$NPCName.QueenBee}, dealing damage only when she is enraged
+DownSkeleDG: Defeat {$NPCName.SkeletronHead} during the daytime
+GetNightsEdge: Obtain the {$ItemName.NightsEdge}
+GetStarCannon: Obtain the {$ItemName.StarCannon}
+# Skipped because I have no idea how to implement it:
+# Lockout only:
+# EmptyBothOceans: Drain both oceans completely
+Down3BossesAtOnce: Summon any 3 bosses at the same time, and defeat them all
+# Skipped because I have no idea how to implement it:
+# DownWoFNoArena: Defeat {$NPCName.WallofFlesh} without preparing a bridge or other arena
+
+# Difficulty 22
+Get2ZombieBanners: Obtain any 2 {$NPCName.Zombie} banners (either the same or different)
+GetFishTool: Obtain a {$ItemName.ReaverShark}, {$ItemName.SawtoothShark}, or {$ItemName.Rockfish}
+# Skipped because it's a duplicate:
+# GetLightRedItem: Obtain any item with a rarity of [c/FF9696:Light Red]
+MakePotions.Luck: Craft any potion granting {$BuffName.Lucky}
+SellSpeedBoots: Sell any pair of running boots
+KillHMEnemyInPHM: Defeat any Hardmode enemy before entering Hardmode
+GetAnyStoneSword: Obtain an {$ItemName.EnchantedSword} or {$ItemName.Terragrim}
+DownKSWithFlares: Defeat {$NPCName.KingSlime}, dealing damage only with a {$ItemName.FlareGun}
+
+# Difficulty 23
+ShakeEvilFlyingMob: Cause an {$NPCName.EaterofSouls} or {$NPCName.Crimera} to spawn by hitting a tree
+DownOOA: Defeat any tier of the Old One's Army
+NoGrapple: Never use a grappling hookn
+OpponentGrapple: The opponent uses a grappling hook
+GetGoldLockBox: Obtain a {$ItemName.LockBox}
+Get2Mounts: Obtain 2 different mounts
+GetDemonScythe: Obtain a {$ItemName.DemonScythe}
+GetGrandDesign: Obtain {$ItemName.WireKite}
+FlyKite: Fly any kite during a windy day
+
+# Difficulty 24
+GetMurderWeapon: Obtain any weapon dropped by a Town NPC
+WearBossMask: Obtain any boss mask, and wear it for the rest of the game
+Get2GuideDolls: Have 2 {$ItemName.GuideVoodooDoll}s in your inventory at once
+GetCounterweight: Obtain any Counterweight
+GetObsLockBox: Obtain an {$ItemName.ObsidianLockbox}
+GetGnomed: Get Gnomed
+KeepGnome: Obtain a {$ItemName.GardenGnome} and keep it in your inventory forever
+Get2Sentries: Obtain 2 unique Sentry staves
+
+Items: {
+	Internal: You shouldn't have this
+
+	SuffocationGoalIcon: {
+		DisplayName: "{$Internal}"
+		Tooltip: ""
+	}
+
+	Suffocation: {
+		DisplayName: "{$Internal}"
+		Tooltip: ""
+	}
+
+	Thorns: {
+		DisplayName: "{$Internal}"
+		Tooltip: ""
+	}
+
+	Altars: {
+		DisplayName: "{$Internal}"
+		Tooltip: ""
+	}
+}
