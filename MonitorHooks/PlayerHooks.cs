@@ -70,29 +70,26 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             processHitNPC(target, hit);
         }
 
-        internal bool achievedGet999OfTile;
-        internal bool achievedInvFullOfBlocks;
         internal bool achievedFillPiggyBank;
+        internal HashSet<int> allObtainedItems = new();
         public override void PostUpdate() {
-            if (!achievedGet999OfTile || !achievedInvFullOfBlocks) {
-                var foundTiles = new HashSet<int>();
-                for (int i = 0; i < Player.inventory.Length; i++) {
-                    var item = Player.inventory[i];
-                    if (item.createTile != -1) {
-                        if (item.stack >= 999) {
-                            trigger("Get999OfTile");
-                            achievedGet999OfTile = true;
-                            break;
-                        }
-                        if (i < 50) {
-                            foundTiles.Add(item.type);
-                        }
+            var foundTiles = new HashSet<int>();
+            for (int i = 0; i < Player.inventory.Length; i++) {
+                var item = Player.inventory[i];
+                if (item.stack > 0 && !allObtainedItems.Contains(item.type)) {
+                    onAnyObtain(item);
+                }
+                if (item.createTile != -1) {
+                    if (item.stack >= 999) {
+                        trigger("Get999OfTile");
+                    }
+                    if (i < 50) {
+                        foundTiles.Add(item.type);
                     }
                 }
-                if (foundTiles.Count == 50) {
-                    trigger("InvFullOfBlocks");
-                    achievedInvFullOfBlocks = true;
-                }
+            }
+            if (foundTiles.Count == 50) {
+                trigger("InvFullOfBlocks");
             }
             if (!achievedFillPiggyBank) {
                 var wasFull = true;
@@ -142,6 +139,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
 
         internal HashSet<int> collectedSpears = new();
         private void onAnyObtain(Item item) {
+            allObtainedItems.Add(item.type);
             if (ItemID.Sets.Spears[item.type]) {
                 collectedSpears.Add(item.type);
                 if (collectedSpears.Count <= 2) {
@@ -271,8 +269,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         }
 
         internal void reset() {
-            achievedGet999OfTile = false;
-            achievedInvFullOfBlocks = false;
+            allObtainedItems.Clear();
             achievedFillPiggyBank = false;
             achievedHave12Buffs = false;
             achievedHave5Debuffs = false;

@@ -15,50 +15,124 @@ namespace BingoGoalPackBingoSyncGoals.Content {
 
         Item tileGoalsIcon = new(ItemID.DirtBlock);
         int[] tiles = new int[] {ItemID.DirtBlock};
+
         Item spearGoalIcon = new(ItemID.Spear);
         int[] spears = new int[] {ItemID.Spear};
+
         Item accessoryGoalsIcon = new(ItemID.Shackle);
         int[] accessories = new int[] {ItemID.Shackle};
+
         Item woodToolsGoalIcon = new(ItemID.WoodenSword);
         int[] woodTools = new int[] {ItemID.WoodenSword, ItemID.WoodenBow, ItemID.WoodenHammer};
-        Item campfiresGoalIcon = new(ItemID.Campfire);
-        int[] campfires = new int[] {
+
+        Item phmCampfiresGoalIcon = new(ItemID.Campfire);
+        int[] phmCampfires = new int[] {
             ItemID.Campfire, ItemID.CoralCampfire, ItemID.CorruptCampfire,
             ItemID.CrimsonCampfire, ItemID.DemonCampfire, ItemID.DesertCampfire,
             ItemID.FrozenCampfire, ItemID.JungleCampfire, ItemID.MushroomCampfire
         };
+
         Item questGoalsIcon = new(ItemID.AmanitaFungifin);
-        int[] questFish = new int[] {
-            ItemID.AmanitaFungifin, ItemID.Angelfish, ItemID.Batfish,
-            ItemID.BloodyManowar, ItemID.Bonefish, ItemID.BumblebeeTuna,
-            ItemID.Bunnyfish, ItemID.CapnTunabeard, ItemID.Catfish,
-            ItemID.Cloudfish, ItemID.Clownfish, ItemID.Cursedfish,
-            ItemID.DemonicHellfish, ItemID.Derpfish, ItemID.Dirtfish,
-            ItemID.DynamiteFish, ItemID.EaterofPlankton, ItemID.FallenStarfish,
-            ItemID.TheFishofCthulu, ItemID.Fishotron, ItemID.Fishron,
-            ItemID.GuideVoodooFish, ItemID.Harpyfish, ItemID.Hungerfish,
-            ItemID.Ichorfish, ItemID.InfectedScabbardfish, ItemID.Jewelfish,
-            ItemID.MirageFish, ItemID.Mudfish, ItemID.MutantFlinxfin,
-            ItemID.Pengfish, ItemID.Pixiefish, ItemID.ScarabFish,
-            ItemID.ScorpioFish, ItemID.Slimefish, ItemID.Spiderfish,
-            ItemID.TropicalBarracuda, ItemID.TundraTrout, ItemID.UnicornFish,
-            ItemID.Wyverntail, ItemID.ZombieFish
-        };
+        int[] questFish = new int[] {ItemID.AmanitaFungifin};
+
         Item herbsGoalIcon = new(ItemID.Daybloom);
         int[] herbs = new int[] {
             ItemID.Blinkroot, ItemID.Daybloom, ItemID.Deathweed,
             ItemID.Fireblossom, ItemID.Moonglow, ItemID.Shiverthorn,
             ItemID.Waterleaf
         };
-        private AnimatedIcon[] animations = Array.Empty<AnimatedIcon>();
+
+        Item lowTierBarsGoalIcon = new(ItemID.CopperBar);
+        int[] lowTierBars = new int[] {
+            // Tier 1
+            ItemID.CopperBar, ItemID.TinBar,
+            // Tier 2
+            ItemID.IronBar, ItemID.LeadBar,
+            // Tier 3
+            ItemID.SilverBar, ItemID.TungstenBar,
+            // Tier 4
+            ItemID.GoldBar, ItemID.PlatinumBar,
+        };
+
+        Item dungeonIcon = new(ItemID.BlueBrick);
+        int[] dungeonBricks = new int[] {ItemID.BlueBrick, ItemID.GreenBrick, ItemID.PinkBrick};
+
+        Item cactusArmourGoalIcon = new(ItemID.CactusHelmet);
+        int[] cactusArmour = new int[] {ItemID.CactusHelmet, ItemID.CactusBreastplate, ItemID.CactusLeggings};
+
+        Item gemTreeGoalIcon = new(ItemID.GemTreeAmberSeed);
+        int[] gemcorns = new int[] {
+            ItemID.GemTreeAmberSeed, ItemID.GemTreeAmethystSeed, ItemID.GemTreeDiamondSeed,
+            ItemID.GemTreeEmeraldSeed, ItemID.GemTreeRubySeed, ItemID.GemTreeSapphireSeed,
+            ItemID.GemTreeTopazSeed,
+        };
+
+        Item anyBarIcon = new(ItemID.CopperBar);
+        int[] bars = new int[23] {
+            // Tier 1
+            ItemID.CopperBar, ItemID.TinBar,
+            // Tier 2
+            ItemID.IronBar, ItemID.LeadBar,
+            // Tier 3
+            ItemID.SilverBar, ItemID.TungstenBar,
+            // Tier 4
+            ItemID.GoldBar, ItemID.PlatinumBar,
+            // Tier 5
+            ItemID.MeteoriteBar,
+            // Tier 6
+            ItemID.DemoniteBar, ItemID.CrimtaneBar,
+            // Tier 7
+            ItemID.HellstoneBar,
+            // Tier 8
+            ItemID.CobaltBar, ItemID.PalladiumBar,
+            // Tier 9
+            ItemID.MythrilBar, ItemID.OrichalcumBar,
+            // Tier 10
+            ItemID.AdamantiteBar, ItemID.TitaniumBar,
+            // Tier 11
+            ItemID.HallowedBar,
+            // Tier 12
+            ItemID.ChlorophyteBar,
+            // Tier 13
+            ItemID.ShroomiteBar, ItemID.SpectreBar,
+            // Tier 14
+            ItemID.LunarBar,
+        };
+
+        private AnimatedIcon[] animatedIcons = Array.Empty<AnimatedIcon>();
+        private (Item, int[])[] seqAnimations = Array.Empty<(Item, int[])>();
+        private (Item, int[])[] randAnimations = Array.Empty<(Item, int[])>();
+
         internal void loadItemAnimations() {
             tiles = ContentSamples.ItemsByType.Where(val => val.Value.createTile != -1).Select(val => val.Key).ToArray();
             tileGoalsIcon.type = tiles[0];
+
             spears = ItemID.Sets.Spears.Select((isSpear, id) => new { isSpear, id }).Where(val => val.isSpear).Select(val => val.id).ToArray();
             spearGoalIcon.type = spears[0];
+
             accessories = ContentSamples.ItemsByType.Where(val => val.Value.accessory).Select(val => val.Key).ToArray();
             accessoryGoalsIcon.type = accessories[0];
-            animations = new AnimatedIcon[] {ModContent.GetInstance<AnyBuff>(), ModContent.GetInstance<AnyDebuff>()};
+
+            questFish = ContentSamples.ItemsByType.Where(val => val.Value.questItem).Select(val => val.Key).ToArray();
+            questGoalsIcon.type = questFish[0];
+
+            animatedIcons = new AnimatedIcon[] {ModContent.GetInstance<AnyBuff>(), ModContent.GetInstance<AnyDebuff>()};
+            seqAnimations = new[] {
+                (cactusArmourGoalIcon, cactusArmour),
+                (dungeonIcon, dungeonBricks),
+                (herbsGoalIcon, herbs),
+                (lowTierBarsGoalIcon, lowTierBars),
+                (woodToolsGoalIcon, woodTools),
+            };
+            randAnimations = new[] {
+                (accessoryGoalsIcon, accessories),
+                (anyBarIcon, bars),
+                (gemTreeGoalIcon, gemcorns),
+                (phmCampfiresGoalIcon, phmCampfires),
+                (questGoalsIcon, questFish),
+                (spearGoalIcon, spears),
+                (tileGoalsIcon, tiles),
+            };
         }
 
         private Random rng = new();
@@ -66,14 +140,13 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         public override void PreUpdateItems() {
             if (Main.GameUpdateCount % animationPeriod == 0) {
                 var frame = Main.GameUpdateCount / animationPeriod;
-                tileGoalsIcon.type = tiles[rng.Next(tiles.Length)];
-                spearGoalIcon.type = spears[frame % spears.Length];
-                accessoryGoalsIcon.type = tiles[rng.Next(accessories.Length)];
-                woodToolsGoalIcon.type = woodTools[frame % woodTools.Length];
-                campfiresGoalIcon.type = campfires[frame % campfires.Length];
-                questGoalsIcon.type = questFish[frame % questFish.Length];
-                herbsGoalIcon.type = herbs[frame % herbs.Length];
-                foreach (var animation in animations) {
+                foreach ((Item icon, int[] frames) in seqAnimations) {
+                    icon.type = frames[frame % frames.Length];
+                }
+                foreach ((Item icon, int[] frames) in randAnimations) {
+                    icon.type = frames[rng.Next(frames.Length)];
+                }
+                foreach (var animation in animatedIcons) {
                     animation.animate(frame);
                 }
             }
@@ -227,6 +300,54 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 difficulty: 2,
                 ModContent.GetInstance<AnyBuff>().Item,
                 text: "12"
+            );
+
+            register(
+                "KillAnglerWithBoulder",
+                difficulty: 3,
+                ModContent.GetInstance<Angler>().Item,
+                modifier: new Item(ItemID.Boulder)
+            );
+            register(
+                "Stack4BarsOnDungeon",
+                difficulty: 3,
+                lowTierBarsGoalIcon,
+                modifier: dungeonIcon,
+                text: "4"
+            );
+            register(
+                "DrownWithBreathingReed",
+                difficulty: 3,
+                new Item(ItemID.BreathingReed),
+                modifier: die
+            );
+            register(
+                "WearCactusArmour",
+                difficulty: 3,
+                cactusArmourGoalIcon
+            );
+            register(
+                "GrowGemTree",
+                difficulty: 3,
+                gemTreeGoalIcon
+            );
+            register(
+                "TrashSharkBait",
+                difficulty: 3,
+                new Item(ItemID.SharkBait),
+                modifier: new Item(ItemID.TrashCan)
+            );
+            register(
+                "FillHouseWithBars",
+                difficulty: 3,
+                anyBarIcon,
+                modifier: ModContent.GetInstance<House>().Item
+            );
+            register(
+                "GetAllCampfires",
+                difficulty: 3,
+                phmCampfiresGoalIcon,
+                text: "9"
             );
         }
 
