@@ -33,6 +33,25 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             }
         }
 
+        int fishingQuestsComplete;
+        internal void onFishingQuestComplete() {
+            fishingQuestsComplete++;
+            switch (fishingQuestsComplete) {
+                case 1:
+                    trigger("CompleteFishingQuest");
+                    progress("Complete2FishingQuests");
+                    progress("Complete3FishingQuests", "1");
+                    break;
+                case 2:
+                    trigger("Complete2FishingQuests");
+                    progress("Complete3FishingQuests", "2");
+                    break;
+                case 3:
+                    trigger("Complete3FishingQuests");
+                    break;
+            }
+        }
+
         void processHitNPC(NPC target, NPC.HitInfo hit) {
             if (target.type == NPCID.EyeofCthulhu) {
                 if (target.life <= 0) {
@@ -54,15 +73,27 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         }
 
         internal bool achievedGet999OfTile;
+        internal bool achievedInvFullOfBlocks;
         internal bool achievedFillPiggyBank;
         public override void PostUpdate() {
-            if (!achievedGet999OfTile) {
-                foreach (var item in Player.inventory) {
-                    if (item.createTile != -1 && item.stack >= 999) {
-                        trigger("Get999OfTile");
-                        achievedGet999OfTile = true;
-                        break;
+            if (!achievedGet999OfTile || !achievedInvFullOfBlocks) {
+                var foundTiles = new HashSet<int>();
+                for (int i = 0; i < Player.inventory.Length; i++) {
+                    var item = Player.inventory[i];
+                    if (item.createTile != -1) {
+                        if (item.stack >= 999) {
+                            trigger("Get999OfTile");
+                            achievedGet999OfTile = true;
+                            break;
+                        }
+                        if (i < 50) {
+                            foundTiles.Add(item.type);
+                        }
                     }
+                }
+                if (foundTiles.Count == 50) {
+                    trigger("InvFullOfBlocks");
+                    achievedInvFullOfBlocks = true;
                 }
             }
             if (!achievedFillPiggyBank) {
@@ -84,6 +115,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         internal bool craftedWoodBow = false;
         internal bool craftedWoodHammer = false;
         internal void onCraftItem(Item item) {
+            onAnyObtain(item);
             if (!craftedWoodSword && item.type == ItemID.WoodenSword && item.prefix != 0) {
                 craftedWoodSword = true;
                 if (craftedWoodBow && craftedWoodHammer) {
@@ -110,6 +142,22 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             }
         }
 
+        internal HashSet<int> collectedSpears = new();
+        private void onAnyObtain(Item item) {
+            if (ItemID.Sets.Spears[item.type]) {
+                collectedSpears.Add(item.type);
+                if (collectedSpears.Count <= 2) {
+                    progress("Get2Spears", item.Name);
+                }
+                if (collectedSpears.Count == 2) {
+                    trigger("Get2Spears");
+                }
+            }
+            if (item.type == ItemID.CookedMarshmallow) {
+                trigger("GetCookedMarshmallow");
+            }
+        }
+
         internal HashSet<int> usedAccs = new();
         public void onEquipAccessory(Item acc) {
             if (usedAccs.Contains(acc.type)) {
@@ -127,10 +175,20 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         }
 
         internal uint? suffocationStartTime = null;
-
+        internal bool achievedHave12Buffs;
+        internal bool achievedHave5Debuffs;
         public override void PostUpdateBuffs() {
             bool foundSuffocation = false;
+            var foundBuffs = 0;
+            var foundDebuffs = 0;
             foreach (var buffType in this.Player.buffType) {
+                if (buffType == 0) {
+                    continue;
+                }
+                foundBuffs++;
+                if (Main.debuff[buffType]) {
+                    foundDebuffs++;
+                }
                 if (buffType == BuffID.Suffocation) {
                     foundSuffocation = true;
                     if (suffocationStartTime is null) {
@@ -149,6 +207,14 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                         }
                     }
                 }
+            }
+            if (foundBuffs >= 12 && !achievedHave12Buffs) {
+                trigger("Have12Buffs");
+                achievedHave12Buffs = true;
+            }
+            if (foundDebuffs >= 5 && !achievedHave5Debuffs) {
+                trigger("Have5Debuffs");
+                achievedHave5Debuffs = true;
             }
             if (!foundSuffocation) {
                 suffocationStartTime = null;
@@ -189,17 +255,8 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             }
         }
 
-        internal HashSet<int> collectedSpears = new();
         public override bool OnPickup(Item item) {
-            if (ItemID.Sets.Spears[item.type]) {
-                collectedSpears.Add(item.type);
-                if (collectedSpears.Count <= 2) {
-                    progress("Get2Spears", item.Name);
-                }
-                if (collectedSpears.Count == 2) {
-                    trigger("Get2Spears");
-                }
-            }
+            onAnyObtain(item);
             if (item.type == ItemID.CopperCoin || item.type == ItemID.SilverCoin || item.type == ItemID.GoldCoin || item.type == ItemID.PlatinumCoin) {
                 var foundPlat = 0;
                 foreach (var slot in this.Player.inventory) {
@@ -216,7 +273,10 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
 
         internal void reset() {
             achievedGet999OfTile = false;
+            achievedInvFullOfBlocks = false;
             achievedFillPiggyBank = false;
+            achievedHave12Buffs = false;
+            achievedHave5Debuffs = false;
             collectedSpears.Clear();
             usedAccs.Clear();
             craftedWoodSword = false;
@@ -233,5 +293,6 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             trigger("NoTraps");
             trigger("NoGrapple");
         }
+
     }
 }

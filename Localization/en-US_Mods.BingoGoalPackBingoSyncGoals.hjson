@@ -34,7 +34,7 @@ PlaceAllSandcastles: Place all 4 kinds of sandcastle
 Progress.PlaceAllSandcastles: Place unique sandcastles: {0}/4
 PlantAllHerbs: Plant all 7 kinds of herb using seeds
 Progress.PlantAllHerbs: Plant herbs using seeds: Planted {0} ({1}/7)
-InvFullOfBlocks: Have each slot in your inventory be taken up by a different building block
+InvFullOfBlocks: Have every slot in your inventory be taken up by a different building block
 Have12Buffs: Have 12 different effects at once
 # Skipped because it wouldn't play well on a shared world:
 # No5Villagers: Never have more than 5 Town NPCs housed at once
@@ -163,6 +163,7 @@ Stinky: Throw a {$ItemName.StinkPotion} on yourself
 Loot6GoldChests: Open 6 {$ItemName.GoldChest}s
 Get4Yoyos: Obtain 4 unique yoyos
 Complete2FishingQuests: Complete 2 fishing quests
+Progress.Complete2FishingQuests: Complete 2 fishing quests: 1/2
 DieToDG: Get killed by the {$NPCName.DungeonGuardian}
 KillVillagerWithDG: Kill any Town NPC with the {$NPCName.DungeonGuardian}
 DrinkFlask: Consume any flask
@@ -224,6 +225,7 @@ Loot3ShadowChests: Open 3 {$ItemName.ShadowChest}s
 # Difficulty 19
 GetGolfTrophy: Obtain any golf trophy
 Complete3FishingQuests: Complete 3 fishing quests
+Progress.Complete3FishingQuests: Complete 3 fishing quests: {0}/3
 Obtain3Flails: Have 3 different flails in your inventory at once
 CapSpawnsWithBees: Obtain 30 beehives, enough to cap spawns
 MakePotions: {

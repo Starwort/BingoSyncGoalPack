@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using BingoBoardCore.Common.Systems;
+using Terraria.GameContent;
+using System;
 
 namespace BingoGoalPackBingoSyncGoals.Content {
     internal class RegisterGoals : ModSystem {
@@ -11,8 +13,12 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         static Item disallow => BingoBoardCore.BingoBoardCore.disallowIcon;
         static readonly Item craft = new(ItemID.WorkBench);
 
+        Item tileGoalsIcon = new(ItemID.DirtBlock);
+        int[] tiles = new int[] {ItemID.DirtBlock};
         Item spearGoalIcon = new(ItemID.Spear);
         int[] spears = new int[] {ItemID.Spear};
+        Item accessoryGoalsIcon = new(ItemID.Shackle);
+        int[] accessories = new int[] {ItemID.Shackle};
         Item woodToolsGoalIcon = new(ItemID.WoodenSword);
         int[] woodTools = new int[] {ItemID.WoodenSword, ItemID.WoodenBow, ItemID.WoodenHammer};
         Item campfiresGoalIcon = new(ItemID.Campfire);
@@ -44,19 +50,32 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.Fireblossom, ItemID.Moonglow, ItemID.Shiverthorn,
             ItemID.Waterleaf
         };
+        private AnimatedIcon[] animations = Array.Empty<AnimatedIcon>();
         internal void loadItemAnimations() {
+            tiles = ContentSamples.ItemsByType.Where(val => val.Value.createTile != -1).Select(val => val.Key).ToArray();
+            tileGoalsIcon.type = tiles[0];
             spears = ItemID.Sets.Spears.Select((isSpear, id) => new { isSpear, id }).Where(val => val.isSpear).Select(val => val.id).ToArray();
             spearGoalIcon.type = spears[0];
+            accessories = ContentSamples.ItemsByType.Where(val => val.Value.accessory).Select(val => val.Key).ToArray();
+            accessoryGoalsIcon.type = accessories[0];
+            animations = new AnimatedIcon[] {ModContent.GetInstance<AnyBuff>(), ModContent.GetInstance<AnyDebuff>()};
         }
+
+        private Random rng = new();
 
         public override void PreUpdateItems() {
             if (Main.GameUpdateCount % animationPeriod == 0) {
                 var frame = Main.GameUpdateCount / animationPeriod;
+                tileGoalsIcon.type = tiles[rng.Next(tiles.Length)];
                 spearGoalIcon.type = spears[frame % spears.Length];
+                accessoryGoalsIcon.type = tiles[rng.Next(accessories.Length)];
                 woodToolsGoalIcon.type = woodTools[frame % woodTools.Length];
                 campfiresGoalIcon.type = campfires[frame % campfires.Length];
                 questGoalsIcon.type = questFish[frame % questFish.Length];
                 herbsGoalIcon.type = herbs[frame % herbs.Length];
+                foreach (var animation in animations) {
+                    animation.animate(frame);
+                }
             }
         }
 
@@ -81,7 +100,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get999OfTile",
                 difficulty: 0,
-                new Item(ItemID.DirtBlock),
+                tileGoalsIcon,
                 text: "999"
             );
             register(
@@ -128,7 +147,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Equip5Accessories",
                 difficulty: 1,
-                new Item(ItemID.Shackle),
+                accessoryGoalsIcon,
                 text: "5",
                 synergyTypes: new[] {"ME.15"}
             );
@@ -197,6 +216,17 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 herbsGoalIcon,
                 text: "7",
                 modifier: new Item(ItemID.ClayPot)
+            );
+            register(
+                "InvFullOfBlocks",
+                difficulty: 2,
+                tileGoalsIcon
+            );
+            register(
+                "Have12Buffs",
+                difficulty: 2,
+                ModContent.GetInstance<AnyBuff>().Item,
+                text: "12"
             );
         }
 

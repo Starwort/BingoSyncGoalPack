@@ -1,5 +1,6 @@
 ﻿using BingoGoalPackBingoSyncGoals.MonitorHooks;
 using Terraria;
+using Terraria.GameContent.Achievements;
 using Terraria.GameContent.Tile_Entities;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,20 @@ namespace BingoGoalPackBingoSyncGoals.Systems {
             On_TEFoodPlatter.PlaceItemInFrame += detectFoodPlace;
             On_Player.ItemCheck_UseMiningTools_ActuallyUseMiningTool += detectDieToAltar;
             On_Player.ApplyTouchDamage += detectDieToThorns;
+            On_AchievementsHelper.HandleSpecialEvent += onDieToDeadMansChest;
+            On_AchievementsHelper.HandleAnglerService += onFishingQuestComplete;
+        }
+
+        private void onFishingQuestComplete(On_AchievementsHelper.orig_HandleAnglerService orig) {
+            Main.LocalPlayer.GetModPlayer<PlayerHooks>().onFishingQuestComplete();
+            orig();
+        }
+
+        private void onDieToDeadMansChest(On_AchievementsHelper.orig_HandleSpecialEvent orig, Player player, int eventID) {
+            if (eventID == AchievementHelperID.Special.DeathByDeadmansChest) {
+                triggerGoal("DeadMenTellNoTales", player);
+            }
+            orig(player, eventID);
         }
 
         private void detectDieToThorns(On_Player.orig_ApplyTouchDamage orig, Player self, int tileId, int x, int y) {
