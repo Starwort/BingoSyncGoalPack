@@ -93,8 +93,8 @@ FindBiome: {
 # Difficulty 7
 DeadMenTellNoTales: Fall victim to a {$ItemName.DeadMansChest}
 Get5WoodArmour: Collect 5 unique wood armour sets
-WearPumpkin: Wear a full set of {$ItemName.Pumpkin} armour
-WearFossil: Wear a full set of Fossil armour
+WearPumpkinArmour: Wear a full set of {$ItemName.Pumpkin} armour
+WearFossilArmour: Wear a full set of Fossil armour
 GetSummons: Obtain 2 unique summoning staves
 Get100Gel: Have 100 gel in your inventory
 StackHighTierBars: Place a {$ItemName.CrimtaneBar} or {$ItemName.DemoniteBar}, a {$ItemName.MeteoriteBar}, and a {$ItemName.HellstoneBar} on top of each other in the snow biome
@@ -147,7 +147,7 @@ FindTemple: Go to the entrance of, or inside, the Lihzahrd Temple
 Get5GemStaves: Obtain at least 5 of the 9 Gem Staves
 
 # Difficulty 12
-WearNecro: Wear a full set of Necro armour
+WearNecroArmour: Wear a full set of Necro armour
 WearHeroHat: Wear the {$ItemName.HerosHat}
 LavaBath: Submerge yourself in lava, and stay there for 10 seconds
 GetManaFlower: Obtain a {$ItemName.ManaFlower}

@@ -1,8 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Mono.Cecil;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -17,6 +14,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         void trigger(string goal) {
             triggerGoal(goal, Player);
         }
+
         void failDisallow(string commonGoalSuffix) {
             untriggerGoal("No" + commonGoalSuffix, Player);
             Player? otherTeamPlayer = null;
@@ -221,27 +219,28 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             }
         }
 
-        public override void OnHurt(Player.HurtInfo info) {
-            var source = info.DamageSource;
-            PopupText.NewText(new AdvancedPopupRequest() {
-                Text = $"Damage: {source.SourceCustomReason} / {source.SourceOtherIndex} / {source.SourceItem}",
-                Velocity = -7 * Vector2.UnitY,
-                Color = Color.Red,
-                DurationInFrames = 60,
-            }, this.Player.Center);
-        }
-
         internal string? lastArmourSet;
 
         internal void updateArmourSet(string set) {
             if (set != lastArmourSet) {
                 this.lastArmourSet = set;
-                PopupText.NewText(new AdvancedPopupRequest() {
-                    Text = $"Armour set: {set}",
-                    Velocity = -7 * Vector2.UnitY,
-                    Color = Color.White,
-                    DurationInFrames = 60,
-                }, this.Player.Center);
+                switch (set) {
+                    case "cactus":
+                        trigger("WearCactusArmour");
+                        break;
+                    case "evil":
+                        trigger("WearEvilArmour");
+                        break;
+                    case "pumpkin":
+                        trigger("WearPumpkinArmour");
+                        break;
+                    case "fossil":
+                        trigger("WearFossilArmour");
+                        break;
+                    case "necro":
+                        trigger("WearNecroArmour");
+                        break;
+                }
             }
         }
 
