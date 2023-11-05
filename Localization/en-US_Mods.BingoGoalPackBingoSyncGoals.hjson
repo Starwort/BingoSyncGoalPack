@@ -13,7 +13,7 @@ DieToThorns: Die to thorns
 
 # Difficulty 1
 Get2Spears: Obtain 2 different spears
-Progress.Get2Spears: Unique spears: Collected {0}
+Progress.Get2Spears: Unique spears: Collected {0} (1/2)
 Get2Plat: Obtain 2 {$ItemName.PlatinumCoin}s
 DieToAltar: Die to hammering a {$MapObject.DemonAltar} or {$MapObject.CrimsonAltar}
 Equip5Accessories: Equip 5 different accessories
@@ -56,8 +56,13 @@ Progress.GetAllCampfires: Obtained campfire: {0} ({1}/9)
 DownEvilBoss: Defeat {$NPCName.EaterofWorldsBody} or {$NPCName.BrainofCthulhu}
 WearEvilArmour: Wear a full set of Shadow or Crimson armour
 KillEvilCritter: Kill a critter that has turned evil
-FindBothIslandTypes: Find a floating island house, and a sky lake
+# Skipped because I have no idea how to implement it, or what icon to give it:
+# FindBothIslandTypes: Find both a {$SkyIslands.House} and a {$SkyIslands.Lake}
+# Progress.FindBothIslandTypes: Find floating islands: Found {0}
+# SkyIslands.House: Floating Island House
+# SkyIslands.Lake: Sky Lake
 Sell100Hellstone: Sell 100 {$ItemName.Hellstone}
+Progress.Sell100Hellstone: Sell 100 {$ItemName.Hellstone}: {0}/100
 # Skipped because I have no idea how to implement it:
 # PurifyEvilOrb: Gain access to a {$ItemName.ShadowOrb} or {$ItemName.CrimsonHeart} using {$ItemName.PurificationPowder}
 SellFlamingMace: Sell a {$ItemName.FlamingMace}
@@ -65,23 +70,32 @@ SellFlamingMace: Sell a {$ItemName.FlamingMace}
 # PlaceAllSandcastles: Place all 4 kinds of sandcastle
 
 # Difficulty 5
-BreakLivingTreeLeaves: Destroy all the leaf blocks from a living tree
+# BreakLivingTreeLeaves: Destroy all the leaf blocks from a living tree
+BreakLivingTreeLeaves: Destroy any living leaf block
 EatGrubSoup: Consume {$ItemName.GrubSoup}
 Get4CritterContainers: Catch and contain 4 unique critters in {$ItemName.Terrarium}s/{$ItemName.Bottle}s
+Progress.Get4CritterContainers: Craft 4 critter containers: {0}/4
 GetLemonadeOrAppleJuice: Craft either {$ItemName.Lemonade} or {$ItemName.AppleJuice}
 WearVanityWinnerSet: Wear any Vanity Contest winner set
-Get4Shrooms: Obtain 4 unique types of mushrooms
-# ({$ItemName.GlowingMushroom}, {$ItemName.GreenMushroom}, {$ItemName.Mushroom}, {$ItemName.StrangeGlowingMushroom}, {$ItemName.TealMushroom}, {$ItemName.ViciousMushroom}, {$ItemName.VileMushroom})
+Get4Shrooms: Obtain 4 unique types of mushroom
+Progress.Get4Shrooms: Obtain unique mushrooms: {0}/4
 Get3Watches: Obtain 3 different kinds of Watch
+Progress.Get3Watches: Obtain unique watches: {0}/3
 GetTrash: Obtain all 3 kinds of fishing junk
+Progress.GetTrash: Obtain unique junk: {0}/3
 
 # Difficulty 6
 MakePotions: {
 	Magic: Craft potions: {$BuffName.MagicPower}, {$BuffName.ManaRegeneration}
 	Explore: Craft potions: {$BuffName.Mining}, {$BuffName.Shine}, {$BuffName.NightOwl}
-	Water: Craft Potions: {$BuffName.WaterWalking}, {$BuffName.Flipper}
+	Water: Craft potions: {$BuffName.WaterWalking}, {$BuffName.Flipper}
 	Trans: Craft a {$ItemName.GenderChangePotion}
 	Titan: Craft a {$ItemName.TitanPotion}
+}
+Progress.MakePotions: {
+	Magic: Craft magic potions: 1/2
+	Explore: Craft exploration potions: {0}/3
+	Water: Craft water movement potions: 1/2
 }
 FindBiome: {
 	SurfaceMushroom: Be in a Surface Mushroom biome
@@ -93,12 +107,15 @@ FindBiome: {
 # Difficulty 7
 DeadMenTellNoTales: Fall victim to a {$ItemName.DeadMansChest}
 Get5WoodArmour: Collect 5 unique wood armour sets
+Progress.Get5WoodArmour: Collect wood armour sets: {0}/5
 WearPumpkinArmour: Wear a full set of {$ItemName.Pumpkin} armour
 WearFossilArmour: Wear a full set of Fossil armour
 GetSummons: Obtain 2 unique summoning staves
+Progress.GetSummons: Obtain summoning staves: 1/2
 Get100Gel: Have 100 gel in your inventory
 StackHighTierBars: Place a {$ItemName.CrimtaneBar} or {$ItemName.DemoniteBar}, a {$ItemName.MeteoriteBar}, and a {$ItemName.HellstoneBar} on top of each other in the snow biome
 Get4GrassSeeds: Obtain 4 unique types of grass seeds
+Progress.Get4GrassSeeds: Obtain grass seeds: {0}/4
 
 # Difficulty 8
 GetGemCritterCage: Catch and contain any gem critter
@@ -106,8 +123,10 @@ Get99Seeds: Obtain 99 {$ItemName.Seed}s (ammo)
 # Lockout only:
 HelpGolfer: Rescue the {$NPCName.Golfer}
 Get6Arrows: Obtain 6 unique types of arrows
+Progress.Get6Arrows: Obtain unique arrows: {0}/6
 GetSilverBullets: Obtain both a {$ItemName.SilverBullet} and a {$ItemName.TungstenBullet}
 Get8Hooks: Obtain 8 unique grappling hooks
+Progress.Get8Hooks: Obtain unique hooks: {0}/8
 # Skipped because I don't know how to implement it in a sensible way:
 # HoneyDrownNPC: Drown a Town NPC in honey
 Have5Debuffs: Have 5 debuffs at once

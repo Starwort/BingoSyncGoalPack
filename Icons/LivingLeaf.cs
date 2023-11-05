@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 
 namespace BingoGoalPackBingoSyncGoals.Icons {
-    internal class Thorns : AssetCycleAnimation {
+    internal class LivingLeaf : AssetCycleAnimation {
         DrawAnimationSheetSlice slice = new(new Rectangle(162, 54, 16, 16));
         static Random rng = new();
 
@@ -17,10 +17,8 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         }
 
         static ushort[] sheets = new[] {
-            TileID.CorruptThorns,
-            TileID.CrimsonThorns,
-            TileID.JungleThorns,
-            TileID.PlanteraThorns,
+            TileID.LeafBlock,
+            TileID.LivingMahoganyLeaves,
         };
 
         public override Asset<Texture2D> getFrame(uint frame) {

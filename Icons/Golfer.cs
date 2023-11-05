@@ -4,8 +4,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BingoGoalPackBingoSyncGoals.Icons {
-    internal class Angler : ModItem {
-        public override string Texture => $"Terraria/Images/NPC_{NPCID.Angler}";
+    internal class Golfer : ModItem {
+        public override string Texture => $"Terraria/Images/NPC_{NPCID.Golfer}";
 
         public override void SetStaticDefaults() {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, Main.npcFrameCount[NPCID.Angler]));

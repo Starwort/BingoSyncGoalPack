@@ -10,9 +10,8 @@ namespace BingoGoalPackBingoSyncGoals {
         public static string GithubUserName => "Starwort";
         public static string GithubProjectName => "BingoGoalPack-BingoSyncGoals";
 
-        public const int animationPeriod = 30;
-
         internal const string goalNamespace = "BingoSyncPack.";
+
         internal static void triggerGoal(string goal, Player player) {
             BingoBoardCore.BingoBoardCore.triggerGoal(goalNamespace + goal, player);
         }
