@@ -13,184 +13,23 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         static Item disallow => BingoBoardCore.BingoBoardCore.disallowIcon;
         static readonly Item craft = new(ItemID.WorkBench);
 
-        // Item sets
-        internal static int[] tiles = new int[] {ItemID.DirtBlock};
-        internal static int[] spears = new int[] {ItemID.Spear};
-        internal static int[] accessories = new int[] {ItemID.Shackle};
-        internal static int[] questFish = new int[] {ItemID.AmanitaFungifin};
-        internal static int[] critterContainers = new int[] {ItemID.BunnyCage};
-        internal static int[] summonStaves = new int[] {ItemID.SlimeStaff};
-        internal static int[] hooks = new int[] {ItemID.GrapplingHook};
-
-        internal static int[] phmCampfires = new int[] {
-            ItemID.Campfire, ItemID.CoralCampfire, ItemID.CorruptCampfire,
-            ItemID.CrimsonCampfire, ItemID.DemonCampfire, ItemID.DesertCampfire,
-            ItemID.FrozenCampfire, ItemID.JungleCampfire, ItemID.MushroomCampfire
-        };
-
-        internal static int[] herbs = new int[] {
-            ItemID.Blinkroot, ItemID.Daybloom, ItemID.Deathweed,
-            ItemID.Fireblossom, ItemID.Moonglow, ItemID.Shiverthorn,
-            ItemID.Waterleaf
-        };
-
-        internal static int[] lowTierBars = new int[] {
-            // Tier 1
-            ItemID.CopperBar, ItemID.TinBar,
-            // Tier 2
-            ItemID.IronBar, ItemID.LeadBar,
-            // Tier 3
-            ItemID.SilverBar, ItemID.TungstenBar,
-            // Tier 4
-            ItemID.GoldBar, ItemID.PlatinumBar,
-        };
-
-        internal static int[] bars = new int[23] {
-            // Tier 1
-            ItemID.CopperBar, ItemID.TinBar,
-            // Tier 2
-            ItemID.IronBar, ItemID.LeadBar,
-            // Tier 3
-            ItemID.SilverBar, ItemID.TungstenBar,
-            // Tier 4
-            ItemID.GoldBar, ItemID.PlatinumBar,
-            // Tier 5
-            ItemID.MeteoriteBar,
-            // Tier 6
-            ItemID.DemoniteBar, ItemID.CrimtaneBar,
-            // Tier 7
-            ItemID.HellstoneBar,
-            // Tier 8
-            ItemID.CobaltBar, ItemID.PalladiumBar,
-            // Tier 9
-            ItemID.MythrilBar, ItemID.OrichalcumBar,
-            // Tier 10
-            ItemID.AdamantiteBar, ItemID.TitaniumBar,
-            // Tier 11
-            ItemID.HallowedBar,
-            // Tier 12
-            ItemID.ChlorophyteBar,
-            // Tier 13
-            ItemID.ShroomiteBar, ItemID.SpectreBar,
-            // Tier 14
-            ItemID.LunarBar,
-        };
-
-        internal static int[] grassSeeds = new int[] {
-            ItemID.GrassSeeds,
-            ItemID.AshGrassSeeds,
-            ItemID.JungleGrassSeeds,
-            ItemID.MushroomGrassSeeds,
-            ItemID.CorruptSeeds,
-            ItemID.CrimsonSeeds,
-            ItemID.HallowedSeeds
-        };
-
-        internal static int[] gemCritterCages = new int[] {
-            ItemID.AmberBunnyCage,
-            ItemID.AmberSquirrelCage,
-            ItemID.AmethystBunnyCage,
-            ItemID.AmethystSquirrelCage,
-            ItemID.DiamondBunnyCage,
-            ItemID.DiamondSquirrelCage,
-            ItemID.EmeraldBunnyCage,
-            ItemID.EmeraldSquirrelCage,
-            ItemID.RubyBunnyCage,
-            ItemID.RubySquirrelCage,
-            ItemID.SapphireBunnyCage,
-            ItemID.SapphireSquirrelCage,
-            ItemID.TopazBunnyCage,
-            ItemID.TopazSquirrelCage,
-        };
-
-        internal static int[] arrows = new int[] {
-            ItemID.WoodenArrow,
-            ItemID.FlamingArrow,
-            ItemID.UnholyArrow,
-            ItemID.JestersArrow,
-            ItemID.HellfireArrow,
-            ItemID.HolyArrow,
-            ItemID.CursedArrow,
-            ItemID.FrostburnArrow,
-            ItemID.ChlorophyteArrow,
-            ItemID.IchorArrow,
-            ItemID.VenomArrow,
-            ItemID.BoneArrow,
-            ItemID.MoonlordArrow,
-            ItemID.ShimmerArrow,
-        };
-
-        internal static bool appearsToBeCritterContainer(Recipe recipe) {
-            var ingredients = recipe.requiredItem;
-            if (ingredients.Count != 2) {
-                return false;
-            }
-            Item? critter = null;
-            if (
-                ingredients[0].type != ItemID.Terrarium
-                && ingredients[0].type != ItemID.Bottle
-            ) {
-                critter = ingredients[0];
-            }
-            if (
-                ingredients[1].type != ItemID.Terrarium
-                && ingredients[1].type != ItemID.Bottle
-            ) {
-                if (critter is null) {
-                    critter = ingredients[1];
-                } else {
-                    return false;
-                }
-            }
-            return critter is not null && critter.makeNPC > 0;
-        }
-
-        internal void loadItemSets() {
-            tiles = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.createTile != -1
-                select val.Key
-            ).ToArray();
-            // It seems that this is inexpressible with linq
-            spears = (
-                ItemID.Sets.Spears
-                .Select((isSpear, id) => new {isSpear, id})
-                .Where(val => val.isSpear)
-                .Select(val => val.id)
-            ).ToArray();
-            accessories = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.accessory
-                select val.Key
-            ).ToArray();
-            questFish = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.questItem
-                select val.Key
-            ).ToArray();
-            critterContainers = (
-                from recipe in Main.recipe
-                where appearsToBeCritterContainer(recipe)
-                select recipe.createItem.type
-            ).ToArray();
-            summonStaves = (
-                from val in ContentSamples.ItemsByType
-                where Item.staff[val.Key]
-                    && val.Value.CountsAsClass(DamageClass.Summon)
-                select val.Key
-            ).ToArray();
-            hooks = (
-                from val in ContentSamples.ItemsByType
-                where Main.projHook[val.Value.shoot]
-                select val.Key
-            ).ToArray();
-        }
-
         internal void registerGoals() {
-            var tileIcon = IconAnimationSystem.registerRandAnimation(tiles);
-            var accessoryIcon = IconAnimationSystem.registerRandAnimation(accessories);
-            var evilBossIcon = IconAnimationSystem.registerCycleAnimation(ItemID.BrainofCthulhuTrophy, ItemID.EaterofWorldsTrophy);
-            var questFishIcon = IconAnimationSystem.registerRandAnimation(questFish);
+            var kill = new Item(ItemID.CopperShortsword);
+            var trash = new Item(ItemID.TrashCan);
+            var sell = new Item(ItemID.DiscountCard);
+            var swordOrSpear = IconAnimationSystem.registerRandAnimation(
+                ItemSets.swords.Concat(ItemSets.spears).ToArray()
+            );
+
+            var tiles = IconAnimationSystem.registerRandAnimation(ItemSets.tiles);
+            var accessories = IconAnimationSystem.registerRandAnimation(ItemSets.accessories);
+            var evilBoss = IconAnimationSystem.registerCycleAnimation(ItemID.BrainofCthulhuTrophy, ItemID.EaterofWorldsTrophy);
+            var questFish = IconAnimationSystem.registerRandAnimation(ItemSets.questFish);
+            var platforms = IconAnimationSystem.registerRandAnimation(ItemSets.platforms);
+
+            Func<BingoMode, int, bool> notLockout = (mode, _) => mode != BingoMode.Lockout;
+            Func<BingoMode, int, bool> twoLockout = (mode, teams) => mode == BingoMode.Lockout && teams == 2;
+            Func<BingoMode, int, bool> anyLockout = (mode, _) => mode == BingoMode.Lockout;
 
             #region Difficulty 0 goals
             register(
@@ -213,7 +52,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get999OfTile",
                 difficulty: 0,
-                tileIcon,
+                tiles,
                 text: "999"
             );
             register(
@@ -244,7 +83,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get2Spears",
                 difficulty: 1,
-                IconAnimationSystem.registerRandAnimation(spears),
+                IconAnimationSystem.registerRandAnimation(ItemSets.spears),
                 text: "2"
             );
             register(
@@ -262,7 +101,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Equip5Accessories",
                 difficulty: 1,
-                accessoryIcon,
+                accessories,
                 text: "5",
                 synergyTypes: new[] {"ME.15"}
             );
@@ -289,7 +128,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 difficulty: 1,
                 new Item(ItemID.CopperAxe),
                 modifier: disallow,
-                shouldEnable: (mode, _) => mode != BingoMode.Lockout,
+                shouldEnable: notLockout,
                 synergyTypes: new[] {"ME.1"}
             );
             register(
@@ -297,7 +136,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 difficulty: 1,
                 new Item(ItemID.CopperAxe),
                 modifier: disallow,
-                shouldEnable: (mode, teams) => mode == BingoMode.Lockout && teams == 2,
+                shouldEnable: twoLockout,
                 synergyTypes: new[] {"ME.1"}
             );
             #endregion
@@ -306,7 +145,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "CompleteFishingQuest",
                 difficulty: 2,
-                questFishIcon,
+                questFish,
                 text: "1",
                 synergyTypes: new[] {"ME.11"}
             );
@@ -330,14 +169,14 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "PlantAllHerbs",
                 difficulty: 2,
-                IconAnimationSystem.registerRandAnimation(herbs),
+                IconAnimationSystem.registerRandAnimation(ItemSets.herbs),
                 text: "7",
                 modifier: new Item(ItemID.ClayPot)
             );
             register(
                 "InvFullOfBlocks",
                 difficulty: 2,
-                tileIcon
+                tiles
             );
             register(
                 "Have12Buffs",
@@ -357,7 +196,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Stack4BarsOnDungeon",
                 difficulty: 3,
-                IconAnimationSystem.registerRandAnimation(lowTierBars),
+                IconAnimationSystem.registerRandAnimation(ItemSets.lowTierBars),
                 modifier: IconAnimationSystem.registerCycleAnimation(ItemID.BlueBrick, ItemID.GreenBrick, ItemID.PinkBrick),
                 text: "4"
             );
@@ -394,18 +233,18 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 "TrashSharkBait",
                 difficulty: 3,
                 new Item(ItemID.SharkBait),
-                modifier: new Item(ItemID.TrashCan)
+                modifier: trash
             );
             register(
                 "FillHouseWithBars",
                 difficulty: 3,
-                IconAnimationSystem.registerRandAnimation(bars),
+                IconAnimationSystem.registerRandAnimation(ItemSets.bars),
                 modifier: ModContent.GetInstance<House>().Item
             );
             register(
                 "GetAllCampfires",
                 difficulty: 3,
-                IconAnimationSystem.registerRandAnimation(phmCampfires),
+                IconAnimationSystem.registerRandAnimation(ItemSets.phmCampfires),
                 text: "9"
             );
             #endregion
@@ -414,7 +253,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "DownEvilBoss",
                 difficulty: 4,
-                evilBossIcon,
+                evilBoss,
                 synergyTypes: new[] {"ME.4.1", "ME.4.2"}
             );
             register(
@@ -434,20 +273,20 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 "KillEvilCritter",
                 difficulty: 4,
                 ModContent.GetInstance<EvilCritter>().Item,
-                modifier: new(ItemID.CopperShortsword)
+                modifier: kill
             );
             register(
                 "Sell100Hellstone",
                 difficulty: 4,
                 new Item(ItemID.Hellstone),
-                modifier: new(ItemID.DiscountCard),
+                modifier: sell,
                 text: "100"
             );
             register(
                 "SellFlamingMace",
                 difficulty: 4,
                 new Item(ItemID.FlamingMace),
-                modifier: new(ItemID.DiscountCard)
+                modifier: sell
             );
             #endregion
 
@@ -466,7 +305,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get4CritterContainers",
                 difficulty: 5,
-                IconAnimationSystem.registerRandAnimation(critterContainers),
+                IconAnimationSystem.registerRandAnimation(ItemSets.critterContainers),
                 text: "4"
             );
             register(
@@ -612,8 +451,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "DeadMenTellNoTales",
                 difficulty: 7,
-                new Item(ItemID.DeadMansChest),
-                modifier: die,
+                ModContent.GetInstance<DeadMenTellNoTales>().Item,
                 synergyTypes: new[] {"ME.9"}
             );
             register(
@@ -672,7 +510,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "GetSummons",
                 difficulty: 7,
-                IconAnimationSystem.registerRandAnimation(summonStaves),
+                IconAnimationSystem.registerRandAnimation(ItemSets.summonStaves),
                 text: "7"
             );
             register(
@@ -697,7 +535,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get4GrassSeeds",
                 difficulty: 7,
-                IconAnimationSystem.registerRandAnimation(grassSeeds),
+                IconAnimationSystem.registerRandAnimation(ItemSets.grassSeeds),
                 text: "4"
             );
             #endregion
@@ -706,7 +544,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "GetGemCritterCage",
                 difficulty: 8,
-                IconAnimationSystem.registerRandAnimation(gemCritterCages)
+                IconAnimationSystem.registerRandAnimation(ItemSets.gemCritterCages)
             );
             register(
                 "Get99Seeds",
@@ -718,12 +556,12 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 "HelpGolfer",
                 difficulty: 8,
                 ModContent.GetInstance<Golfer>().Item,
-                shouldEnable: (mode, _) => mode == BingoMode.Lockout
+                shouldEnable: anyLockout
             );
             register(
                 "Get6Arrows",
                 difficulty: 8,
-                IconAnimationSystem.registerRandAnimation(arrows),
+                IconAnimationSystem.registerRandAnimation(ItemSets.arrows),
                 text: "6"
             );
             register(
@@ -737,7 +575,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get8Hooks",
                 difficulty: 8,
-                IconAnimationSystem.registerRandAnimation(hooks),
+                IconAnimationSystem.registerRandAnimation(ItemSets.hooks),
                 text: "8"
             );
             register(
@@ -749,12 +587,178 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             #endregion
 
             #region Difficulty 9 goals
+            register(
+                "HaveMaxHealth",
+                difficulty: 9,
+                new Item(ItemID.LifeCrystal),
+                text: "400"
+            );
+            register(
+                "HaveMaxMana",
+                difficulty: 9,
+                new Item(ItemID.ManaCrystal),
+                text: "200"
+            );
+            register(
+                "UseFairy",
+                difficulty: 9,
+                IconAnimationSystem.registerCycleAnimation(
+                    ItemID.FairyCritterPink,
+                    ItemID.FairyCritterGreen,
+                    ItemID.FairyCritterBlue
+                )
+            );
+            register(
+                "DownArmy",
+                difficulty: 9,
+                new Item(ItemID.GoblinBattleStandard),
+                modifier: kill
+            );
+            register(
+                "UsePoisonDart",
+                difficulty: 9,
+                new Item(ItemID.PoisonDart),
+                modifier: IconAnimationSystem.registerCycleAnimation(
+                    ItemID.Blowpipe,
+                    ItemID.Blowgun
+                )
+            );
+            register(
+                "Get5Minecarts",
+                difficulty: 9,
+                IconAnimationSystem.registerRandAnimation(ItemSets.minecarts),
+                text: "5"
+            );
+            register(
+                "DownKSMelee",
+                difficulty: 9,
+                new Item(ItemID.KingSlimeTrophy),
+                modifier: swordOrSpear,
+                synergyTypes: new[] {"ME.3.2"}
+            );
+            register(
+                "GetTorchGodsFavour",
+                difficulty: 9,
+                new Item(ItemID.TorchGodsFavor)
+            );
             #endregion
 
             #region Difficulty 10 goals
+            register(
+                "MakePiano",
+                difficulty: 10,
+                IconAnimationSystem.registerRandAnimation(ItemSets.craftablePianos),
+                modifier: craft
+            );
+            register(
+                "ThrowBonesAtTargetDummy",
+                difficulty: 10,
+                new Item(ItemID.Bone),
+                modifier: new(ItemID.TargetDummy),
+                text: "35"
+            );
+            register(
+                "DownSkele",
+                difficulty: 10,
+                new Item(ItemID.SkeletronTrophy),
+                synergyTypes: new[] {"ME.7.1", "ME.7.2"}
+            );
+            register(
+                "NoEquipAccessories",
+                difficulty: 10,
+                accessories,
+                modifier: disallow,
+                synergyTypes: new[] {"ME.1", "ME.15"},
+                shouldEnable: notLockout
+            );
+            register(
+                "OpponentEquipAccessories",
+                difficulty: 10,
+                accessories,
+                modifier: disallow,
+                synergyTypes: new[] {"ME.1", "ME.15"},
+                shouldEnable: twoLockout
+            );
+            register(
+                "NoPlatforms",
+                difficulty: 10,
+                platforms,
+                modifier: disallow,
+                synergyTypes: new[] {"ME.1"},
+                shouldEnable: notLockout
+            );
+            register(
+                "OpponentPlatforms",
+                difficulty: 10,
+                platforms,
+                modifier: disallow,
+                synergyTypes: new[] {"ME.1"},
+                shouldEnable: twoLockout
+            );
+            register(
+                "GetAnnouncementBox",
+                difficulty: 10,
+                new Item(ItemID.AnnouncementBox)
+            );
+            register(
+                "TrashDungeonWeapon",
+                difficulty: 10,
+                IconAnimationSystem.registerRandAnimation(ItemSets.dungeonWeapons),
+                modifier: trash
+            );
+            register(
+                "TrashWaterBolt",
+                difficulty: 10,
+                new Item(ItemID.WaterBolt),
+                modifier: trash
+            );
             #endregion
 
             #region Difficulty 11 goals
+            register(
+                "RockBottom",
+                difficulty: 11,
+                ModContent.GetInstance<RockBottom>().Item
+            );
+            register(
+                "HelpStylist",
+                difficulty: 11,
+                ModContent.GetInstance<Stylist>().Item,
+                shouldEnable: anyLockout
+            );
+            register(
+                "IntoOrbit",
+                difficulty: 11,
+                ModContent.GetInstance<IntoOrbit>().Item
+            );
+            register(
+                "DownKSSpace",
+                difficulty: 11,
+                new Item(ItemID.KingSlimeTrophy),
+                modifier: ModContent.GetInstance<IntoOrbit>().Item
+            );
+            register(
+                "See3BlazingWheels",
+                difficulty: 11,
+                ModContent.GetInstance<BlazingWheel>().Item,
+                text: "3"
+            );
+            register(
+                "TraverseWholeWorld",
+                difficulty: 11,
+                new Item(ItemID.TrifoldMap)
+            );
+            register(
+                "FindTemple",
+                difficulty: 11,
+                ModContent.GetInstance<TempleRaider>().Item
+            );
+            register(
+                "Get5GemStaves",
+                difficulty: 11,
+                IconAnimationSystem.registerRandAnimation(ItemSets.gemStaves),
+                text: "5"
+            );
             #endregion
 
             #region Difficulty 12 goals
@@ -798,7 +802,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         }
 
         public override void PostSetupContent() {
-            loadItemSets();
+            ItemSets.load();
             registerGoals();
         }
     }

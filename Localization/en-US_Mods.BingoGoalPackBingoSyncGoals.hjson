@@ -136,9 +136,12 @@ HaveMaxHealth: Have at least 400 max health
 HaveMaxMana: Have at least 200 max mana
 UseFairy: Catch a fairy and use it underground
 DownArmy: Defeat the {$LegacyInterface.88}
+Progress.DownArmy: Defeat {$LegacyInterface.88}: You will receive this goal upon event completion
 UsePoisonDart: Shoot an enemy with a {$ItemName.PoisonDart} from a {$ItemName.Blowpipe} or {$ItemName.Blowgun}
 Get5Minecarts: Obtain 5 different minecarts
+Progress.Get5Minecarts: Obtain unique minecarts: {0}/5
 DownKSMelee: Defeat {$NPCName.KingSlime} using only swords and/or spears
+BadProgress.DownKSMelee: Used a weapon other than a sword or a spear!
 GetTorchGodsFavour: Obtain {$ItemName.TorchGodsFavor}
 
 # Difficulty 10
@@ -159,11 +162,18 @@ RockBottom: Reach the very bottom of the Underworld
 # Lockout only:
 HelpStylist: Rescue the {$NPCName.Stylist}
 IntoOrbit: Reach the very top of Space
-DownKSSpace: Defeat {$NPCName.KingSlime} in Space
+DownKSSpace: Defeat {$NPCName.KingSlime}, dealing damage only while in Space
+BadProgress.DownKSSpace: Dealt damage outside of Space!
 See3BlazingWheels: Have 3 {$NPCName.BlazingWheel}s on screen at once
 TraverseWholeWorld: Touch both the left and right edges of the world
+Side: {
+	Left: left
+	Right: right
+}
+Progress.TraverseWholeWorld: Touched the {0} edge of the world
 FindTemple: Go to the entrance of, or inside, the Lihzahrd Temple
-Get5GemStaves: Obtain at least 5 of the 9 Gem Staves
+Get5GemStaves: Obtain at least 5 of the 7 Gem Staves
+Progress.Get5GemStaves: Obtain Gem Staves: {0}/5
 
 # Difficulty 12
 WearNecroArmour: Wear a full set of Necro armour
@@ -225,7 +235,7 @@ DownWoF: Defeat {$NPCName.WallofFlesh}
 DownSkeleJungle: Defeat {$NPCName.SkeletronHead} in the Jungle
 DownQBLowMaxLife: Defeat {$NPCName.QueenBee} with no more than 200 max health
 DownEoCQB: Summon {$NPCName.EyeofCthulhu} and {$NPCName.QueenBee} at the same time, and defeat them both
-DownEvilBossUpsideDown: Defeat {$NPCName.EaterofWorldsBody} or {$NPCName.BrainofCthulhu}, only dealing damage while upside down
+DownEvilBossUpsideDown: Defeat {$NPCName.EaterofWorldsBody} or {$NPCName.BrainofCthulhu}, dealing damage only while upside down
 # Skipped because I have no idea how to implement them:
 # BreakFloatingIsland: Destroy an entire floating island (including walls)
 # BreakBeeHive: Destroy an entire bee hive (including walls) without dying in the process
