@@ -26,14 +26,14 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             (NPCID.CrimsonGoldfish, 6, 4, 2, 6),
             (NPCID.CorruptGoldfish, 6, 0, 4, 6),
             (NPCID.CorruptGoldfish, 6, 4, 2, 6),
-            (NPCID.CorruptPenguin, 16, 0, 4, 6),
-            (NPCID.CorruptPenguin, 16, 4, 4, 6),
-            (NPCID.CorruptPenguin, 16, 8, 4, 6),
-            (NPCID.CorruptPenguin, 16, 12, 4, 6),
-            (NPCID.CrimsonPenguin, 16, 0, 4, 6),
-            (NPCID.CrimsonPenguin, 16, 4, 4, 6),
-            (NPCID.CrimsonPenguin, 16, 8, 4, 6),
-            (NPCID.CrimsonPenguin, 16, 12, 4, 6),
+            (NPCID.CorruptPenguin, 12, 0, 3, 6),
+            (NPCID.CorruptPenguin, 12, 3, 3, 6),
+            (NPCID.CorruptPenguin, 12, 6, 3, 6),
+            (NPCID.CorruptPenguin, 12, 9, 3, 6),
+            (NPCID.CrimsonPenguin, 12, 0, 3, 6),
+            (NPCID.CrimsonPenguin, 12, 3, 3, 6),
+            (NPCID.CrimsonPenguin, 12, 6, 3, 6),
+            (NPCID.CrimsonPenguin, 12, 9, 3, 6),
         };
 
         public override Asset<Texture2D> getFrame(uint frame) {

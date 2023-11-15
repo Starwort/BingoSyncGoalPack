@@ -11,7 +11,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         internal static int[] spears = new int[] {ItemID.Spear};
         internal static int[] accessories = new int[] {ItemID.Shackle};
         internal static int[] questFish = new int[] {ItemID.AmanitaFungifin};
-        internal static int[] critterContainers = new int[] {ItemID.BunnyCage};
+        internal static int[] critterCages = new int[] {ItemID.BunnyCage};
         internal static int[] summonStaves = new int[] {ItemID.SlimeStaff};
         internal static int[] hooks = new int[] {ItemID.GrapplingHook};
         internal static int[] swords = new int[] {ItemID.CopperShortsword};
@@ -19,6 +19,8 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         internal static int[] craftablePianos = new int[] {ItemID.Piano};
         internal static int[] platforms = new int[] {ItemID.WoodPlatform};
         internal static int[] dungeonWeapons = new int[] {ItemID.Muramasa};
+        internal static int[] torches = new int[] {ItemID.Torch};
+        internal static int[] paintings = new int[] {ItemID.PaintingAcorns};
 
         internal static int[] phmCampfires = new int[] {
             ItemID.Campfire, ItemID.CoralCampfire, ItemID.CorruptCampfire,
@@ -129,66 +131,58 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         };
 
         internal static void load() {
-            tiles = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.createTile != -1
-                select val.Key
-            ).ToArray();
+            List<int> tile = new();
+            List<int> spear = new();
+            List<int> accessory = new();
+            List<int> fish = new();
+            List<int> summonStaff = new();
+            List<int> hook = new();
+            List<int> sword = new();
+            List<int> minecart = new();
+            List<int> platform = new();
+            List<int> torch = new();
+            List<int> painting = new();
+            foreach ((var id, var item) in ContentSamples.ItemsByType) {
+                if (item.createTile != -1) {
+                    tile.Add(id);
+                    if (TileID.Sets.Platforms[item.createTile]) {
+                        platform.Add(id);
+                    }
+                    if (TileID.Sets.Torch[item.createTile]) {
+                        torch.Add(id);
+                    }
+                    if (TileID.Sets.Paintings[item.createTile]) {
+                        painting.Add(id);
+                    }
+                }
+                if (ItemID.Sets.Spears[id]) { spear.Add(id); }
+                if (item.accessory) { accessory.Add(id); }
+                if (item.questItem) { fish.Add(id); }
+                if (Item.staff[id] && item.CountsAsClass(DamageClass.Summon)) { summonStaff.Add(id); }
+                if (Main.projHook[item.shoot]) { hook.Add(id); }
+                if (isSword(item)) { sword.Add(id); }
+                if (item.mountType >= 0 && MountID.Sets.Cart[item.mountType]) { minecart.Add(id); }
+            }
+            tiles = tile.ToArray();
             // It seems that this is inexpressible with linq
-            spears = (
-                ItemID.Sets.Spears
-                .Select((isSpear, id) => new {isSpear, id})
-                .Where(val => val.isSpear)
-                .Select(val => val.id)
-            ).ToArray();
-            accessories = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.accessory
-                select val.Key
-            ).ToArray();
-            questFish = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.questItem
-                select val.Key
-            ).ToArray();
-            critterContainers = (
+            spears = spear.ToArray();
+            accessories = accessory.ToArray();
+            questFish = fish.ToArray();
+            critterCages = (
                 from recipe in Main.recipe
                 where appearsToBeCritterContainer(recipe)
                 select recipe.createItem.type
             ).ToArray();
-            summonStaves = (
-                from val in ContentSamples.ItemsByType
-                where Item.staff[val.Key]
-                    && val.Value.CountsAsClass(DamageClass.Summon)
-                select val.Key
-            ).ToArray();
-            hooks = (
-                from val in ContentSamples.ItemsByType
-                where Main.projHook[val.Value.shoot]
-                select val.Key
-            ).ToArray();
-            swords = (
-                from val in ContentSamples.ItemsByType
-                where isSword(val.Value)
-                select val.Key
-            ).ToArray();
-            minecarts = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.mountType > 0
-                    && MountID.Sets.Cart[val.Value.mountType]
-                select val.Key
-            ).ToArray();
+            summonStaves = summonStaff.ToArray();
+            hooks = hook.ToArray();
+            swords = sword.ToArray();
+            minecarts = minecart.ToArray();
             craftablePianos = (
                 from recipe in Main.recipe
                 where appearsToBeCraftablePiano(recipe)
                 select recipe.createItem.type
             ).ToArray();
-            platforms = (
-                from val in ContentSamples.ItemsByType
-                where val.Value.createTile != -1
-                    && TileID.Sets.Platforms[val.Value.createTile]
-                select val.Key
-            ).ToArray();
+            platforms = platform.ToArray();
             {
                 var dropRules = Main.ItemDropsDB.GetRulesForItemID(ItemID.LockBox);
                 List<DropRateInfo> list = new();
@@ -202,6 +196,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                     select drop.itemId
                 ).ToArray();
             }
+            torches = torch.ToArray();
         }
 
         public static bool appearsToBeCritterContainer(Recipe recipe) {

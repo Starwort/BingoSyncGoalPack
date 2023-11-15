@@ -47,7 +47,7 @@ WearCactusArmour: Wear a full set of {$ItemName.Cactus} armour
 GrowGemTree: Plant any gemcorn and have it grow into a gem tree
 Progress.GrowGemTree: Planted a gemcorn!
 BadProgress.GrowGemTree: The gemcorn was destroyed!
-TrashSharkBait: Trash a {$ItemName.SharkBait}
+TrashSharkBait: Trash (and destroy) a {$ItemName.SharkBait}
 FillHouseWithBars: Fill an NPC house with bars
 GetAllCampfires: Have all Pre-Hardmode biome campfires in your inventory at once (excluding Aether, Bone, and Ultrabright)
 Progress.GetAllCampfires: Obtained campfire: {0} ({1}/9)
@@ -154,8 +154,8 @@ NoPlatforms: Never place a platform
 OpponentPlatforms: The opponent places a platform
 # skipping the BINGO bit because that seems like hell to implement
 GetAnnouncementBox: Obtain an {$ItemName.AnnouncementBox}
-TrashDungeonWeapon: Trash any {$RandomWorldName_Location.Dungeon} weapon
-TrashWaterBolt: Trash a {$ItemName.WaterBolt}
+TrashDungeonWeapon: Trash (and destroy) any {$RandomWorldName_Location.Dungeon} weapon
+TrashWaterBolt: Trash (and destroy) a {$ItemName.WaterBolt}
 
 # Difficulty 11
 RockBottom: Reach the very bottom of the Underworld
@@ -179,10 +179,11 @@ Progress.Get5GemStaves: Obtain Gem Staves: {0}/5
 WearNecroArmour: Wear a full set of Necro armour
 WearHeroHat: Wear the {$ItemName.HerosHat}
 LavaBath: Submerge yourself in lava, and stay there for 10 seconds
+Progress.LavaBath: Take a lava bath: {0} seconds left
 GetManaFlower: Obtain a {$ItemName.ManaFlower}
 NoTorches: Never place or hold a torch
 OpponentTorches: Opponent places or holds a torch
-PlaceArt: Buy and place any painting
+PlaceArt: Place any painting
 DownQB: Defeat {$NPCName.QueenBee}
 DownEoCMelee: Defeat {$NPCName.EyeofCthulhu} using only swords and/or spears
 
