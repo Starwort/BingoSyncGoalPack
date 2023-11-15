@@ -189,9 +189,12 @@ DownEoCMelee: Defeat {$NPCName.EyeofCthulhu} using only swords and/or spears
 
 # Difficulty 13
 Get2Crates: Obtain 2 unique crates
+Progress.Get2Crates: Obtain unique crates: 1/2
 Stinky: Throw a {$ItemName.StinkPotion} on yourself
 Loot6GoldChests: Open 6 {$ItemName.GoldChest}s
+Progress.Loot6GoldChests: Open {$ItemName.GoldChest}s: {0}/6
 Get4Yoyos: Obtain 4 unique yoyos
+Progress.Get4Yoyos: Obtain unique yoyos: {0}/4
 Complete2FishingQuests: Complete 2 fishing quests
 Progress.Complete2FishingQuests: Complete 2 fishing quests: 1/2
 DieToDG: Get killed by the {$NPCName.DungeonGuardian}

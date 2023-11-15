@@ -19,14 +19,14 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             var trash = new Item(ItemID.TrashCan);
             var sell = BestiaryIcon.bag;
             var swordOrSpear = IconAnimationSystem.registerRandAnimation(
-                ItemSets.swords.Concat(ItemSets.spears).ToArray()
+                Sets.swords.Concat(Sets.spears).ToArray()
             );
 
-            var tiles = IconAnimationSystem.registerRandAnimation(ItemSets.tiles);
-            var accessories = IconAnimationSystem.registerRandAnimation(ItemSets.accessories);
+            var tiles = IconAnimationSystem.registerRandAnimation(Sets.tiles);
+            var accessories = IconAnimationSystem.registerRandAnimation(Sets.accessories);
             var evilBoss = IconAnimationSystem.registerCycleAnimation(ItemID.BrainofCthulhuTrophy, ItemID.EaterofWorldsTrophy);
-            var questFish = IconAnimationSystem.registerRandAnimation(ItemSets.questFish);
-            var platforms = IconAnimationSystem.registerRandAnimation(ItemSets.platforms);
+            var questFish = IconAnimationSystem.registerRandAnimation(Sets.questFish);
+            var platforms = IconAnimationSystem.registerRandAnimation(Sets.platforms);
 
             Func<BingoMode, int, bool> notLockout = (mode, _) => mode != BingoMode.Lockout;
             Func<BingoMode, int, bool> twoLockout = (mode, teams) => mode == BingoMode.Lockout && teams == 2;
@@ -69,7 +69,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Suffocate7s",
                 difficulty: 0,
-                ModContent.GetInstance<Suffocation>().Item,
+                Buff.suffocation,
                 text: "7s"
             );
             register(
@@ -84,7 +84,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get2Spears",
                 difficulty: 1,
-                IconAnimationSystem.registerRandAnimation(ItemSets.spears),
+                IconAnimationSystem.registerRandAnimation(Sets.spears),
                 text: "2"
             );
             register(
@@ -170,7 +170,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "PlantAllHerbs",
                 difficulty: 2,
-                IconAnimationSystem.registerRandAnimation(ItemSets.herbs),
+                IconAnimationSystem.registerRandAnimation(Sets.herbs),
                 text: "7",
                 modifier: new Item(ItemID.ClayPot)
             );
@@ -182,7 +182,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Have12Buffs",
                 difficulty: 2,
-                ModContent.GetInstance<AnyBuff>().Item,
+                Buff.any,
                 text: "12"
             );
             #endregion
@@ -191,13 +191,13 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "KillAnglerWithBoulder",
                 difficulty: 3,
-                TownNPC.angler,
+                NPCIcon.angler,
                 modifier: new Item(ItemID.Boulder)
             );
             register(
                 "Stack4BarsOnDungeon",
                 difficulty: 3,
-                IconAnimationSystem.registerRandAnimation(ItemSets.lowTierBars),
+                IconAnimationSystem.registerRandAnimation(Sets.lowTierBars),
                 modifier: BestiaryIcon.dungeon,
                 text: "4"
             );
@@ -239,13 +239,13 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "FillHouseWithBars",
                 difficulty: 3,
-                IconAnimationSystem.registerRandAnimation(ItemSets.bars),
+                IconAnimationSystem.registerRandAnimation(Sets.bars),
                 modifier: ModContent.GetInstance<House>().Item
             );
             register(
                 "GetAllCampfires",
                 difficulty: 3,
-                IconAnimationSystem.registerRandAnimation(ItemSets.phmCampfires),
+                IconAnimationSystem.registerRandAnimation(Sets.phmCampfires),
                 text: "9"
             );
             #endregion
@@ -306,7 +306,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get4CritterContainers",
                 difficulty: 5,
-                IconAnimationSystem.registerRandAnimation(ItemSets.critterCages),
+                IconAnimationSystem.registerRandAnimation(Sets.critterCages),
                 text: "4"
             );
             register(
@@ -507,7 +507,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "GetSummons",
                 difficulty: 7,
-                IconAnimationSystem.registerRandAnimation(ItemSets.summonStaves),
+                IconAnimationSystem.registerRandAnimation(Sets.summonStaves),
                 text: "7"
             );
             register(
@@ -532,7 +532,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get4GrassSeeds",
                 difficulty: 7,
-                IconAnimationSystem.registerRandAnimation(ItemSets.grassSeeds),
+                IconAnimationSystem.registerRandAnimation(Sets.grassSeeds),
                 text: "4"
             );
             #endregion
@@ -541,7 +541,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "GetGemCritterCage",
                 difficulty: 8,
-                IconAnimationSystem.registerRandAnimation(ItemSets.gemCritterCages)
+                IconAnimationSystem.registerRandAnimation(Sets.gemCritterCages)
             );
             register(
                 "Get99Seeds",
@@ -552,13 +552,13 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "HelpGolfer",
                 difficulty: 8,
-                TownNPC.golfer,
+                NPCIcon.golfer,
                 shouldEnable: anyLockout
             );
             register(
                 "Get6Arrows",
                 difficulty: 8,
-                IconAnimationSystem.registerRandAnimation(ItemSets.arrows),
+                IconAnimationSystem.registerRandAnimation(Sets.arrows),
                 text: "6"
             );
             register(
@@ -572,13 +572,13 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get8Hooks",
                 difficulty: 8,
-                IconAnimationSystem.registerRandAnimation(ItemSets.hooks),
+                IconAnimationSystem.registerRandAnimation(Sets.hooks),
                 text: "8"
             );
             register(
                 "Have5Debuffs",
                 difficulty: 8,
-                ModContent.GetInstance<AnyDebuff>().Item,
+                Buff.anyDebuff,
                 text: "5"
             );
             #endregion
@@ -623,7 +623,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get5Minecarts",
                 difficulty: 9,
-                IconAnimationSystem.registerRandAnimation(ItemSets.minecarts),
+                IconAnimationSystem.registerRandAnimation(Sets.minecarts),
                 text: "5"
             );
             register(
@@ -644,7 +644,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "MakePiano",
                 difficulty: 10,
-                IconAnimationSystem.registerRandAnimation(ItemSets.craftablePianos),
+                IconAnimationSystem.registerRandAnimation(Sets.craftablePianos),
                 modifier: craft
             );
             register(
@@ -700,7 +700,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "TrashDungeonWeapon",
                 difficulty: 10,
-                IconAnimationSystem.registerRandAnimation(ItemSets.dungeonWeapons),
+                IconAnimationSystem.registerRandAnimation(Sets.dungeonWeapons),
                 modifier: trash
             );
             register(
@@ -720,7 +720,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "HelpStylist",
                 difficulty: 11,
-                TownNPC.stylist,
+                NPCIcon.stylist,
                 shouldEnable: anyLockout
             );
             register(
@@ -738,7 +738,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "See3BlazingWheels",
                 difficulty: 11,
-                ModContent.GetInstance<BlazingWheel>().Item,
+                NPCIcon.blazingWheel,
                 text: "3"
             );
             register(
@@ -754,7 +754,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "Get5GemStaves",
                 difficulty: 11,
-                IconAnimationSystem.registerRandAnimation(ItemSets.gemStaves),
+                IconAnimationSystem.registerRandAnimation(Sets.gemStaves),
                 text: "5"
             );
             #endregion
@@ -789,7 +789,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "NoTorches",
                 difficulty: 12,
-                IconAnimationSystem.registerRandAnimation(ItemSets.torches),
+                IconAnimationSystem.registerRandAnimation(Sets.torches),
                 modifier: disallow,
                 shouldEnable: notLockout,
                 synergyTypes: new[] {"ME.1"}
@@ -797,7 +797,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "OpponentTorches",
                 difficulty: 12,
-                IconAnimationSystem.registerRandAnimation(ItemSets.torches),
+                IconAnimationSystem.registerRandAnimation(Sets.torches),
                 modifier: disallow,
                 shouldEnable: twoLockout,
                 synergyTypes: new[] {"ME.1"}
@@ -805,7 +805,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "PlaceArt",
                 difficulty: 12,
-                IconAnimationSystem.registerRandAnimation(ItemSets.paintings)
+                IconAnimationSystem.registerRandAnimation(Sets.paintings)
             );
             register(
                 "DownQB",
@@ -823,6 +823,52 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             #endregion
 
             #region Difficulty 13 goals
+            register(
+                "Get2Crates",
+                difficulty: 13,
+                IconAnimationSystem.registerRandAnimation(Sets.crates),
+                text: "2"
+            );
+            register(
+                "Stinky",
+                difficulty: 13,
+                Buff.stinky
+            );
+            register( // this one might be difficult to implement fairly, I.E. avoiding breaking/replacing the chest
+                "Loot6GoldChests",
+                difficulty: 13,
+                new(ItemID.GoldChest),
+                text: "6"
+            );
+            register(
+                "Get4Yoyos",
+                difficulty: 13,
+                IconAnimationSystem.registerRandAnimation(Sets.yoyos),
+                text: "4"
+            );
+            register(
+                "Complete2FishingQuests",
+                difficulty: 13,
+                questFish,
+                text: "2",
+                synergyTypes: new[] {"ME.11"}
+            );
+            register(
+                "DieToDG",
+                difficulty: 13,
+                NPCIcon.dungeonGuardian
+            );
+            register(
+                "KillVillagerwithDG",
+                difficulty: 13,
+                NPCIcon.anyTown,
+                modifier: NPCIcon.dungeonGuardian
+            );
+            register(
+                "DrinkFlask",
+                difficulty: 13,
+                IconAnimationSystem.registerRandAnimation(Sets.flasks)
+            );
             #endregion
 
             #region Difficulty 14 goals
@@ -862,11 +908,12 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         public override void Load() {
             AchievementIcon.registerItems();
             BestiaryIcon.registerItems();
-            TownNPC.registerItems();
+            Buff.registerItems();
+            NPCIcon.registerItems();
         }
 
         public override void PostSetupContent() {
-            ItemSets.load();
+            Sets.load();
             registerGoals();
         }
     }
