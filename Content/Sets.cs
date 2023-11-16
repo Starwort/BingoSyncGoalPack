@@ -151,6 +151,14 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.CavernFountain,
             ItemID.OasisFountain
         };
+
+        internal static List<int> GoldGraves = new() {
+            ItemID.RichGravestone1,
+            ItemID.RichGravestone2,
+            ItemID.RichGravestone3,
+            ItemID.RichGravestone4,
+            ItemID.RichGravestone5
+        };
         #endregion
         #endregion
 

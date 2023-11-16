@@ -217,11 +217,14 @@ UpgradeSkull: Craft any upgrade to the {$ItemName.ObsidianSkull}
 GetTragicUmbrella: Purchase the {$ItemName.TragicUmbrella}
 GetQuadShotgun: Purchase the {$ItemName.QuadBarrelShotgun}
 UseFogboundDye: Equip {$ItemName.FogboundDye}
-Get5GoldGraves: Obtain 5 unique types of golden tombstones
+Get5GoldGraves: Obtain all 5 unique types of golden tombstones
+Progress.Get5GoldGraves: Obtain golden tombstones: {0}/5
 KillWithCoffin: Kill a monster using the {$ItemName.CoffinMinecart}
 ExcavateWithShovel: Craft a {$ItemName.GravediggerShovel} and destroy 500 blocks with it
+Progress.ExcavateWithShovel: Destroy blocks with a {$ItemName.GravediggerShovel}: {0}/500
 MakeEvilOrbDrop: Craft a {$ItemName.BandofStarpower} or {$ItemName.PanicNecklace}
 KillGraveyardMobs: Kill a {$NPCName.MaggotZombie}, a {$NPCName.Ghost}, and a {$NPCName.Raven}
+Progress.KillGraveyardMobs: Kill graveyard enemies: {0}/3
 
 # Difficulty 16
 FillEquipPage2: Have a pet, light pet, minecart, grappling hook, and mount all equipped at the same time

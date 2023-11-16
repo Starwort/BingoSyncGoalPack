@@ -914,6 +914,58 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             #endregion
 
             #region Difficulty 15 goals
+            register(
+                "GetTragicUmbrella",
+                difficulty: 15,
+                new(ItemID.TragicUmbrella)
+            );
+            register(
+                "GetQuadShotgun",
+                difficulty: 15,
+                new(ItemID.QuadBarrelShotgun)
+            );
+            register(
+                "UseFogboundDye",
+                difficulty: 15,
+                new(ItemID.FogboundDye)
+            );
+            register(
+                "Get5GoldGraves",
+                difficulty: 15,
+                IconAnimationSystem.registerCycleAnimation(Sets.GoldGraves),
+                text: "5"
+            );
+            register(
+                "KillWithCoffin",
+                difficulty: 15,
+                new(ItemID.CoffinMinecart),
+                modifier: AchievementIcon.VehicularManslaughter
+            );
+            register(
+                "ExcavateWithShovel",
+                difficulty: 15,
+                new(ItemID.GravediggerShovel),
+                text: "500"
+            );
+            register(
+                "MakeEvilOrbDrop",
+                difficulty: 15,
+                IconAnimationSystem.registerCycleAnimation(
+                    ItemID.BandofStarpower,
+                    ItemID.PanicNecklace
+                ),
+                modifier: craft
+            );
+            register(
+                "KillGraveyardMobs",
+                difficulty: 15,
+                IconAnimationSystem.registerCycleAnimation(
+                    NPCIcon.MaggotZombie.type,
+                    NPCIcon.Ghost.type,
+                    NPCIcon.Raven.type
+                ),
+                text: "3"
+            );
             #endregion
 
             #region Difficulty 16 goals

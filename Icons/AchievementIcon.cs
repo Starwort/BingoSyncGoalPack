@@ -9,6 +9,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static Item DeadMenTellNoTales = null!;
         public static Item IntoOrbit = null!;
         public static Item RockBottom = null!;
+        public static Item VehicularManslaughter = null!;
 
         internal (int, int) iconPosition;
 
@@ -41,6 +42,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             DeadMenTellNoTales = add(7, 12);
             IntoOrbit = add(4, 6);
             RockBottom = add(5, 6);
+            VehicularManslaughter = add(1, 7);
         }
     }
 }
