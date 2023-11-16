@@ -5,10 +5,10 @@ using Terraria.ModLoader;
 namespace BingoGoalPackBingoSyncGoals.Icons {
     public class AchievementIcon : ModItem {
         public override string Texture => "Terraria/Images/UI/Achievements";
-        public static Item timber = null!;
-        public static Item deadMenTellNoTales = null!;
-        public static Item intoOrbit = null!;
-        public static Item rockBottom = null!;
+        public static Item Timber = null!;
+        public static Item DeadMenTellNoTales = null!;
+        public static Item IntoOrbit = null!;
+        public static Item RockBottom = null!;
 
         internal (int, int) iconPosition;
 
@@ -16,7 +16,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public AchievementIcon() {
             iconPosition = (0, 0);
-            timber = this.Item;
+            Timber = this.Item;
         }
 
         public AchievementIcon((int, int) position) {
@@ -38,9 +38,9 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
                 );
                 return icon.Item;
             }
-            deadMenTellNoTales = add(7, 12);
-            intoOrbit = add(4, 6);
-            rockBottom = add(5, 6);
+            DeadMenTellNoTales = add(7, 12);
+            IntoOrbit = add(4, 6);
+            RockBottom = add(5, 6);
         }
     }
 }

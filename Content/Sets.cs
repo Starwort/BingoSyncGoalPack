@@ -8,37 +8,42 @@ using Terraria.ModLoader;
 
 namespace BingoGoalPackBingoSyncGoals.Content {
     public class Sets {
-        internal static List<int> tiles = new() {ItemID.DirtBlock};
-        internal static List<int> spears = new() {ItemID.Spear};
-        internal static List<int> accessories = new() {ItemID.Shackle};
-        internal static List<int> questFish = new() {ItemID.AmanitaFungifin};
-        internal static List<int> critterCages = new() {ItemID.BunnyCage};
-        internal static List<int> summonStaves = new() {ItemID.SlimeStaff};
-        internal static List<int> hooks = new() {ItemID.GrapplingHook};
-        internal static List<int> swords = new() {ItemID.CopperShortsword};
-        internal static List<int> minecarts = new() {ItemID.Minecart};
-        internal static List<int> craftablePianos = new() {ItemID.Piano};
-        internal static List<int> platforms = new() {ItemID.WoodPlatform};
-        internal static List<int> dungeonWeapons = new() {ItemID.Muramasa};
-        internal static List<int> torches = new() {ItemID.Torch};
-        internal static List<int> paintings = new() {ItemID.PaintingAcorns};
-        internal static List<int> crates = new() {ItemID.WoodenCrate};
-        internal static List<int> yoyos = new() {ItemID.WoodYoyo};
-        internal static List<int> flasks = new() {ItemID.FlaskofCursedFlames};
+        #region Item IDs
+        internal static List<int> Tiles = new() {ItemID.DirtBlock};
+        internal static List<int> Spears = new() {ItemID.Spear};
+        internal static List<int> Accessories = new() {ItemID.Shackle};
+        internal static List<int> QuestFish = new() {ItemID.AmanitaFungifin};
+        internal static List<int> CritterCages = new() {ItemID.BunnyCage};
+        internal static List<int> SummonStaves = new() {ItemID.SlimeStaff};
+        internal static List<int> Hooks = new() {ItemID.GrapplingHook};
+        internal static List<int> Swords = new() {ItemID.CopperShortsword};
+        internal static List<int> Minecarts = new() {ItemID.Minecart};
+        internal static List<int> CraftablePianos = new() {ItemID.Piano};
+        internal static List<int> Platforms = new() {ItemID.WoodPlatform};
+        internal static List<int> DungeonWeapons = new() {ItemID.Muramasa};
+        internal static List<int> Torches = new() {ItemID.Torch};
+        internal static List<int> Paintings = new() {ItemID.PaintingAcorns};
+        internal static List<int> Crates = new() {ItemID.WoodenCrate};
+        internal static List<int> Yoyos = new() {ItemID.WoodYoyo};
+        internal static List<int> Flasks = new() {ItemID.FlaskofCursedFlames};
+        internal static List<int> Pylons = new() {ItemID.TeleportationPylonPurity};
+        internal static List<int> GlowingMosses = new() {ItemID.ArgonMoss};
+        internal static List<int> ObsidianSkullUpgrades = new() {ItemID.ObsidianShield};
 
-        internal static List<int> phmCampfires = new() {
+        #region Hardcoded sets
+        internal static List<int> PreHardmodeCampfires = new() {
             ItemID.Campfire, ItemID.CoralCampfire, ItemID.CorruptCampfire,
             ItemID.CrimsonCampfire, ItemID.DemonCampfire, ItemID.DesertCampfire,
             ItemID.FrozenCampfire, ItemID.JungleCampfire, ItemID.MushroomCampfire
         };
 
-        internal static List<int> herbs = new() {
+        internal static List<int> Herbs = new() {
             ItemID.Blinkroot, ItemID.Daybloom, ItemID.Deathweed,
             ItemID.Fireblossom, ItemID.Moonglow, ItemID.Shiverthorn,
             ItemID.Waterleaf
         };
 
-        internal static List<int> lowTierBars = new() {
+        internal static List<int> LowTierBars = new() {
             // Tier 1
             ItemID.CopperBar, ItemID.TinBar,
             // Tier 2
@@ -49,7 +54,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.GoldBar, ItemID.PlatinumBar,
         };
 
-        internal static List<int> bars = new() {
+        internal static List<int> AnyBars = new() {
             // Tier 1
             ItemID.CopperBar, ItemID.TinBar,
             // Tier 2
@@ -80,7 +85,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.LunarBar,
         };
 
-        internal static List<int> grassSeeds = new() {
+        internal static List<int> GrassSeeds = new() {
             ItemID.GrassSeeds,
             ItemID.AshGrassSeeds,
             ItemID.JungleGrassSeeds,
@@ -90,7 +95,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.HallowedSeeds
         };
 
-        internal static List<int> gemCritterCages = new() {
+        internal static List<int> GemCritterCages = new() {
             ItemID.AmberBunnyCage,
             ItemID.AmberSquirrelCage,
             ItemID.AmethystBunnyCage,
@@ -107,7 +112,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.TopazSquirrelCage,
         };
 
-        internal static List<int> arrows = new() {
+        internal static List<int> Arrows = new() {
             ItemID.WoodenArrow,
             ItemID.FlamingArrow,
             ItemID.UnholyArrow,
@@ -124,7 +129,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.ShimmerArrow,
         };
 
-        internal static List<int> gemStaves = new() {
+        internal static List<int> GemStaves = new() {
             ItemID.AmethystStaff,
             ItemID.TopazStaff,
             ItemID.SapphireStaff,
@@ -134,7 +139,28 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.DiamondStaff,
         };
 
-        internal static List<int> townNPCs = new() {NPCID.Angler};
+        internal static List<int> Fountains = new() {
+            ItemID.PureWaterFountain,
+            ItemID.DesertWaterFountain,
+            ItemID.JungleWaterFountain,
+            ItemID.IcyWaterFountain,
+            ItemID.CorruptWaterFountain,
+            ItemID.CrimsonWaterFountain,
+            ItemID.HallowedWaterFountain,
+            ItemID.BloodWaterFountain,
+            ItemID.CavernFountain,
+            ItemID.OasisFountain
+        };
+        #endregion
+        #endregion
+
+        #region NPC IDs
+        internal static List<int> TownNPCs = new() {NPCID.Angler};
+        #endregion
+
+        #region Tile IDs
+        internal static List<int> Leaves = new() {TileID.LeafBlock};
+        #endregion
 
         internal static void load() {
             void createItemSets(params (Func<int, Item, bool> shouldBeInSet, List<int> storage)[] rules) {
@@ -189,61 +215,89 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                     }
                 }
             }
+            void fromBoolSets(params (bool[] when, List<int> where)[] rules) {
+                foreach ((var when, var where) in rules) {
+                    where.Clear();
+                    for (int i = 0; i < when.Length; i++) {
+                        if (when[i]) {
+                            where.Add(i);
+                        }
+                    }
+                }
+            }
 
             createItemSets(
-                ((_, item) => item.createTile != -1, tiles),
+                ((_, item) => item.createTile != -1, Tiles),
                 (
                     (_, item) => item.createTile != -1
                         && TileID.Sets.Platforms[item.createTile],
-                    platforms
+                    Platforms
                 ),
                 (
                     (id, item) => (
                         item.createTile != -1
                         && TileID.Sets.Torch[item.createTile]
                     ) || ItemID.Sets.Torches[id],
-                    torches
+                    Torches
                 ),
                 (
                     (_, item) => item.createTile != -1
                         && TileID.Sets.Paintings[item.createTile],
-                    paintings
+                    Paintings
                 ),
-                ((id, _) => ItemID.Sets.Spears[id], spears),
-                ((_, item) => item.accessory, accessories),
-                ((_, item) => item.questItem, questFish),
+                ((_, item) => item.accessory, Accessories),
+                ((_, item) => item.questItem, QuestFish),
                 (
                     (id, item) => Item.staff[id]
                         && item.CountsAsClass(DamageClass.Summon),
-                    summonStaves
+                    SummonStaves
                 ),
-                ((_, item) => Main.projHook[item.shoot], hooks),
-                ((_, item) => isSword(item), swords),
+                ((_, item) => Main.projHook[item.shoot], Hooks),
+                ((_, item) => isSword(item), Swords),
                 (
                     (_, item) => item.mountType >= 0
                         && MountID.Sets.Cart[item.mountType],
-                    minecarts
+                    Minecarts
                 ),
-                ((id, _) => ItemID.Sets.IsFishingCrate[id], crates),
-                ((id, _) => ItemID.Sets.Yoyo[id], yoyos),
                 (
                     (_, item) => item.buffType > 0
                         && BuffID.Sets.IsAFlaskBuff[item.buffType],
-                    flasks
+                    Flasks
+                ),
+                (
+                    (_, item) => item.createTile != -1
+                        && TileID.Sets.CountsAsPylon.Contains(item.createTile),
+                    Pylons
+                ),
+                (
+                    (id, _) => id == ItemID.RainbowMoss
+                        || ItemID.Sets.ShimmerTransformToItem[id] == ItemID.RainbowMoss,
+                    GlowingMosses
                 )
             );
+            fromBoolSets(
+                (ItemID.Sets.Spears, Spears),
+                (ItemID.Sets.IsFishingCrate, Crates),
+                (ItemID.Sets.Yoyo, Yoyos),
+                (TileID.Sets.Leaves, Leaves)
+            );
             createRecipeSets(
-                (appearsToBeCritterCage, critterCages),
-                (appearsToBeCraftablePiano, craftablePianos)
+                (appearsToBeCritterCage, CritterCages),
+                (appearsToBeCraftablePiano, CraftablePianos),
+                (
+                    recipe => recipe.HasIngredient(ItemID.ObsidianSkull)
+                        && recipe.HasTile(TileID.TinkerersWorkbench),
+                    ObsidianSkullUpgrades
+                )
             );
             filterDropRules(
                 (
                     Main.ItemDropsDB.GetRulesForItemID(ItemID.LockBox),
                     drop => ContentSamples.ItemsByType[drop.itemId].damage > 0,
-                    dungeonWeapons
+                    DungeonWeapons
                 )
             );
-            createNpcSets(((_, npc) => npc.townNPC, townNPCs));
+            createNpcSets(((_, npc) => npc.townNPC, TownNPCs));
         }
 
         public static bool appearsToBeCritterCage(Recipe recipe) {

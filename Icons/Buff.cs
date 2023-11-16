@@ -28,11 +28,11 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
                 }
             }
         }
-        private class AnyDebuff : AssetCycleAnimation {
+        private class _AnyDebuff : AssetCycleAnimation {
             private static Random rng = new();
             private Asset<Texture2D>[] debuffs;
 
-            public AnyDebuff() {
+            public _AnyDebuff() {
                 // init debuffs with a list of all debuff textures
                 debuffs = TextureAssets.Buff.Where((_, i) => Main.debuff[i]).ToArray();
             }
@@ -41,18 +41,18 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
                 return debuffs[rng.Next(debuffs.Length)];
             }
         }
-        public static Item any = null!;
-        public static Item anyDebuff = null!;
+        public static Item Any = null!;
+        public static Item AnyDebuff = null!;
 
-        public static Item suffocation = null!;
-        public static Item stinky = null!;
+        public static Item Suffocation = null!;
+        public static Item Stinky = null!;
 
         private int buffId;
 
         public Buff() {
             this.buffId = -1;
-            any = ModContent.GetInstance<AnyBuff>().Item;
-            anyDebuff = ModContent.GetInstance<AnyDebuff>().Item;
+            Any = ModContent.GetInstance<AnyBuff>().Item;
+            AnyDebuff = ModContent.GetInstance<_AnyDebuff>().Item;
         }
 
         public Buff(int buffId) {
@@ -73,8 +73,8 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
                 );
                 return icon.Item;
             }
-            suffocation = add(BuffID.Suffocation);
-            stinky = add(BuffID.Stinky);
+            Suffocation = add(BuffID.Suffocation);
+            Stinky = add(BuffID.Stinky);
         }
     }
 }

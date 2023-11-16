@@ -202,7 +202,8 @@ KillVillagerWithDG: Kill any Town NPC with the {$NPCName.DungeonGuardian}
 DrinkFlask: Consume any flask
 
 # Difficulty 14
-Have2Pylons: Obtain 2 different Pylons
+Get2Pylons: Obtain 2 different Pylons
+Progress.Get2Pylons: Obtain unique Pylons: 1/2
 # Skipped because it wouldn't play well on a shared world:
 # Have10Villagers: Have 10 Town NPCs in your world
 KillClothier: Kill the {$NPCName.Clothier}

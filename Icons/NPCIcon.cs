@@ -16,7 +16,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             private static Random rng = new();
 
             public override Asset<Texture2D> getFrame(uint frame) {
-                var idx = Sets.townNPCs[rng.Next(Sets.townNPCs.Count)];
+                var idx = Sets.TownNPCs[rng.Next(Sets.TownNPCs.Count)];
                 return TextureAssets.Npc[idx];
             }
         }
@@ -26,17 +26,19 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public override string Name => $"NPCIcon/{npcId}";
 
-        public static Item anyTown = null!;
+        public static Item AnyTown = null!;
 
-        public static Item angler = null!;
-        public static Item golfer = null!;
-        public static Item stylist = null!;
-        public static Item blazingWheel = null!;
-        public static Item dungeonGuardian = null!;
+        public static Item Angler = null!;
+        public static Item Clothier = null!;
+        public static Item Dog = null!;
+        public static Item Golfer = null!;
+        public static Item Stylist = null!;
+        public static Item BlazingWheel = null!;
+        public static Item DungeonGuardian = null!;
 
         public NPCIcon() {
             this.npcId = NPCID.None;
-            anyTown = ModContent.GetInstance<AnyTownNPC>().Item;
+            AnyTown = ModContent.GetInstance<AnyTownNPC>().Item;
         }
 
         public NPCIcon(int npcId, int npcFrameTime = 6) {
@@ -58,11 +60,13 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
                 );
                 return icon.Item;
             }
-            angler = add(NPCID.Angler);
-            golfer = add(NPCID.Golfer);
-            stylist = add(NPCID.Stylist);
-            blazingWheel = add(NPCID.BlazingWheel, 3);
-            dungeonGuardian = add(NPCID.DungeonGuardian);
+            Angler = add(NPCID.Angler);
+            Clothier = add(NPCID.Clothier);
+            Dog = add(NPCID.TownDog);
+            Golfer = add(NPCID.Golfer);
+            Stylist = add(NPCID.Stylist);
+            BlazingWheel = add(NPCID.BlazingWheel, 3);
+            DungeonGuardian = add(NPCID.DungeonGuardian);
         }
     }
 }

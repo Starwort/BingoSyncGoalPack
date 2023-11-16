@@ -1,4 +1,5 @@
 ﻿using BingoBoardCore.AnimationHelpers;
+using BingoGoalPackBingoSyncGoals.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -16,14 +17,9 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             Main.RegisterItemAnimation(Type, slice);
         }
 
-        static ushort[] sheets = new[] {
-            TileID.LeafBlock,
-            TileID.LivingMahoganyLeaves,
-        };
-
         public override Asset<Texture2D> getFrame(uint frame) {
             slice.frame.X = 162 + 18 * rng.Next(3);
-            return TextureAssets.Tile[sheets[frame % sheets.Length]];
+            return TextureAssets.Tile[Sets.Leaves[(int)(frame % (uint)Sets.Leaves.Count)]];
         }
     }
 }

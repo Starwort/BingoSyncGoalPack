@@ -5,17 +5,17 @@ using Terraria.ModLoader;
 namespace BingoGoalPackBingoSyncGoals.Icons {
     public class BestiaryIcon : ModItem {
         public override string Texture => "Terraria/Images/UI/Bestiary/Icon_Tags_Shadow";
-        public static Item forest = null!; // not used, but might as well include
-        public static Item ocean = null!;
-        public static Item crimson = null!;
-        public static Item crimsonDesert = null!;
-        public static Item corrupt = null!;
-        public static Item corruptDesert = null!;
-        public static Item mushroom = null!;
-        public static Item bag = null!;
-        public static Item dungeon = null!;
-        public static Item temple = null!;
-        public static Item island = null!;
+        public static Item Forest = null!; // not used, but might as well include
+        public static Item Ocean = null!;
+        public static Item Crimson = null!;
+        public static Item CrimsonDesert = null!;
+        public static Item Corrupt = null!;
+        public static Item CorruptDesert = null!;
+        public static Item Mushroom = null!;
+        public static Item Bag = null!;
+        public static Item Dungeon = null!;
+        public static Item Temple = null!;
+        public static Item Island = null!;
 
         internal (int, int) iconPosition;
 
@@ -23,7 +23,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public BestiaryIcon() {
             iconPosition = (0, 0);
-            forest = this.Item;
+            Forest = this.Item;
         }
 
         public BestiaryIcon((int, int) position) {
@@ -45,16 +45,16 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
                 );
                 return icon.Item;
             }
-            ocean = add(12, 1);
-            crimson = add(12, 0);
-            crimsonDesert = add(14, 0);
-            corrupt = add(7, 0);
-            corruptDesert = add(9, 0);
-            mushroom = add(8, 1);
-            bag = add(13, 3);
-            dungeon = add(0, 2);
-            temple = add(15, 1);
-            island = add(10, 1);
+            Ocean = add(12, 1);
+            Crimson = add(12, 0);
+            CrimsonDesert = add(14, 0);
+            Corrupt = add(7, 0);
+            CorruptDesert = add(9, 0);
+            Mushroom = add(8, 1);
+            Bag = add(13, 3);
+            Dungeon = add(0, 2);
+            Temple = add(15, 1);
+            Island = add(10, 1);
         }
     }
 }
