@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,10 +15,19 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             private static Random rng = new();
             private DrawAnimationVariantVertical anim = new(1, 0, 6, 1);
 
+            public AnyTownNPC() {
+                NPCIcon.AnyTown = this.Item;
+            }
+
+            public override void SetStaticDefaults() {
+                Main.RegisterItemAnimation(Type, anim);
+            }
+
             public override Asset<Texture2D> getFrame(uint frame) {
                 var idx = Sets.TownNPCs[rng.Next(Sets.TownNPCs.Count)];
                 anim.sheetFrameCount = Main.npcFrameCount[idx];
                 anim.FrameCount = Main.npcFrameCount[idx] - NPCID.Sets.AttackFrameCount[idx];
+                anim.FrameCounter = 0;
                 return TextureAssets.Npc[idx];
             }
         }
@@ -45,7 +53,6 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public NPCIcon() {
             this.npcId = NPCID.None;
-            AnyTown = ModContent.GetInstance<AnyTownNPC>().Item;
         }
 
         public NPCIcon(int npcId, int npcFrameTime = 6, int skipStartFrames = 0) {

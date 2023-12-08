@@ -29,6 +29,8 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         internal static List<int> Pylons = new() {ItemID.TeleportationPylonPurity};
         internal static List<int> GlowingMosses = new() {ItemID.ArgonMoss};
         internal static List<int> ObsidianSkullUpgrades = new() {ItemID.ObsidianShield};
+        internal static List<int> Toilets = new() {ItemID.Toilet};
+        internal static List<int> Anvils = new() {ItemID.IronAnvil};
 
         #region Hardcoded sets
         internal static List<int> PreHardmodeCampfires = new() {
@@ -281,6 +283,17 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                     (id, _) => id == ItemID.RainbowMoss
                         || ItemID.Sets.ShimmerTransformToItem[id] == ItemID.RainbowMoss,
                     GlowingMosses
+                ),
+                (
+                    (id, item) => id == ItemID.Toilet
+                        || id == ItemID.GoldenToilet
+                        || item.createTile == TileID.Toilets,
+                    Toilets
+                ),
+                (
+                    (_, item) => item.createTile == TileID.Anvils
+                        || item.createTile == TileID.MythrilAnvil,
+                    Anvils
                 )
             );
             fromBoolSets(

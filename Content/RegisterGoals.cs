@@ -744,7 +744,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "TraverseWholeWorld",
                 difficulty: 11,
-                ModContent.GetInstance<MapIcon>().Item
+                ModContent.GetInstance<Map>().Item
             );
             register(
                 "FindTemple",
@@ -969,6 +969,53 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             #endregion
 
             #region Difficulty 16 goals
+            register(
+                "FillEquipPage2",
+                difficulty: 16,
+                ModContent.GetInstance<FillEquipPage2>().Item
+            );
+            register(
+                "Get5Toilets",
+                difficulty: 16,
+                IconAnimationSystem.registerRandAnimation(Sets.Toilets),
+                text: "5"
+            );
+            register(
+                "GetBINGO",
+                difficulty: 16,
+                IconAnimationSystem.registerCycleAnimation(
+                    ItemID.AlphabetStatueB,
+                    ItemID.AlphabetStatueI,
+                    ItemID.AlphabetStatueN,
+                    ItemID.AlphabetStatueG,
+                    ItemID.AlphabetStatueO
+                )
+            );
+            register(
+                "KillWithSandgun",
+                difficulty: 16,
+                new Item(ItemID.Sandgun)
+            );
+            register(
+                "Get99Anvils",
+                difficulty: 16,
+                IconAnimationSystem.registerRandAnimation(Sets.Anvils),
+                text: "99"
+            );
+            register(
+                "GetTongued",
+                difficulty: 16,
+                Buff.TheTongue,
+                synergyTypes: new[] {"ME.8.1"}
+            );
+            register(
+                "Hellevator",
+                difficulty: 16,
+                IconAnimationSystem.registerCycleAnimation(
+                    AchievementIcon.IntoOrbit.type,
+                    AchievementIcon.RockBottom.type
+                )
+            );
             #endregion
 
             #region Difficulty 17 goals

@@ -233,7 +233,9 @@ GetBINGO: Obtain text statues which spell out "BINGO"
 # Skipped because I can't think of a fair way to implement it
 # FillMannequin: Keep 3 accessories and a vanity item from the {$NPCName.Clothier} on a {$ItemName.Mannequin} or {$ItemName.Womannequin}
 KillWithSandgun: Kill an enemy using a {$ItemName.Sandgun}
-Place99Anvils: Get a stack of 99 of any kind of {$MapObject.Anvil}, then place them all
+# Removing the place requirement because honestly that seems annoying more than hard
+# Get99Anvils: Get a stack of 99 of any kind of {$MapObject.Anvil}, then place them all
+Get99Anvils: Get a stack of 99 of any kind of {$MapObject.Anvil}
 GetTongued: Have debuff: {$BuffName.TheTongue}
 Hellevator: Fall from the Surface all the way to the Underworld, without breaking your fall
 

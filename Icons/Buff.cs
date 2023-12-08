@@ -14,6 +14,10 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         private class AnyBuff : AssetCycleAnimation {
             private static Random rng = new();
 
+            public AnyBuff() {
+                Buff.Any = this.Item;
+            }
+
             public override Asset<Texture2D> getFrame(uint frame) {
                 while (true) {
                     // don't allow Buff #0 (it's null)
@@ -33,6 +37,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             private Asset<Texture2D>[] debuffs;
 
             public _AnyDebuff() {
+                Buff.AnyDebuff = this.Item;
                 // init debuffs with a list of all debuff textures
                 debuffs = TextureAssets.Buff.Where((_, i) => Main.debuff[i]).ToArray();
             }
@@ -46,13 +51,12 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public static Item Suffocation = null!;
         public static Item Stinky = null!;
+        public static Item TheTongue = null!;
 
         private int buffId;
 
         public Buff() {
             this.buffId = -1;
-            Any = ModContent.GetInstance<AnyBuff>().Item;
-            AnyDebuff = ModContent.GetInstance<_AnyDebuff>().Item;
         }
 
         public Buff(int buffId) {
@@ -75,6 +79,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             }
             Suffocation = add(BuffID.Suffocation);
             Stinky = add(BuffID.Stinky);
+            TheTongue = add(BuffID.TheTongue);
         }
     }
 }
