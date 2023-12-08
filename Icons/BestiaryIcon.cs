@@ -16,6 +16,8 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static Item Dungeon = null!;
         public static Item Temple = null!;
         public static Item Island = null!;
+        public static Item Hell = null!;
+        public static Item Jungle = null!;
 
         internal (int, int) iconPosition;
 
@@ -55,6 +57,8 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             Dungeon = add(0, 2);
             Temple = add(15, 1);
             Island = add(10, 1);
+            Hell = add(1, 2);
+            Jungle = add(6, 1);
         }
     }
 }

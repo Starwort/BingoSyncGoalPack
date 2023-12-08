@@ -1019,6 +1019,53 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             #endregion
 
             #region Difficulty 17 goals
+            register(
+                "DownEoCHell",
+                difficulty: 17,
+                new(ItemID.EyeofCthulhuTrophy),
+                modifier: BestiaryIcon.Hell,
+                synergyTypes: new[] {"ME.5.1"}
+            );
+            register(
+                "DownWoF",
+                difficulty: 17,
+                new(ItemID.WallofFleshTrophy),
+                synergyTypes: new[] {"ME.8.1", "ME.8.2"}
+            );
+            register(
+                "DownSkeleJungle",
+                difficulty: 17,
+                new(ItemID.SkeletronTrophy),
+                modifier: BestiaryIcon.Jungle,
+                synergyTypes: new[] {"ME.7.1"}
+            );
+            register(
+                "DownQBLowMaxLife",
+                difficulty: 17,
+                new(ItemID.QueenBeeTrophy),
+                modifier: AchievementIcon.HeartBreaker,
+                synergyTypes: new[] {"ME.6.1"}
+            );
+            register(
+                "DownEoCQB",
+                difficulty: 17,
+                IconAnimationSystem.registerCycleAnimation(
+                    ItemID.EyeofCthulhuTrophy,
+                    ItemID.QueenBeeTrophy
+                ),
+                modifier: IconAnimationSystem.registerCycleAnimation(
+                    ItemID.QueenBeeTrophy,
+                    ItemID.EyeofCthulhuTrophy
+                ),
+                synergyTypes: new[] {"ME.5.1", "ME.6.1"}
+            );
+            register(
+                "DownEvilBossUpsideDown",
+                difficulty: 17,
+                evilBoss,
+                modifier: new(ItemID.GravitationPotion),
+                synergyTypes: new[] {"ME.4.1"}
+            );
             #endregion
 
             #region Difficulty 18 goals

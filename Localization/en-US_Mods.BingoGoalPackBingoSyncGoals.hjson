@@ -241,11 +241,17 @@ Hellevator: Fall from the Surface all the way to the Underworld, without breakin
 
 # Difficulty 17
 DownEoCHell: Defeat {$NPCName.EyeofCthulhu} in the Underworld
+BadProgress.DownEoCHell: Dealt damage while outside of the Underworld!
 DownWoF: Defeat {$NPCName.WallofFlesh}
 DownSkeleJungle: Defeat {$NPCName.SkeletronHead} in the Jungle
+BadProgress.DownSkeleJungle: Dealt damage while outside of the Jungle!
 DownQBLowMaxLife: Defeat {$NPCName.QueenBee} with no more than 200 max health
+BadProgress.DownQBLowMaxLife: Over 200 max health!
 DownEoCQB: Summon {$NPCName.EyeofCthulhu} and {$NPCName.QueenBee} at the same time, and defeat them both
+Progress.DownEoCQB: 1 down, 1 to go!
+BadProgress.DownEoCQB: Dealt damage to {0} before summoning {1}!
 DownEvilBossUpsideDown: Defeat {$NPCName.EaterofWorldsBody} or {$NPCName.BrainofCthulhu}, dealing damage only while upside down
+BadProgress.DownEvilBossUpsideDown: Dealt damage while not upside down!
 # Skipped because I have no idea how to implement them:
 # BreakFloatingIsland: Destroy an entire floating island (including walls)
 # BreakBeeHive: Destroy an entire bee hive (including walls) without dying in the process
