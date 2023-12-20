@@ -49,6 +49,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static Item Any = null!;
         public static Item AnyDebuff = null!;
 
+        public static Item Dangersense = null!;
         public static Item Suffocation = null!;
         public static Item Stinky = null!;
         public static Item TheTongue = null!;
@@ -77,6 +78,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
                 );
                 return icon.Item;
             }
+            Dangersense = add(BuffID.Dangersense);
             Suffocation = add(BuffID.Suffocation);
             Stinky = add(BuffID.Stinky);
             TheTongue = add(BuffID.TheTongue);

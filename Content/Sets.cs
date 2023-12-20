@@ -31,6 +31,8 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         internal static List<int> ObsidianSkullUpgrades = new() {ItemID.ObsidianShield};
         internal static List<int> Toilets = new() {ItemID.Toilet};
         internal static List<int> Anvils = new() {ItemID.IronAnvil};
+        internal static List<int> LightRedItems = new() {ItemID.TitaniumSword};
+        internal static List<int> Phaseblades = new() {ItemID.WhitePhaseblade};
 
         #region Hardcoded sets
         internal static List<int> PreHardmodeCampfires = new() {
@@ -294,6 +296,10 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                     (_, item) => item.createTile == TileID.Anvils
                         || item.createTile == TileID.MythrilAnvil,
                     Anvils
+                ),
+                (
+                    (_, item) => item.rare == ItemRarityID.LightRed,
+                    LightRedItems
                 )
             );
             fromBoolSets(
@@ -309,7 +315,8 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                     recipe => recipe.HasIngredient(ItemID.ObsidianSkull)
                         && recipe.HasTile(TileID.TinkerersWorkbench),
                     ObsidianSkullUpgrades
-                )
+                ),
+                (appearsToBePhaseblade, Phaseblades)
             );
             filterDropRules(
                 (
@@ -319,6 +326,24 @@ namespace BingoGoalPackBingoSyncGoals.Content {
                 )
             );
             createNpcSets(((_, npc) => npc.townNPC, TownNPCs));
+        }
+
+        public static bool appearsToBePhaseblade(Recipe recipe) {
+            static bool meteorite(Item itm) => (
+                itm.type == ItemID.MeteoriteBar
+                && itm.stack == 15
+            );
+            static bool gem(Item itm) => (
+                ItemID.Sets.GeodeDrops.ContainsKey(itm.type)
+                && itm.stack == 10
+            );
+            var ingredients = recipe.requiredItem;
+            return (
+                ingredients.Count == 2
+                && (meteorite(ingredients[0]) || gem(ingredients[0]))
+                && (meteorite(ingredients[1]) || gem(ingredients[1]))
+                && recipe.HasTile(TileID.Anvils)
+            );
         }
 
         public static bool appearsToBeCritterCage(Recipe recipe) {

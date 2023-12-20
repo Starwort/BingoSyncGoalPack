@@ -260,12 +260,14 @@ BadProgress.DownEvilBossUpsideDown: Dealt damage while not upside down!
 NoTraps: Never take damage from a trap
 OpponentTraps: The opponent takes damage from a trap
 GetLightRedItem: Obtain any item with a rarity of [c/FF9696:Light Red]
-VoidStorage: Obtain a {$ItemName.VoidVault} or {$ItemName.VoidBag}
-DoubleCactusTrap: Kill 2 or more enemies with a single {$ProjectileName.RollingCactus}
+GetVoidStorage: Obtain a {$ItemName.VoidVault} or {$ItemName.VoidBag}
+# Skipped because implementing it sounds very difficult
+# DoubleCactusTrap: Kill 2 or more enemies with a single {$ProjectileName.RollingCactus}
 Have5Minions: Have 5 or more minions summoned at once (not sentries)
 GetPhaseblade: Obtain any kind of Phaseblade
 GetPhoenixBlaster: Obtain the {$ItemName.PhoenixBlaster}
 Loot3ShadowChests: Open 3 {$ItemName.ShadowChest}s
+Progress.Loot3ShadowChests: Open {$ItemName.ShadowChest}s: {0}/3
 
 # Difficulty 19
 GetGolfTrophy: Obtain any golf trophy

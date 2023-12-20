@@ -27,10 +27,11 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             var evilBoss = IconAnimationSystem.registerCycleAnimation(ItemID.BrainofCthulhuTrophy, ItemID.EaterofWorldsTrophy);
             var questFish = IconAnimationSystem.registerRandAnimation(Sets.QuestFish);
             var platforms = IconAnimationSystem.registerRandAnimation(Sets.Platforms);
+            var summonStaves = IconAnimationSystem.registerRandAnimation(Sets.SummonStaves);
 
-            Func<BingoMode, int, bool> notLockout = (mode, _) => mode != BingoMode.Lockout;
-            Func<BingoMode, int, bool> twoLockout = (mode, teams) => mode == BingoMode.Lockout && teams == 2;
-            Func<BingoMode, int, bool> anyLockout = (mode, _) => mode == BingoMode.Lockout;
+            static bool notLockout(BingoMode mode, int _) => mode != BingoMode.Lockout;
+            static bool twoLockout(BingoMode mode, int teams) => mode == BingoMode.Lockout && teams == 2;
+            static bool anyLockout(BingoMode mode, int _) => mode == BingoMode.Lockout;
 
             #region Difficulty 0 goals
             register(
@@ -507,7 +508,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             register(
                 "GetSummons",
                 difficulty: 7,
-                IconAnimationSystem.registerRandAnimation(Sets.SummonStaves),
+                summonStaves,
                 text: "7"
             );
             register(
@@ -1069,6 +1070,57 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             #endregion
 
             #region Difficulty 18 goals
+            register(
+                "NoTraps",
+                difficulty: 18,
+                Buff.Dangersense,
+                shouldEnable: notLockout,
+                synergyTypes: new[] {"ME.9", "ME.10", "ME.1"}
+            );
+            register(
+                "OpponentTraps",
+                difficulty: 18,
+                Buff.Dangersense,
+                shouldEnable: twoLockout,
+                synergyTypes: new[] {"ME.9", "ME.10", "ME.1"}
+            );
+            register(
+                "GetLightRedItem",
+                difficulty: 18,
+                IconAnimationSystem.registerRandAnimation(Sets.LightRedItems)
+            );
+            register(
+                "GetVoidStorage",
+                difficulty: 18,
+                IconAnimationSystem.registerCycleAnimation(
+                    ItemID.VoidVault,
+                    ItemID.VoidLens
+                )
+            );
+            register(
+                "Have5Minions",
+                difficulty: 18,
+                summonStaves,
+                text: "5",
+                synergyTypes: new[] {"ME.6.1"}
+            );
+            register(
+                "GetPhaseblade",
+                difficulty: 18,
+                IconAnimationSystem.registerRandAnimation(Sets.Phaseblades),
+                synergyTypes: new[] {"ME.13"}
+            );
+            register(
+                "GetPhoenixBlaster",
+                difficulty: 18,
+                new(ItemID.PhoenixBlaster)
+            );
+            register(
+                "Loot3ShadowChests",
+                difficulty: 18,
+                new(ItemID.ShadowChest),
+                text: "3"
+            );
             #endregion
 
             #region Difficulty 19 goals
