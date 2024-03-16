@@ -95,7 +95,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
             ItemID.HellstoneBar
         );
         public override int difficultyTier => 7;
-        public override Item? modifierIcon => Icons.Bestiary.Snow;
+        public override Item? modifierIcon => VanillaIcons.Bestiary.Snow;
     }
     public class Get4GrassSeeds : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.GrassSeeds);

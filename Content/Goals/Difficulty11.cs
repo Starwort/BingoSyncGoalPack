@@ -29,7 +29,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class DownKSSpace : Goal {
         public override Item icon => new(ItemID.KingSlimeTrophy);
         public override int difficultyTier => 11;
-        public override Item? modifierIcon => Icons.Bestiary.Island;
+        public override Item? modifierIcon => VanillaIcons.Bestiary.SkyIsland;
         public override IList<string> synergyTypes => new[] {"ME.3.1"};
     }
 
@@ -45,7 +45,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     }
 
     public class FindTemple : Goal {
-        public override Item icon => Icons.Bestiary.Temple;
+        public override Item icon => VanillaIcons.Bestiary.Temple;
         public override int difficultyTier => 11;
     }
 

@@ -3,6 +3,7 @@ using System.Linq;
 using Terraria.ID;
 using Terraria;
 using BingoGoalPackBingoSyncGoals.Content;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Icons {
     internal class Misc {
@@ -13,7 +14,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static readonly Item Kill = new(ItemID.CopperShortsword);
         public static readonly Item Mine = new(ItemID.CopperPickaxe);
         public static readonly Item Trash = new(ItemID.TrashCan);
-        public static readonly Item Sell = Bestiary.Bag;
+        public static readonly Item Sell = VanillaIcons.Bestiary.ItemSpawn;
         public static readonly Item SwordOrSpear = IconAnimationSystem.registerRandAnimation(
             Sets.Swords.Concat(Sets.Spears).ToArray()
         );

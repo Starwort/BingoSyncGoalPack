@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class KillAnglerWithBoulder : Goal {
@@ -15,7 +16,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.LowTierBars);
         public override int difficultyTier => 3;
         public override string modifierText => "4";
-        public override Item? modifierIcon => Icons.Bestiary.Dungeon;
+        public override Item? modifierIcon => VanillaIcons.Bestiary.Dungeon;
     }
     public class WearCactusArmour : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
