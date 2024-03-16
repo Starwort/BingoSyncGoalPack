@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace BingoGoalPackBingoSyncGoals.Icons {
-    public class AchievementIcon : ModItem {
+    public class Achievement : ModItem {
         public override string Texture => "Terraria/Images/UI/Achievements";
         public static Item Timber = null!;
         public static Item DeadMenTellNoTales = null!;
@@ -16,12 +16,12 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public override string Name => $"AchievementIcon/{iconPosition.Item1}-{iconPosition.Item2}";
 
-        public AchievementIcon() {
+        public Achievement() {
             iconPosition = (0, 0);
             Timber = this.Item;
         }
 
-        public AchievementIcon((int, int) position) {
+        public Achievement((int, int) position) {
             iconPosition = position;
         }
 
@@ -34,7 +34,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public static void registerItems() {
             Item add(int x, int y) {
-                AchievementIcon icon = new((x, y));
+                Achievement icon = new((x, y));
                 ModContent.GetInstance<BingoGoalPackBingoSyncGoals>().AddContent(
                     icon
                 );

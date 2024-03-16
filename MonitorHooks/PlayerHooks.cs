@@ -1,9 +1,7 @@
-﻿using BingoBoardCore.AnimationHelpers;
-using BingoGoalPackBingoSyncGoals.Content;
-using Microsoft.Xna.Framework;
+﻿using BingoBoardCore.Common;
+using BingoGoalPackBingoSyncGoals.Content.Goals;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -15,23 +13,36 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             reset();
         }
 
-        void trigger(string goal) {
-            triggerGoal(goal, Player);
+        void update<T>(ref T dest, T src) {
+            if (Player.whoAmI == Main.myPlayer) {
+                dest = src;
+            }
         }
 
-        void failDisallow(string commonGoalSuffix) {
-            untriggerGoal("No" + commonGoalSuffix, Player);
-            Player? otherTeamPlayer = null;
+        void trigger<T>() where T : Goal {
+            ModContent.GetInstance<T>().trigger(Player);
+        }
+        void progress<T>(params string[] substitutions) where T : Goal {
+            if (Player.whoAmI == Main.myPlayer) {
+            ModContent.GetInstance<T>().reportProgress(substitutions);
+            }
+        }
+        void badProgress<T>(params string[] substitutions) where T : Goal {
+            if (Player.whoAmI == Main.myPlayer) {
+                ModContent.GetInstance<T>().reportBadProgress(substitutions);
+            }
+        }
+
+        void failDisallow<NoGoal, OpponentGoal>()
+            where NoGoal: Goal
+            where OpponentGoal : Goal
+        {
+            ModContent.GetInstance<NoGoal>().untrigger(Player);
             foreach (var player in Main.player) {
                 if (player.team != this.Player.team) {
-                    if (otherTeamPlayer is not null && otherTeamPlayer.team != player.team) {
-                        return; // found at least 2 other teams
-                    }
-                    otherTeamPlayer = player;
+                    ModContent.GetInstance<OpponentGoal>().trigger(player);
+                    return;
                 }
-            }
-            if (otherTeamPlayer is not null) {
-                triggerGoal("Opponent" + commonGoalSuffix, otherTeamPlayer);
             }
         }
 
@@ -57,11 +68,11 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         void processHitNPC(NPC target, NPC.HitInfo hit) {
             if (target.type == NPCID.EyeofCthulhu) {
                 if (target.life <= 0) {
-                    trigger("DownEoC");
+                    trigger<DownEoC>();
                 }
             } else if (target.type == NPCID.KingSlime) {
                 if (target.life <= 0) {
-                    trigger("DownKS");
+                    trigger<DownKS>();
                 }
             }
         }
@@ -78,66 +89,66 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         internal HashSet<int> allObtainedItems = new();
         public override void PostUpdate() {
             var foundTiles = new HashSet<int>();
+            var bestTileStack = 0;
             for (int i = 0; i < Player.inventory.Length; i++) {
                 var item = Player.inventory[i];
                 if (item.stack > 0 && !allObtainedItems.Contains(item.type)) {
                     onAnyObtain(item);
                 }
                 if (item.createTile != -1) {
+                    bestTileStack = Math.Max(item.stack, bestTileStack);
                     if (item.stack >= 999) {
-                        trigger("Get999OfTile");
+                        trigger<Get999OfTile>();
                     }
                     if (i < 50) {
                         foundTiles.Add(item.type);
                     }
                 }
             }
+            update(ref Get999OfTile.bestStack, bestTileStack);
+            update(
+                ref Get999OfTile.bestStackEver,
+                Math.Max(Get999OfTile.bestStackEver, bestTileStack)
+            );
             if (foundTiles.Count == 50) {
                 trigger("InvFullOfBlocks");
             }
             if (!achievedFillPiggyBank) {
-                var wasFull = true;
+                var emptySlots = 0;
                 foreach (var item in Player.bank.item) {
                     if (item.stack == 0) {
-                        wasFull = false;
-                        break;
+                        emptySlots++;
                     }
                 }
-                if (wasFull) {
-                    trigger("FillPiggyBank");
+                update(ref FillPiggyBank.slotsLeft, emptySlots);
+                if (emptySlots == 0) {
+                    trigger<FillPiggyBank>();
                     achievedFillPiggyBank = true;
                 }
             }
         }
 
-        internal bool craftedWoodSword = false;
-        internal bool craftedWoodBow = false;
-        internal bool craftedWoodHammer = false;
+        internal HashSet<int> modifiedWoodSwordBowHammerItems = new();
         internal void onCraftItem(Item item) {
             onAnyObtain(item);
-            if (!craftedWoodSword && item.type == ItemID.WoodenSword && item.prefix != 0) {
-                craftedWoodSword = true;
-                if (craftedWoodBow && craftedWoodHammer) {
-                    trigger("GetModifiedWoodSwordBowHammer");
-                } else {
-                    progress("GetModifiedWoodSwordBowHammer", item.AffixName());
-                }
+            if (item.type == ItemID.WoodenSword && item.prefix != 0) {
+                modifiedWoodSwordBowHammerItems.Add(item.type);
+                progress<GetModifiedWoodSwordBowHammer>(item.AffixName());
             }
-            if (!craftedWoodBow && item.type == ItemID.WoodenBow && item.prefix != 0) {
-                craftedWoodBow = true;
-                if (craftedWoodSword && craftedWoodHammer) {
-                    trigger("GetModifiedWoodSwordBowHammer");
-                } else {
-                    progress("GetModifiedWoodSwordBowHammer", item.AffixName());
-                }
+            if (item.type == ItemID.WoodenBow && item.prefix != 0) {
+                modifiedWoodSwordBowHammerItems.Add(item.type);
+                progress<GetModifiedWoodSwordBowHammer>(item.AffixName());
             }
-            if (!craftedWoodHammer && item.type == ItemID.WoodenHammer && item.prefix != 0) {
-                craftedWoodHammer = true;
-                if (craftedWoodSword && craftedWoodBow) {
-                    trigger("GetModifiedWoodSwordBowHammer");
-                } else {
-                    progress("GetModifiedWoodSwordBowHammer", item.AffixName());
-                }
+            if (item.type == ItemID.WoodenHammer && item.prefix != 0) {
+                modifiedWoodSwordBowHammerItems.Add(item.type);
+                progress<GetModifiedWoodSwordBowHammer>(item.AffixName());
+            }
+            update(
+                ref GetModifiedWoodSwordBowHammer.obtained,
+                modifiedWoodSwordBowHammerItems
+            );
+            if (modifiedWoodSwordBowHammerItems.Count == 3) {
+                trigger<GetModifiedWoodSwordBowHammer>();
             }
         }
 
@@ -147,11 +158,12 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             if (ItemID.Sets.Spears[item.type]) {
                 collectedSpears.Add(item.type);
                 if (collectedSpears.Count <= 2) {
-                    progress("Get2Spears", item.Name);
+                    progress<Get2Spears>(item.Name);
                 }
                 if (collectedSpears.Count == 2) {
-                    trigger("Get2Spears");
+                    trigger<Get2Spears>();
                 }
+                update(ref Get2Spears.collectedSpears, collectedSpears);
             }
             if (item.type == ItemID.CookedMarshmallow) {
                 trigger("GetCookedMarshmallow");
@@ -164,14 +176,15 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                 return;
             }
             usedAccs.Add(acc.type);
-            if (usedAccs.Count == 1) {
+            if (usedAccs.Count >= 1) {
                 failDisallow("EquipAccessories");
             }
             if (usedAccs.Count < 5) {
-                progress("Equip5Accessories", acc.Name);
-            } else if (usedAccs.Count == 5) {
-                trigger("Equip5Accessories");
+                progress<Equip5Accessories>(acc.Name);
+            } else if (usedAccs.Count >= 5) {
+                trigger<Equip5Accessories>();
             }
+            update(ref Equip5Accessories.wornAccessories, usedAccs);
         }
 
         internal uint? suffocationStartTime = null;
@@ -199,10 +212,10 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                             var durInSecs = suffocationDuration / 60;
                             if (durInSecs < 7) {
                                 if (this.Player.whoAmI == Main.myPlayer) {
-                                    progress("Suffocate7s", (7 - durInSecs).ToString()!);
+                                    progress<Suffocate7s>((7 - durInSecs).ToString()!);
                                 }
-                            } else if (durInSecs == 7) {
-                                trigger("Suffocate7s");
+                            } else {
+                                trigger<Suffocate7s>();
                             }
                         }
                     }
@@ -250,9 +263,9 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
         internal bool aboutToHitAltar = false;
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource) {
             if (aboutToTouchThorns) {
-                trigger("DieToThorns");
+                trigger<DieToThorns>();
             } else if (aboutToHitAltar) {
-                trigger("DieToAltar");
+                trigger<DieToAltar>();
             }
         }
 
@@ -266,7 +279,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                     }
                 }
                 if (foundPlat >= 2) {
-                    trigger("Get2Plat");
+                    trigger<Get2Plat>();
                 }
             }
             return true;
@@ -279,9 +292,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             achievedHave5Debuffs = false;
             collectedSpears.Clear();
             usedAccs.Clear();
-            craftedWoodSword = false;
-            craftedWoodBow = false;
-            craftedWoodHammer = false;
+            modifiedWoodSwordBowHammerItems.Clear();
         }
 
         internal void onGameStart() {

@@ -10,13 +10,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BingoGoalPackBingoSyncGoals.Icons {
-    internal class NPCIcon : ModItem {
+    internal class Npc : ModItem {
         private class AnyTownNPC : AssetCycleAnimation {
             private static Random rng = new();
             private DrawAnimationVariantVertical anim = new(1, 0, 6, 1);
 
             public AnyTownNPC() {
-                NPCIcon.AnyTown = this.Item;
+                Npc.AnyTown = this.Item;
             }
 
             public override void SetStaticDefaults() {
@@ -51,11 +51,11 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static Item Ghost = null!;
         public static Item Raven = null!;
 
-        public NPCIcon() {
+        public Npc() {
             this.npcId = NPCID.None;
         }
 
-        public NPCIcon(int npcId, int npcFrameTime = 6, int skipStartFrames = 0) {
+        public Npc(int npcId, int npcFrameTime = 6, int skipStartFrames = 0) {
             this.npcId = npcId;
             this.npcFrameTime = npcFrameTime;
             this.skipStartFrames = skipStartFrames;
@@ -74,7 +74,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public static void registerItems() {
             Item add(int id, int frameTime = 6, int skipStartFrames = 0) {
-                NPCIcon icon = new(id, frameTime, skipStartFrames);
+                Npc icon = new(id, frameTime, skipStartFrames);
                 ModContent.GetInstance<BingoGoalPackBingoSyncGoals>().AddContent(
                     icon
                 );

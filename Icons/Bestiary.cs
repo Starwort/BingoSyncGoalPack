@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace BingoGoalPackBingoSyncGoals.Icons {
-    public class BestiaryIcon : ModItem {
+    public class Bestiary : ModItem {
         public override string Texture => "Terraria/Images/UI/Bestiary/Icon_Tags_Shadow";
         public static Item Forest = null!; // not used, but might as well include
         public static Item Ocean = null!;
@@ -18,17 +18,18 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static Item Island = null!;
         public static Item Hell = null!;
         public static Item Jungle = null!;
+        public static Item Snow = null!;
 
         internal (int, int) iconPosition;
 
         public override string Name => $"BestiaryIcon/{iconPosition.Item1}-{iconPosition.Item2}";
 
-        public BestiaryIcon() {
+        public Bestiary() {
             iconPosition = (0, 0);
             Forest = this.Item;
         }
 
-        public BestiaryIcon((int, int) position) {
+        public Bestiary((int, int) position) {
             iconPosition = position;
         }
 
@@ -41,7 +42,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
 
         public static void registerItems() {
             Item add(int x, int y) {
-                BestiaryIcon icon = new((x, y));
+                Bestiary icon = new((x, y));
                 ModContent.GetInstance<BingoGoalPackBingoSyncGoals>().AddContent(
                     icon
                 );
@@ -59,6 +60,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
             Island = add(10, 1);
             Hell = add(1, 2);
             Jungle = add(6, 1);
+            Snow = add(5, 0);
         }
     }
 }

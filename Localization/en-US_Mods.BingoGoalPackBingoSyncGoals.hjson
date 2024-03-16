@@ -1,11 +1,16 @@
 # Goals from: https://github.com/kbuzsaki/bingosync/blob/main/bingosync-app/generators/terraria_generator.js
 
+ProgressText.Collections: Currently {0}/{1}:{2}
+ProgressText.GenericCounter: Currently {0}/{1}
+
 # Difficulty 0
 DownEoC: Defeat {$NPCName.EyeofCthulhu}
 DownKS: Defeat {$NPCName.KingSlime}
 PutFoodOnPlate: Place any food item on a plate
 Get999OfTile: Obtain a stack of at least 999 of any tile
+ProgressText.Get999OfTile: Largest tile stack: {0}/999
 FillPiggyBank: Fill the inventory of a {$ItemName.PiggyBank}
+ProgressText.FillPiggyBank: Empty slots: {0}
 EatCookedFish: Consume {$ItemName.CookedFish}
 Suffocate7s: Have {$BuffName.Suffocation} for 7 seconds
 Progress.Suffocate7s: Have {$BuffName.Suffocation}: {0}s left
@@ -15,6 +20,7 @@ DieToThorns: Die to thorns
 Get2Spears: Obtain 2 different spears
 Progress.Get2Spears: Unique spears: Collected {0} (1/2)
 Get2Plat: Obtain 2 {$ItemName.PlatinumCoin}s
+ProgressText.Get2Plat: Available money: {3}p{2}g{1}s{0}c/2p
 DieToAltar: Die to hammering a {$MapObject.DemonAltar} or {$MapObject.CrimsonAltar}
 Equip5Accessories: Equip 5 different accessories
 Progress.Equip5Accessories: Equip unique accessories: Equipped {0}
@@ -35,9 +41,11 @@ Progress.PlaceAllSandcastles: Place unique sandcastles: {0}/4
 PlantAllHerbs: Plant all 7 kinds of herb using seeds
 Progress.PlantAllHerbs: Plant herbs using seeds: Planted {0} ({1}/7)
 InvFullOfBlocks: Have every slot in your inventory be taken up by a different building block
+ProgressText.InvFullOfBlocks: Unique blocks: {0}/50
 Have12Buffs: Have 12 different effects at once
-# Skipped because it wouldn't play well on a shared world:
-# No5Villagers: Never have more than 5 Town NPCs housed at once
+No5Villagers: Never have more than 5 Town NPCs housed at once
+ProgressText.No5Villagers: Housed Town NPCs: {0}/5
+Opponent5Villagers: The opponent has more than 5 Town NPCs housed at once
 
 # Difficulty 3
 KillAnglerWithBoulder: Cause the {$NPCName.Angler} to "leave the world" with a boulder
@@ -337,27 +345,3 @@ GetObsLockBox: Obtain an {$ItemName.ObsidianLockbox}
 GetGnomed: Get Gnomed
 KeepGnome: Obtain a {$ItemName.GardenGnome} and keep it in your inventory forever
 Get2Sentries: Obtain 2 unique Sentry staves
-
-Items: {
-	Internal: You shouldn't have this
-
-	SuffocationGoalIcon: {
-		DisplayName: "{$Internal}"
-		Tooltip: ""
-	}
-
-	Suffocation: {
-		DisplayName: "{$Internal}"
-		Tooltip: ""
-	}
-
-	Thorns: {
-		DisplayName: "{$Internal}"
-		Tooltip: ""
-	}
-
-	Altars: {
-		DisplayName: "{$Internal}"
-		Tooltip: ""
-	}
-}

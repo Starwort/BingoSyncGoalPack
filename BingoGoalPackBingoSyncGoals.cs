@@ -1,8 +1,8 @@
 global using static BingoGoalPackBingoSyncGoals.BingoGoalPackBingoSyncGoals;
-using BingoBoardCore.Common.Systems;
 using BingoGoalPackBingoSyncGoals.MonitorHooks;
-using System;
+using System.Linq;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace BingoGoalPackBingoSyncGoals {
@@ -10,25 +10,13 @@ namespace BingoGoalPackBingoSyncGoals {
         public static string GithubUserName => "Starwort";
         public static string GithubProjectName => "BingoGoalPack-BingoSyncGoals";
 
-        internal const string goalNamespace = "BingoSyncPack.";
-
-        internal static void triggerGoal(string goal, Player player) {
-            BingoBoardCore.BingoBoardCore.triggerGoal(goalNamespace + goal, player);
-        }
-        internal static void untriggerGoal(string goal, Player player) {
-            BingoBoardCore.BingoBoardCore.untriggerGoal(goalNamespace + goal, player);
-        }
-
-        internal static void progress(string goal, params string[] substitutions) {
-            BingoBoardCore.BingoBoardCore.reportProgress(goalNamespace + goal, "Mods.BingoGoalPackBingoSyncGoals.Progress." + goal, substitutions);
-        }
-
-        internal static void badProgress(string goal, params string[] substitutions) {
-            BingoBoardCore.BingoBoardCore.reportBadProgress(goalNamespace + goal, "Mods.BingoGoalPackBingoSyncGoals.BadProgress." + goal, substitutions);
-        }
-
-        internal static void register(string goalId, int difficulty, Item icon, string[] synergyTypes = null!, Func<BingoMode, int, bool> shouldEnable = null!, string text = "", Item? modifier = null) {
-            BingoBoardCore.BingoBoardCore.registerGoal(icon, "Mods.BingoGoalPackBingoSyncGoals." + goalId, goalNamespace + goalId, difficulty, synergyTypes ?? Array.Empty<string>(), shouldEnable, text, modifier);
+        internal static string translate(string key, params string[] substitutions) {
+            return Language.GetTextValue(
+                "Mods.BingoGoalPackBingoSyncGoals." + key,
+                substitutions.Select(
+                    sub => Language.GetTextValue(sub)
+                ).ToArray()
+            );
         }
 
         public override void PostSetupContent() {

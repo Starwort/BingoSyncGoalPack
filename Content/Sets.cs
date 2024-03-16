@@ -38,13 +38,27 @@ namespace BingoGoalPackBingoSyncGoals.Content {
         internal static List<int> PreHardmodeCampfires = new() {
             ItemID.Campfire, ItemID.CoralCampfire, ItemID.CorruptCampfire,
             ItemID.CrimsonCampfire, ItemID.DemonCampfire, ItemID.DesertCampfire,
-            ItemID.FrozenCampfire, ItemID.JungleCampfire, ItemID.MushroomCampfire
+            ItemID.FrozenCampfire, ItemID.JungleCampfire, ItemID.MushroomCampfire,
         };
 
         internal static List<int> Herbs = new() {
             ItemID.Blinkroot, ItemID.Daybloom, ItemID.Deathweed,
             ItemID.Fireblossom, ItemID.Moonglow, ItemID.Shiverthorn,
-            ItemID.Waterleaf
+            ItemID.Waterleaf,
+        };
+        internal static List<int> HerbSeeds = new() {
+            ItemID.BlinkrootSeeds, ItemID.DaybloomSeeds, ItemID.DeathweedSeeds,
+            ItemID.FireblossomSeeds, ItemID.MoonglowSeeds, ItemID.ShiverthornSeeds,
+            ItemID.WaterleafSeeds,
+        };
+        internal static List<int> Mushrooms = new() {
+            ItemID.GlowingMushroom,
+            ItemID.GreenMushroom,
+            ItemID.Mushroom,
+            ItemID.StrangeGlowingMushroom,
+            ItemID.TealMushroom,
+            ItemID.ViciousMushroom,
+            ItemID.VileMushroom,
         };
 
         internal static List<int> LowTierBars = new() {
@@ -96,7 +110,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.MushroomGrassSeeds,
             ItemID.CorruptSeeds,
             ItemID.CrimsonSeeds,
-            ItemID.HallowedSeeds
+            ItemID.HallowedSeeds,
         };
 
         internal static List<int> GemCritterCages = new() {
@@ -153,7 +167,7 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.HallowedWaterFountain,
             ItemID.BloodWaterFountain,
             ItemID.CavernFountain,
-            ItemID.OasisFountain
+            ItemID.OasisFountain,
         };
 
         internal static List<int> GoldGraves = new() {
@@ -161,7 +175,22 @@ namespace BingoGoalPackBingoSyncGoals.Content {
             ItemID.RichGravestone2,
             ItemID.RichGravestone3,
             ItemID.RichGravestone4,
-            ItemID.RichGravestone5
+            ItemID.RichGravestone5,
+        };
+
+        internal static List<int> Watches = new() {
+            ItemID.CopperWatch,
+            ItemID.TinWatch,
+            ItemID.SilverWatch,
+            ItemID.TungstenWatch,
+            ItemID.GoldWatch,
+            ItemID.PlatinumWatch,
+        };
+
+        internal static List<int> FishingTrash = new() {
+            ItemID.FishingSeaweed,
+            ItemID.OldShoe,
+            ItemID.TinCan,
         };
         #endregion
         #endregion
