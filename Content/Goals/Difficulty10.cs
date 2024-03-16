@@ -33,6 +33,9 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
+        public override void onGameStart(Player player) {
+            trigger(player);
+        }
     }
 
     public class OpponentEquipAccessories : Goal {
@@ -53,6 +56,9 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
+        public override void onGameStart(Player player) {
+            trigger(player);
+        }
     }
 
     public class OpponentPlatforms : Goal {

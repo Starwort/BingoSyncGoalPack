@@ -1,4 +1,5 @@
-﻿using BingoGoalPackBingoSyncGoals.MonitorHooks;
+﻿using BingoGoalPackBingoSyncGoals.Content.Goals;
+using BingoGoalPackBingoSyncGoals.MonitorHooks;
 using Terraria;
 using Terraria.GameContent.Achievements;
 using Terraria.GameContent.Tile_Entities;
@@ -22,7 +23,7 @@ namespace BingoGoalPackBingoSyncGoals.Systems {
 
         private void onDieToDeadMansChest(On_AchievementsHelper.orig_HandleSpecialEvent orig, Player player, int eventID) {
             if (eventID == AchievementHelperID.Special.DeathByDeadmansChest) {
-                triggerGoal("DeadMenTellNoTales", player);
+                ModContent.GetInstance<DeadMenTellNoTales>().trigger(player);
             }
             orig(player, eventID);
         }
@@ -45,7 +46,7 @@ namespace BingoGoalPackBingoSyncGoals.Systems {
         }
 
         private static void detectFoodPlace(On_TEFoodPlatter.orig_PlaceItemInFrame orig, Player player, int x, int y) {
-            triggerGoal("PutFoodOnPlate", player);
+            ModContent.GetInstance<PutFoodOnPlate>().trigger(player);
             orig(player, x, y);
         }
     }

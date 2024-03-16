@@ -13,7 +13,10 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
-        public override IList<string> synergyTypes => new[] { "ME.9", "ME.10", "ME.1" };
+        public override IList<string> synergyTypes => new[] {"ME.9", "ME.10", "ME.1"};
+        public override void onGameStart(Player player) {
+            trigger(player);
+        }
     }
 
     public class OpponentTraps : Goal {
@@ -22,7 +25,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode == BingoMode.Lockout && numPlayers == 2;
-        public override IList<string> synergyTypes => new[] { "ME.9", "ME.10", "ME.1" };
+        public override IList<string> synergyTypes => new[] {"ME.9", "ME.10", "ME.1"};
     }
 
     public class GetLightRedItem : Goal {

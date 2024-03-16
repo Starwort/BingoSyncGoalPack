@@ -39,7 +39,10 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
-        public override IList<string> synergyTypes => new[] { "ME.1" };
+        public override IList<string> synergyTypes => new[] {"ME.1"};
+        public override void onGameStart(Player player) {
+            trigger(player);
+        }
     }
 
     public class OpponentTorches : Goal {

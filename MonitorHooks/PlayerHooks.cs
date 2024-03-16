@@ -51,16 +51,16 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             fishingQuestsComplete++;
             switch (fishingQuestsComplete) {
                 case 1:
-                    trigger("CompleteFishingQuest");
-                    progress("Complete2FishingQuests");
-                    progress("Complete3FishingQuests", "1");
+                    trigger<CompleteFishingQuest>();
+                    progress<Complete2FishingQuests>();
+                    //progress<Complete3FishingQuests>("1");
                     break;
                 case 2:
-                    trigger("Complete2FishingQuests");
-                    progress("Complete3FishingQuests", "2");
+                    trigger<Complete2FishingQuests>();
+                    //progress<Complete3FishingQuests>("2");
                     break;
                 case 3:
-                    trigger("Complete3FishingQuests");
+                    //trigger<Complete3FishingQuests>();
                     break;
             }
         }
@@ -106,12 +106,8 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                 }
             }
             update(ref Get999OfTile.bestStack, bestTileStack);
-            update(
-                ref Get999OfTile.bestStackEver,
-                Math.Max(Get999OfTile.bestStackEver, bestTileStack)
-            );
             if (foundTiles.Count == 50) {
-                trigger("InvFullOfBlocks");
+                trigger<InvFullOfBlocks>();
             }
             if (!achievedFillPiggyBank) {
                 var emptySlots = 0;
@@ -166,7 +162,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                 update(ref Get2Spears.collectedSpears, collectedSpears);
             }
             if (item.type == ItemID.CookedMarshmallow) {
-                trigger("GetCookedMarshmallow");
+                trigger<GetCookedMarshmallow>();
             }
         }
 
@@ -177,7 +173,7 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
             }
             usedAccs.Add(acc.type);
             if (usedAccs.Count >= 1) {
-                failDisallow("EquipAccessories");
+                failDisallow<NoEquipAccessories, OpponentEquipAccessories>();
             }
             if (usedAccs.Count < 5) {
                 progress<Equip5Accessories>(acc.Name);
@@ -222,11 +218,11 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                 }
             }
             if (foundBuffs >= 12 && !achievedHave12Buffs) {
-                trigger("Have12Buffs");
+                trigger<Have12Buffs>();
                 achievedHave12Buffs = true;
             }
             if (foundDebuffs >= 5 && !achievedHave5Debuffs) {
-                trigger("Have5Debuffs");
+                trigger<Have5Debuffs>();
                 achievedHave5Debuffs = true;
             }
             if (!foundSuffocation) {
@@ -241,19 +237,19 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
                 this.lastArmourSet = set;
                 switch (set) {
                     case "cactus":
-                        trigger("WearCactusArmour");
+                        trigger<WearCactusArmour>();
                         break;
                     case "evil":
-                        trigger("WearEvilArmour");
+                        trigger<WearEvilArmour>();
                         break;
                     case "pumpkin":
-                        trigger("WearPumpkinArmour");
+                        trigger<WearPumpkinArmour>();
                         break;
                     case "fossil":
-                        trigger("WearFossilArmour");
+                        trigger<WearFossilArmour>();
                         break;
                     case "necro":
-                        trigger("WearNecroArmour");
+                        trigger<WearNecroArmour>();
                         break;
                 }
             }
@@ -297,12 +293,6 @@ namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
 
         internal void onGameStart() {
             reset();
-            trigger("NoChopTrees");
-            trigger("NoEquipAccessories");
-            trigger("NoPlatforms");
-            trigger("NoTorches");
-            trigger("NoTraps");
-            trigger("NoGrapple");
         }
 
     }

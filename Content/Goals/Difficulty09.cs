@@ -26,7 +26,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class UsePoisonDart : Goal {
         public override Item icon => new(ItemID.PoisonDart);
         public override int difficultyTier => 9;
-        public override Item? modifierIcon => IconAnimationSystem.registerCycleAnimation(Icons.Misc.Blowpipe, Icons.Misc.Blowgun);
+        public override Item? modifierIcon => IconAnimationSystem.registerCycleAnimation(ItemID.Blowpipe, ItemID.Blowgun);
     }
     public class Get5Minecarts : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Minecarts);
