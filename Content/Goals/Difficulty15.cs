@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria;
 using BingoBoardCore.AnimationHelpers;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class GetTragicUmbrella : Goal {
@@ -29,7 +30,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class KillWithCoffin : Goal {
         public override Item icon => new(ItemID.CoffinMinecart);
         public override int difficultyTier => 15;
-        public override Item? modifierIcon => Icons.Achievement.VehicularManslaughter;
+        public override Item? modifierIcon => VanillaIcons.Achievement.VehicularManslaughter;
     }
 
     public class ExcavateWithShovel : Goal {

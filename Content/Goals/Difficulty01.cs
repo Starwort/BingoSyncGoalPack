@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class Get2Spears : Goal {
@@ -68,7 +69,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override int difficultyTier => 1;
     }
     public class NoChopTrees : Goal {
-        public override Item icon => Icons.Achievement.Timber;
+        public override Item icon => VanillaIcons.Achievement.Timber;
         public override int difficultyTier => 1;
         public override Item? modifierIcon => Icons.Misc.Disallow;
         public override bool enable(
@@ -80,7 +81,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
         public override IList<string> synergyTypes => new[] {"ME.1"};
     }
     public class OpponentChopTrees : Goal {
-        public override Item icon => Icons.Achievement.Timber;
+        public override Item icon => VanillaIcons.Achievement.Timber;
         public override int difficultyTier => 1;
         public override Item? modifierIcon => Icons.Misc.Disallow;
         public override bool enable(

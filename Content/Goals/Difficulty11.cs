@@ -5,10 +5,11 @@ using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class RockBottom : Goal {
-        public override Item icon => Icons.Achievement.RockBottom;
+        public override Item icon => VanillaIcons.Achievement.RockBottom;
         public override int difficultyTier => 11;
     }
 
@@ -21,7 +22,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     }
 
     public class IntoOrbit : Goal {
-        public override Item icon => Icons.Achievement.IntoOrbit;
+        public override Item icon => VanillaIcons.Achievement.IntoOrbit;
         public override int difficultyTier => 11;
     }
 

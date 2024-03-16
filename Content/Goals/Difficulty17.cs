@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class DownEoCHell : Goal {
@@ -29,7 +30,7 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class DownQBLowMaxLife : Goal {
         public override Item icon => new(ItemID.QueenBeeTrophy);
         public override int difficultyTier => 17;
-        public override Item? modifierIcon => Icons.Achievement.HeartBreaker;
+        public override Item? modifierIcon => VanillaIcons.Achievement.HeartBreaker;
         public override IList<string> synergyTypes => new[] { "ME.6.1" };
     }
 

@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class FillEquipPage2 : Goal {
@@ -47,8 +48,8 @@ namespace BingoGoalPackBingoSyncGoals.Content.Goals {
 
     public class Hellevator : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
-            Icons.Achievement.IntoOrbit.type,
-            Icons.Achievement.RockBottom.type
+            VanillaIcons.Achievement.IntoOrbit.type,
+            VanillaIcons.Achievement.RockBottom.type
         );
         public override int difficultyTier => 16;
     }

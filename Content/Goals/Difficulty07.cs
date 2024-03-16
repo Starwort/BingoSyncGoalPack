@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria;
 using BingoBoardCore.AnimationHelpers;
+using BingoBoardCore.Icons;
 
 namespace BingoGoalPackBingoSyncGoals.Content.Goals {
     public class DeadMenTellNoTales : Goal {
-        public override Item icon => Icons.Achievement.DeadMenTellNoTales;
+        public override Item icon => VanillaIcons.Achievement.DeadMenTellNoTales;
         public override int difficultyTier => 7;
         public override IList<string> synergyTypes => new[] {"ME.9"};
     }
