@@ -5,7 +5,7 @@ using Terraria;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class GetTragicUmbrella : Goal {
         public override Item icon => new(ItemID.TragicUmbrella);
         public override int difficultyTier => 15;

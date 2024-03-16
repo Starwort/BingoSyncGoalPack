@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class BreakLivingTreeLeaves : Goal {
         public override Item icon => ModContent.GetInstance<Icons.LivingLeaf>().Item;
         public override int difficultyTier => 5;

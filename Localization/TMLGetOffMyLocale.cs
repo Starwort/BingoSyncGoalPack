@@ -6,7 +6,7 @@ using System;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Localization {
+namespace BingoSyncGoalPack.Localization {
     /// <summary>
     /// Refuse to call <see cref="LocalizationLoader.UpdateLocalizationFilesForMod"/> for this mod.
     /// This solves issues with tModLoader's autoformatting for hjson.
@@ -47,7 +47,7 @@ namespace BingoGoalPackBingoSyncGoals.Localization {
             cursor.Remove();
             cursor.EmitDelegate<Action<Mod, string, GameCulture>>((mod, arg1, arg2) =>
             {
-                if (mod is BingoGoalPackBingoSyncGoals)
+                if (mod is BingoSyncGoalPack)
                     return;
                 methDelegate.Invoke(mod, arg1, arg2);
             });

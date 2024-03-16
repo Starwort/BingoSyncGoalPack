@@ -5,7 +5,7 @@ using Terraria;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class DeadMenTellNoTales : Goal {
         public override Item icon => VanillaIcons.Achievement.DeadMenTellNoTales;
         public override int difficultyTier => 7;

@@ -7,7 +7,7 @@ using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class Get2Spears : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Spears);
         public override int difficultyTier => 1;

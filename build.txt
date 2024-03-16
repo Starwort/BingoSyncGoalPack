@@ -1,4 +1,4 @@
-displayName = Default Bingo Goal Pack (Bingosync goals)
+displayName = Default Bingo Goal Pack (BingoSync goals)
 author = Starwort, kbuzsaki
 version = 0.1
 modReferences = BingoBoardCore

@@ -1,12 +1,12 @@
-﻿using BingoGoalPackBingoSyncGoals.Content.Goals;
-using BingoGoalPackBingoSyncGoals.MonitorHooks;
+﻿using BingoSyncGoalPack.Content.Goals;
+using BingoSyncGoalPack.MonitorHooks;
 using Terraria;
 using Terraria.GameContent.Achievements;
 using Terraria.GameContent.Tile_Entities;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Systems {
+namespace BingoSyncGoalPack.Systems {
     internal class DetourSystem : ModSystem {
         public override void Load() {
             On_TEFoodPlatter.PlaceItemInFrame += detectFoodPlace;

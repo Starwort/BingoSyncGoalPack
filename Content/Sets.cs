@@ -6,7 +6,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Content {
+namespace BingoSyncGoalPack.Content {
     public class Sets {
         #region Item IDs
         internal static List<int> Tiles = new() {ItemID.DirtBlock};

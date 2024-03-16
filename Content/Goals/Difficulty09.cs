@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria;
 using BingoBoardCore.AnimationHelpers;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class HaveMaxHealth : Goal {
         public override Item icon => new(ItemID.LifeCrystal);
         public override int difficultyTier => 9;

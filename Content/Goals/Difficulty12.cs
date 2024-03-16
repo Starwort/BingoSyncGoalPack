@@ -5,7 +5,7 @@ using Terraria;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class WearNecroArmour : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
             ItemID.NecroHelmet,

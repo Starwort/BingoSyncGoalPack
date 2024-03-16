@@ -5,5 +5,5 @@ using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
 }

@@ -7,7 +7,7 @@ using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class RockBottom : Goal {
         public override Item icon => VanillaIcons.Achievement.RockBottom;
         public override int difficultyTier => 11;

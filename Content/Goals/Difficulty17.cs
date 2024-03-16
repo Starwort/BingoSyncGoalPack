@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class DownEoCHell : Goal {
         public override Item icon => new(ItemID.EyeofCthulhuTrophy);
         public override int difficultyTier => 17;

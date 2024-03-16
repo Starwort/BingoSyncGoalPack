@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class DownEvilBoss : Goal {
         public override Item icon => Icons.Misc.EvilBoss;
         public override int difficultyTier => 4;

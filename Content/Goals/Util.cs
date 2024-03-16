@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using Terraria.ID;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     internal class Util {
         public static string? progressTextFor(HashSet<int> collectedItems, int totalRequiredItems) {
             if (collectedItems.Count >= totalRequiredItems) {

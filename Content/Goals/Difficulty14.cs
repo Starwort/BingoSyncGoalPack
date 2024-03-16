@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class Get2Pylons : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Pylons);
         public override int difficultyTier => 14;

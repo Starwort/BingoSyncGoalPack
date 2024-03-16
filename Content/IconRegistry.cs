@@ -1,7 +1,7 @@
-﻿using BingoGoalPackBingoSyncGoals.Icons;
+﻿using BingoSyncGoalPack.Icons;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Content {
+namespace BingoSyncGoalPack.Content {
     internal class IconRegistry : ModSystem {
         public override void Load() {
             Buff.registerItems();

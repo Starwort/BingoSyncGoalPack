@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     public class Buff : ModItem {
         private class AnyBuff : AssetCycleAnimation {
             private static Random rng = new();
@@ -73,7 +73,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static void registerItems() {
             Item add(int buffId) {
                 Buff icon = new(buffId);
-                ModContent.GetInstance<BingoGoalPackBingoSyncGoals>().AddContent(
+                ModContent.GetInstance<BingoSyncGoalPack>().AddContent(
                     icon
                 );
                 return icon.Item;

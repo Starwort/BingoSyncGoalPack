@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class KillAnglerWithBoulder : Goal {
         public override Item icon => Icons.Npc.Angler;
         public override int difficultyTier => 3;

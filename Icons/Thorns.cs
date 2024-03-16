@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class Thorns : AssetCycleAnimation {
         DrawAnimationSheetSlice slice = new(new Rectangle(162, 54, 16, 16));
         static Random rng = new();

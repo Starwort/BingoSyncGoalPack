@@ -5,7 +5,7 @@ using Terraria;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class MakePotions_Magic : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
             ItemID.MagicPowerPotion,

@@ -2,10 +2,10 @@
 using System.Linq;
 using Terraria.ID;
 using Terraria;
-using BingoGoalPackBingoSyncGoals.Content;
+using BingoSyncGoalPack.Content;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class Misc {
         public static readonly Item Die = BingoBoardCore.BingoBoardCore.dieIcon;
         public static readonly Item Disallow = BingoBoardCore.BingoBoardCore.disallowIcon;

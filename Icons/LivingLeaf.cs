@@ -1,5 +1,5 @@
 ﻿using BingoBoardCore.AnimationHelpers;
-using BingoGoalPackBingoSyncGoals.Content;
+using BingoSyncGoalPack.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class LivingLeaf : AssetCycleAnimation {
         DrawAnimationSheetSlice slice = new(new Rectangle(162, 54, 16, 16));
         static Random rng = new();

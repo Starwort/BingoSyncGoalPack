@@ -5,7 +5,7 @@ using Terraria;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class MakePiano : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.CraftablePianos);
         public override int difficultyTier => 10;

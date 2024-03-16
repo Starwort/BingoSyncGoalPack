@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Icons;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class FillEquipPage2 : Goal {
         public override Item icon => ModContent.GetInstance<Icons.FillEquipPage2>().Item;
         public override int difficultyTier => 16;

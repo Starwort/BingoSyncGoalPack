@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class NoTraps : Goal {
         public override Item icon => Icons.Buff.Dangersense;
         public override int difficultyTier => 18;

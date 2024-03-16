@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class Altars : ModItem {
         public override void SetStaticDefaults() {
             Main.RegisterItemAnimation(Item.type, new DrawAnimationSyncedVertical(2));

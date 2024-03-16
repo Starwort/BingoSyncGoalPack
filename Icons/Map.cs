@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class Map : ModItem {
         public override string Texture => "Terraria/Images/Map_4";
     }

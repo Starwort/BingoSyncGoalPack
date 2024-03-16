@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class DownEoC : Goal {
         public override Item icon => new(ItemID.EyeofCthulhuTrophy);
         public override int difficultyTier => 0;

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class EvilCritter : AssetCycleAnimation {
         DrawAnimationVariantVertical animation = new(7, 1, 6, 6);
 

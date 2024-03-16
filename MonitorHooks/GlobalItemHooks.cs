@@ -1,10 +1,10 @@
-﻿using BingoGoalPackBingoSyncGoals.Content.Goals;
+﻿using BingoSyncGoalPack.Content.Goals;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
+namespace BingoSyncGoalPack.MonitorHooks {
     internal class GlobalItemHooks : GlobalItem {
         public override void OnConsumeItem(Item item, Player player) {
             if (item.type == ItemID.CookedFish) {

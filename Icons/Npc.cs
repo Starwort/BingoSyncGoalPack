@@ -1,5 +1,5 @@
 ﻿using BingoBoardCore.AnimationHelpers;
-using BingoGoalPackBingoSyncGoals.Content;
+using BingoSyncGoalPack.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -9,7 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class Npc : ModItem {
         private class AnyTownNPC : AssetCycleAnimation {
             private static Random rng = new();
@@ -75,7 +75,7 @@ namespace BingoGoalPackBingoSyncGoals.Icons {
         public static void registerItems() {
             Item add(int id, int frameTime = 6, int skipStartFrames = 0) {
                 Npc icon = new(id, frameTime, skipStartFrames);
-                ModContent.GetInstance<BingoGoalPackBingoSyncGoals>().AddContent(
+                ModContent.GetInstance<BingoSyncGoalPack>().AddContent(
                     icon
                 );
                 return icon.Item;

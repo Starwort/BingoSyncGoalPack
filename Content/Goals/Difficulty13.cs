@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria;
 using BingoBoardCore.AnimationHelpers;
 
-namespace BingoGoalPackBingoSyncGoals.Content.Goals {
+namespace BingoSyncGoalPack.Content.Goals {
     public class Get2Crates : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Crates);
         public override int difficultyTier => 13;

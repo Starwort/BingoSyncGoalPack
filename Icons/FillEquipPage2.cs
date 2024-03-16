@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace BingoGoalPackBingoSyncGoals.Icons {
+namespace BingoSyncGoalPack.Icons {
     internal class FillEquipPage2 : IAnimatedObject {
         public override string Texture => "Terraria/Images/Extra_54";
 

@@ -1,5 +1,5 @@
 ﻿using BingoBoardCore.Common;
-using BingoGoalPackBingoSyncGoals.Content.Goals;
+using BingoSyncGoalPack.Content.Goals;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace BingoGoalPackBingoSyncGoals.MonitorHooks {
+namespace BingoSyncGoalPack.MonitorHooks {
     public class PlayerHooks : ModPlayer {
         public PlayerHooks() : base() {
             reset();
