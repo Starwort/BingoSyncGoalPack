@@ -65,62 +65,22 @@ namespace BingoSyncGoalPack.MonitorHooks {
             }
         }
 
-        void processHitNPC(NPC target, NPC.HitInfo hit) {
-            if (target.type == NPCID.EyeofCthulhu) {
-                if (target.life <= 0) {
-                    trigger<DownEoC>();
-                }
-            } else if (target.type == NPCID.KingSlime) {
-                if (target.life <= 0) {
-                    trigger<DownKS>();
-                }
-            }
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-            processHitNPC(target, hit);
-        }
-
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone) {
-            processHitNPC(target, hit);
-        }
-
-        internal bool achievedFillPiggyBank;
         internal HashSet<int> allObtainedItems = new();
         public override void PostUpdate() {
             var foundTiles = new HashSet<int>();
-            var bestTileStack = 0;
             for (int i = 0; i < Player.inventory.Length; i++) {
                 var item = Player.inventory[i];
                 if (item.stack > 0 && !allObtainedItems.Contains(item.type)) {
                     onAnyObtain(item);
                 }
                 if (item.createTile != -1) {
-                    bestTileStack = Math.Max(item.stack, bestTileStack);
-                    if (item.stack >= 999) {
-                        trigger<Get999OfTile>();
-                    }
                     if (i < 50) {
                         foundTiles.Add(item.type);
                     }
                 }
             }
-            update(ref Get999OfTile.bestStack, bestTileStack);
             if (foundTiles.Count == 50) {
                 trigger<InvFullOfBlocks>();
-            }
-            if (!achievedFillPiggyBank) {
-                var emptySlots = 0;
-                foreach (var item in Player.bank.item) {
-                    if (item.stack == 0) {
-                        emptySlots++;
-                    }
-                }
-                update(ref FillPiggyBank.slotsLeft, emptySlots);
-                if (emptySlots == 0) {
-                    trigger<FillPiggyBank>();
-                    achievedFillPiggyBank = true;
-                }
             }
         }
 
@@ -183,11 +143,9 @@ namespace BingoSyncGoalPack.MonitorHooks {
             update(ref Equip5Accessories.wornAccessories, usedAccs);
         }
 
-        internal uint? suffocationStartTime = null;
         internal bool achievedHave12Buffs;
         internal bool achievedHave5Debuffs;
         public override void PostUpdateBuffs() {
-            bool foundSuffocation = false;
             var foundBuffs = 0;
             var foundDebuffs = 0;
             foreach (var buffType in this.Player.buffType) {
@@ -198,24 +156,6 @@ namespace BingoSyncGoalPack.MonitorHooks {
                 if (Main.debuff[buffType]) {
                     foundDebuffs++;
                 }
-                if (buffType == BuffID.Suffocation) {
-                    foundSuffocation = true;
-                    if (suffocationStartTime is null) {
-                        suffocationStartTime = Main.GameUpdateCount;
-                    } else {
-                        var suffocationDuration = Main.GameUpdateCount - suffocationStartTime;
-                        if (suffocationDuration % 60 == 0) {
-                            var durInSecs = suffocationDuration / 60;
-                            if (durInSecs < 7) {
-                                if (this.Player.whoAmI == Main.myPlayer) {
-                                    progress<Suffocate7s>((7 - durInSecs).ToString()!);
-                                }
-                            } else {
-                                trigger<Suffocate7s>();
-                            }
-                        }
-                    }
-                }
             }
             if (foundBuffs >= 12 && !achievedHave12Buffs) {
                 trigger<Have12Buffs>();
@@ -224,9 +164,6 @@ namespace BingoSyncGoalPack.MonitorHooks {
             if (foundDebuffs >= 5 && !achievedHave5Debuffs) {
                 trigger<Have5Debuffs>();
                 achievedHave5Debuffs = true;
-            }
-            if (!foundSuffocation) {
-                suffocationStartTime = null;
             }
         }
 
@@ -255,12 +192,9 @@ namespace BingoSyncGoalPack.MonitorHooks {
             }
         }
 
-        internal bool aboutToTouchThorns = false;
         internal bool aboutToHitAltar = false;
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource) {
-            if (aboutToTouchThorns) {
-                trigger<DieToThorns>();
-            } else if (aboutToHitAltar) {
+            if (aboutToHitAltar) {
                 trigger<DieToAltar>();
             }
         }
@@ -283,7 +217,6 @@ namespace BingoSyncGoalPack.MonitorHooks {
 
         internal void reset() {
             allObtainedItems.Clear();
-            achievedFillPiggyBank = false;
             achievedHave12Buffs = false;
             achievedHave5Debuffs = false;
             collectedSpears.Clear();

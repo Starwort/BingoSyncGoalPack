@@ -6,12 +6,6 @@ using Terraria.ModLoader;
 
 namespace BingoSyncGoalPack.MonitorHooks {
     internal class GlobalItemHooks : GlobalItem {
-        public override void OnConsumeItem(Item item, Player player) {
-            if (item.type == ItemID.CookedFish) {
-                ModContent.GetInstance<EatCookedFish>().trigger(player);
-            }
-        }
-
         public override string IsArmorSet(Item head, Item body, Item legs) {
             return base.IsArmorSet(head, body, legs);
         }

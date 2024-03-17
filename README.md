@@ -1,1 +1,1 @@
-# BingoGoalPackBingoSyncGoals
+# BingoSyncGoalPack
