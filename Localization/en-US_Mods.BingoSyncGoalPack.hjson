@@ -19,8 +19,7 @@ DieToThorns: Die to thorns
 # Difficulty 1
 Get2Spears: Obtain 2 different spears
 Progress.Get2Spears: Unique spears: Collected {0} (1/2)
-Get2Plat: Obtain 2 {$ItemName.PlatinumCoin}s
-ProgressText.Get2Plat: Available money: {3}p{2}g{1}s{0}c/2p
+Get2Plat: Have 2 {$ItemName.PlatinumCoin}s in your coin slots
 DieToAltar: Die to hammering a {$MapObject.DemonAltar} or {$MapObject.CrimsonAltar}
 Equip5Accessories: Equip 5 different accessories
 Progress.Equip5Accessories: Equip unique accessories: Equipped {0}

@@ -13,24 +13,8 @@ namespace BingoSyncGoalPack.MonitorHooks {
             reset();
         }
 
-        void update<T>(ref T dest, T src) {
-            if (Player.whoAmI == Main.myPlayer) {
-                dest = src;
-            }
-        }
-
         void trigger<T>() where T : Goal {
             ModContent.GetInstance<T>().trigger(Player);
-        }
-        void progress<T>(params string[] substitutions) where T : Goal {
-            if (Player.whoAmI == Main.myPlayer) {
-            ModContent.GetInstance<T>().reportProgress(substitutions);
-            }
-        }
-        void badProgress<T>(params string[] substitutions) where T : Goal {
-            if (Player.whoAmI == Main.myPlayer) {
-                ModContent.GetInstance<T>().reportBadProgress(substitutions);
-            }
         }
 
         void failDisallow<NoGoal, OpponentGoal>()
@@ -43,25 +27,6 @@ namespace BingoSyncGoalPack.MonitorHooks {
                     ModContent.GetInstance<OpponentGoal>().trigger(player);
                     return;
                 }
-            }
-        }
-
-        int fishingQuestsComplete;
-        internal void onFishingQuestComplete() {
-            fishingQuestsComplete++;
-            switch (fishingQuestsComplete) {
-                case 1:
-                    trigger<CompleteFishingQuest>();
-                    progress<Complete2FishingQuests>();
-                    //progress<Complete3FishingQuests>("1");
-                    break;
-                case 2:
-                    trigger<Complete2FishingQuests>();
-                    //progress<Complete3FishingQuests>("2");
-                    break;
-                case 3:
-                    //trigger<Complete3FishingQuests>();
-                    break;
             }
         }
 
@@ -84,46 +49,12 @@ namespace BingoSyncGoalPack.MonitorHooks {
             }
         }
 
-        internal HashSet<int> modifiedWoodSwordBowHammerItems = new();
         internal void onCraftItem(Item item) {
             onAnyObtain(item);
-            if (item.type == ItemID.WoodenSword && item.prefix != 0) {
-                modifiedWoodSwordBowHammerItems.Add(item.type);
-                progress<GetModifiedWoodSwordBowHammer>(item.AffixName());
-            }
-            if (item.type == ItemID.WoodenBow && item.prefix != 0) {
-                modifiedWoodSwordBowHammerItems.Add(item.type);
-                progress<GetModifiedWoodSwordBowHammer>(item.AffixName());
-            }
-            if (item.type == ItemID.WoodenHammer && item.prefix != 0) {
-                modifiedWoodSwordBowHammerItems.Add(item.type);
-                progress<GetModifiedWoodSwordBowHammer>(item.AffixName());
-            }
-            update(
-                ref GetModifiedWoodSwordBowHammer.obtained,
-                modifiedWoodSwordBowHammerItems
-            );
-            if (modifiedWoodSwordBowHammerItems.Count == 3) {
-                trigger<GetModifiedWoodSwordBowHammer>();
-            }
         }
 
-        internal HashSet<int> collectedSpears = new();
         private void onAnyObtain(Item item) {
             allObtainedItems.Add(item.type);
-            if (ItemID.Sets.Spears[item.type]) {
-                collectedSpears.Add(item.type);
-                if (collectedSpears.Count <= 2) {
-                    progress<Get2Spears>(item.Name);
-                }
-                if (collectedSpears.Count == 2) {
-                    trigger<Get2Spears>();
-                }
-                update(ref Get2Spears.collectedSpears, collectedSpears);
-            }
-            if (item.type == ItemID.CookedMarshmallow) {
-                trigger<GetCookedMarshmallow>();
-            }
         }
 
         internal HashSet<int> usedAccs = new();
@@ -135,12 +66,6 @@ namespace BingoSyncGoalPack.MonitorHooks {
             if (usedAccs.Count >= 1) {
                 failDisallow<NoEquipAccessories, OpponentEquipAccessories>();
             }
-            if (usedAccs.Count < 5) {
-                progress<Equip5Accessories>(acc.Name);
-            } else if (usedAccs.Count >= 5) {
-                trigger<Equip5Accessories>();
-            }
-            update(ref Equip5Accessories.wornAccessories, usedAccs);
         }
 
         internal bool achievedHave12Buffs;
@@ -192,13 +117,6 @@ namespace BingoSyncGoalPack.MonitorHooks {
             }
         }
 
-        internal bool aboutToHitAltar = false;
-        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource) {
-            if (aboutToHitAltar) {
-                trigger<DieToAltar>();
-            }
-        }
-
         public override bool OnPickup(Item item) {
             onAnyObtain(item);
             if (item.type == ItemID.CopperCoin || item.type == ItemID.SilverCoin || item.type == ItemID.GoldCoin || item.type == ItemID.PlatinumCoin) {
@@ -219,9 +137,7 @@ namespace BingoSyncGoalPack.MonitorHooks {
             allObtainedItems.Clear();
             achievedHave12Buffs = false;
             achievedHave5Debuffs = false;
-            collectedSpears.Clear();
             usedAccs.Clear();
-            modifiedWoodSwordBowHammerItems.Clear();
         }
 
         internal void onGameStart() {

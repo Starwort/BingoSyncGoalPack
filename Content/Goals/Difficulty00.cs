@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using BingoSyncGoalPack.MonitorHooks;
+using BingoBoardCore.Trackers;
 using Terraria.GameContent.Tile_Entities;
 using System;
 using Terraria.DataStructures;
@@ -12,7 +12,7 @@ namespace BingoSyncGoalPack.Content.Goals {
     public class DownEoC : Goal {
         public override Item icon => new(ItemID.EyeofCthulhuTrophy);
         public override int difficultyTier => 0;
-        public override IList<string> synergyTypes => new[] {"ME.5.1", "ME.5.2"};
+        public override IList<string> synergyTypes => ["ME.5.1", "ME.5.2"];
 
         class Tracker : PlayerAttackTracker {
             internal static Goal? goal = null;
@@ -34,7 +34,7 @@ namespace BingoSyncGoalPack.Content.Goals {
     public class DownKS : Goal {
         public override Item icon => new(ItemID.KingSlimeTrophy);
         public override int difficultyTier => 0;
-        public override IList<string> synergyTypes => new[] {"ME.3.1", "ME.3.2"};
+        public override IList<string> synergyTypes => ["ME.3.1", "ME.3.2"];
 
         class Tracker : PlayerAttackTracker {
             internal static Goal? goal = null;
