@@ -58,7 +58,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override int difficultyTier => 0;
 
         class Tracker : ItemTracker {
-            internal static Goal? goal = null!;
+            internal static Goal? goal = null;
 
             public override void OnConsumeItem(Item item, Player player) {
                 if (item.type == ItemID.CookedFish) {
@@ -81,7 +81,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override string? progressTextFor(Player player) => player.GetModPlayer<Tracker>().progressText();
 
         class Tracker : PlayerTracker {
-            internal Goal? goal = null!;
+            internal static Goal? goal = null;
 
             int slotsLeft = 0;
             public string? progressText() => goal is null ? null : translate(
@@ -107,11 +107,11 @@ namespace BingoSyncGoalPack.Content.Goals {
         }
 
         public override void onGameStart(Player player) {
-            player.GetModPlayer<Tracker>().goal = this;
+            Tracker.goal = this;
         }
 
         public override void onGameEnd(Player player) {
-            player.GetModPlayer<Tracker>().goal = null;
+            Tracker.goal = null;
         }
     }
     public class Get999OfTile : Goal {
@@ -121,7 +121,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override string? progressTextFor(Player player) => player.GetModPlayer<Tracker>().progressText();
 
         class Tracker : PlayerTracker {
-            internal Goal? goal = null!;
+            internal static Goal? goal = null;
 
             int bestStack = 0;
             public string? progressText() => goal is null ? null : translate(
@@ -149,11 +149,11 @@ namespace BingoSyncGoalPack.Content.Goals {
         }
 
         public override void onGameStart(Player player) {
-            player.GetModPlayer<Tracker>().goal = this;
+            Tracker.goal = this;
         }
 
         public override void onGameEnd(Player player) {
-            player.GetModPlayer<Tracker>().goal = null;
+            Tracker.goal = null;
         }
     }
     public class PutFoodOnPlate : Goal {
@@ -161,7 +161,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override int difficultyTier => 0;
 
         class Tracker : TrackerSystem {
-            internal static Goal? goal = null!;
+            internal static Goal? goal = null;
             public override void Load() {
                 On_TEFoodPlatter.PlaceItemInFrame += onFoodPlace;
             }
@@ -186,7 +186,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override string modifierText => "7s";
 
         class Tracker : PlayerTracker {
-            internal Goal? goal = null!;
+            internal static Goal? goal = null;
 
             internal uint? suffocationStart = null;
 
@@ -220,11 +220,11 @@ namespace BingoSyncGoalPack.Content.Goals {
         }
 
         public override void onGameStart(Player player) {
-            player.GetModPlayer<Tracker>().goal = this;
+            Tracker.goal = this;
         }
 
         public override void onGameEnd(Player player) {
-            player.GetModPlayer<Tracker>().goal = null;
+            Tracker.goal = null;
         }
     }
     public class DieToThorns : Goal {
@@ -233,7 +233,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item? modifierIcon => Icons.Misc.Die;
 
         class Tracker : PlayerTracker {
-            internal static Goal? goal = null!;
+            internal static Goal? goal = null;
             internal bool aboutToTouchThorns = false;
 
             public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource) {
@@ -241,14 +241,12 @@ namespace BingoSyncGoalPack.Content.Goals {
                     goal?.trigger(Player);
                 }
             }
-        }
 
-        class Detour : TrackerSystem {
             public override void Load() {
                 On_Player.ApplyTouchDamage += detectDieToThorns;
             }
 
-            private void detectDieToThorns(On_Player.orig_ApplyTouchDamage orig, Player self, int tileId, int x, int y) {
+            private static void detectDieToThorns(On_Player.orig_ApplyTouchDamage orig, Player self, int tileId, int x, int y) {
                 if (tileId == TileID.CorruptThorns || tileId == TileID.CrimsonThorns || tileId == TileID.JungleThorns || tileId == TileID.PlanteraThorns) {
                     self.GetModPlayer<Tracker>().aboutToTouchThorns = true;
                 }

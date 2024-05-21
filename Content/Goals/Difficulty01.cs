@@ -7,9 +7,7 @@ using BingoBoardCore.AnimationHelpers;
 using BingoBoardCore.Common.Systems;
 using BingoBoardCore.Icons;
 using BingoBoardCore.Trackers;
-using BingoSyncGoalPack.MonitorHooks;
 using Terraria.DataStructures;
-using System.Diagnostics;
 
 namespace BingoSyncGoalPack.Content.Goals {
     public class Get2Spears : Goal {
@@ -17,17 +15,40 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override int difficultyTier => 1;
         public override string modifierText => "2";
         public override string? progressTextFor(Player player) => Util.progressTextFor(
-            ModContent.GetInstance<Tracker>().obtainedSpears(player), 2
+            player.GetModPlayer<Tracker>().obtainedSpears, 2
         );
 
         class Tracker : ObtainedItemTracker {
-            internal HashSet<int> obtainedSpears(Player player) => storage(player, () => new HashSet<int>());
+            internal HashSet<int> obtainedSpears = new();
+            internal static Goal? goal = null;
 
-            public override void onAnyObtain(Player player, Item item) {
+            public override void prepare() {
+                obtainedSpears.Clear();
+            }
+
+            public override void onAnyObtain(Item item) {
                 if (ItemID.Sets.Spears[item.type]) {
-                    obtainedSpears(player).Add(item.type);
+                    obtainedSpears.Add(item.type);
+                }
+                switch (obtainedSpears.Count) {
+                    case 1:
+                        if (Player.whoAmI == Main.myPlayer) {
+                            goal?.reportProgress(item.Name);
+                        }
+                        break;
+                    case 2:
+                        goal?.trigger(Player);
+                        break;
                 }
             }
+        }
+
+        public override void onGameStart(Player player) {
+            Tracker.goal = this;
+        }
+
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
         }
     }
     public class Get2Plat : Goal {
@@ -40,7 +61,7 @@ namespace BingoSyncGoalPack.Content.Goals {
             internal static Goal? goal = null;
 
             public override void PostUpdate() {
-                if (enabled) {
+                if (enabled && goal is not null) {
                     var platCoins = 0;
                     for (int i = 50; i < 54; i++) {
                         var stack = Player.inventory[i];
@@ -49,7 +70,7 @@ namespace BingoSyncGoalPack.Content.Goals {
                         }
                     }
                     if (platCoins >= 2) {
-                        goal!.trigger(Player);
+                        goal?.trigger(Player);
                         enabled = false;
                     }
                 }
@@ -60,20 +81,34 @@ namespace BingoSyncGoalPack.Content.Goals {
             Tracker.goal = this;
             player.GetModPlayer<Tracker>().enabled = true;
         }
+
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
+            player.GetModPlayer<Tracker>().enabled = false;
+        }
     }
     public class DieToAltar : Goal {
         public override Item icon => ModContent.GetInstance<Icons.Altars>().Item;
         public override int difficultyTier => 1;
         public override Item? modifierIcon => Icons.Misc.Die;
 
-        class AltarTracker : TrackerSystem {
+        class Tracker : PlayerTracker {
+            internal bool aboutToHitAltar = false;
+            internal static Goal? goal = null;
+
             public override void Load() {
                 On_Player.ItemCheck_UseMiningTools_ActuallyUseMiningTool += detectDieToAltar;
             }
 
-            private void detectDieToAltar(On_Player.orig_ItemCheck_UseMiningTools_ActuallyUseMiningTool orig, Player self, Item sItem, out bool canHitWalls, int x, int y) {
+            public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource) {
+                if (aboutToHitAltar) {
+                    goal?.trigger(Player);
+                }
+            }
+
+            private static void detectDieToAltar(On_Player.orig_ItemCheck_UseMiningTools_ActuallyUseMiningTool orig, Player self, Item sItem, out bool canHitWalls, int x, int y) {
                 Tile tile = Main.tile[x, y];
-                var player = self.GetModPlayer<DeathTracker>();
+                var player = self.GetModPlayer<Tracker>();
                 if (tile.HasTile && Main.tileHammer[tile.TileType] && sItem.hammer > 0 && tile.TileType == TileID.DemonAltar) {
                     player.aboutToHitAltar = true;
                 }
@@ -82,19 +117,12 @@ namespace BingoSyncGoalPack.Content.Goals {
             }
         }
 
-        class DeathTracker : PlayerTracker {
-            internal bool aboutToHitAltar = false;
-            internal Goal? goal = null;
-
-            public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource) {
-                if (aboutToHitAltar) {
-                    goal!.trigger(Player);
-                }
-            }
+        public override void onGameStart(Player player) {
+            Tracker.goal = this;
         }
 
-        public override void onGameStart(Player player) {
-            player.GetModPlayer<DeathTracker>().goal = this;
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
         }
     }
     public class Equip5Accessories : Goal {
@@ -103,26 +131,29 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override string modifierText => "5";
         public override IList<string> synergyTypes => ["ME.15"];
         public override string? progressTextFor(Player player) => Util.progressTextFor(
-            ModContent.GetInstance<Tracker>().wornAccessories(player), 5
+            player.GetModPlayer<Tracker>().wornAccs, 5
         );
 
         class Tracker : ObtainedItemTracker {
-            internal HashSet<int> wornAccessories(Player player) => storage(player, () => new HashSet<int>());
+            internal HashSet<int> wornAccs = new();
             internal static Goal? goal = null;
 
-            public override void onEquipAccessory(Player player, Item acc) {
-                var accs = wornAccessories(player);
-                accs.Add(acc.type);
-                if (accs.Count < 5 && player.whoAmI == Main.myPlayer) {
-                    goal!.reportProgress(acc.Name);
-                } else if (accs.Count >= 5) {
-                    goal!.trigger(player);
+            public override void onEquipAccessory(Item acc) {
+                wornAccs.Add(acc.type);
+                if (wornAccs.Count < 5 && Player.whoAmI == Main.myPlayer) {
+                    goal?.reportProgress(acc.Name);
+                } else if (wornAccs.Count >= 5) {
+                    goal?.trigger(Player);
                 }
             }
         }
 
         public override void onGameStart(Player player) {
             Tracker.goal = this;
+        }
+
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
         }
     }
     public class GetModifiedWoodSwordBowHammer : Goal {
@@ -130,41 +161,44 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override int difficultyTier => 1;
         public override Item? modifierIcon => Icons.Misc.Craft;
         public override string? progressTextFor(Player player) => Util.progressTextFor(
-            ModContent.GetInstance<Tracker>().obtained(player), 3
+            player.GetModPlayer<Tracker>().obtained, 3
         );
 
         class Tracker : ObtainedItemTracker {
-            internal HashSet<int> obtained(Player player) => storage(player, () => new HashSet<int>());
+            internal HashSet<int> obtained = new();
             internal static Goal? goal = null;
 
-            public override void onAnyObtain(Player player, Item item) {
-                var items = obtained(player);
+            public override void onAnyObtain(Item item) {
                 if (item.type == ItemID.WoodenSword && item.prefix != 0) {
-                    items.Add(item.type);
-                    if (player.whoAmI == Main.myPlayer) {
-                        goal!.reportProgress(item.AffixName());
+                    obtained.Add(item.type);
+                    if (Player.whoAmI == Main.myPlayer) {
+                        goal?.reportProgress(item.AffixName());
                     }
                 }
                 if (item.type == ItemID.WoodenBow && item.prefix != 0) {
-                    items.Add(item.type);
-                    if (player.whoAmI == Main.myPlayer) {
-                        goal!.reportProgress(item.AffixName());
+                    obtained.Add(item.type);
+                    if (Player.whoAmI == Main.myPlayer) {
+                        goal?.reportProgress(item.AffixName());
                     }
                 }
                 if (item.type == ItemID.WoodenHammer && item.prefix != 0) {
-                    items.Add(item.type);
-                    if (player.whoAmI == Main.myPlayer) {
-                        goal!.reportProgress(item.AffixName());
+                    obtained.Add(item.type);
+                    if (Player.whoAmI == Main.myPlayer) {
+                        goal?.reportProgress(item.AffixName());
                     }
                 }
-                if (items.Count == 3) {
-                    goal!.trigger(player);
+                if (obtained.Count == 3) {
+                    goal?.trigger(Player);
                 }
             }
         }
 
         public override void onGameStart(Player player) {
             Tracker.goal = this;
+        }
+
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
         }
     }
     public class ExplodeVillagerEnemySelf : Goal {
@@ -184,15 +218,19 @@ namespace BingoSyncGoalPack.Content.Goals {
         class Tracker : ObtainedItemTracker {
             internal static Goal? goal = null;
 
-            public override void onAnyObtain(Player player, Item item) {
+            public override void onAnyObtain(Item item) {
                 if (item.type == ItemID.CookedMarshmallow) {
-                    goal!.trigger(player);
+                    goal?.trigger(Player);
                 }
             }
         }
 
         public override void onGameStart(Player player) {
             Tracker.goal = this;
+        }
+
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
         }
     }
     public class NoChopTrees : Goal {
