@@ -8,6 +8,7 @@ using BingoBoardCore.Common.Systems;
 using BingoBoardCore.Icons;
 using BingoBoardCore.Trackers;
 using Terraria.DataStructures;
+using Terraria.GameContent.Achievements;
 
 namespace BingoSyncGoalPack.Content.Goals {
     public class Get2Spears : Goal {
@@ -207,9 +208,50 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item? modifierIcon => Icons.Misc.Die;
         public override string modifierText => "3";
         internal static HashSet<string> killed = new();
-        public override string? progressText() => Util.progressTextFor(
-            killed, 3
+        public override string? progressTextFor(Player player) => Util.progressTextFor(
+            player.GetModPlayer<Tracker>().killed, 3
         );
+
+        class Tracker : PlayerTracker {
+            internal HashSet<string> killed = new();
+            internal static Goal? goal = null;
+
+            internal void blownUp(string kind) {
+                kind = "Progress.ExplodeVillagerEnemySelf." + kind;
+                this.killed.Add(kind);
+                goal?.reportProgress(kind);
+                if (killed.Count == 3) {
+                    goal?.trigger(Player);
+                }
+            }
+
+            public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo) {
+                if (proj.owner == Player.whoAmI && proj.type == ProjectileID.ExplosiveBunny && Player.dead) {
+                    this.blownUp("Self");
+                }
+            }
+        }
+
+        class KillTracker : NpcTracker {
+            public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone) {
+                if (
+                    projectile.type == ProjectileID.ExplosiveBunny
+                    && npc.life <= 0
+                    && npc.lastInteraction != 255
+                    && (!npc.friendly || npc.townNPC)
+                ) {
+                    Main.player[npc.lastInteraction].GetModPlayer<Tracker>().blownUp(npc.townNPC ? "Villager" : "Enemy");
+                }
+            }
+        }
+
+        public override void onGameStart(Player player) {
+            player.GetModPlayer<Tracker>().killed.Clear();
+            Tracker.goal = this;
+        }
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
+        }
     }
     public class GetCookedMarshmallow : Goal {
         public override Item icon => new(ItemID.CookedMarshmallow);
@@ -244,6 +286,16 @@ namespace BingoSyncGoalPack.Content.Goals {
             trigger(player);
         }
         public override IList<string> synergyTypes => ["ME.1"];
+
+        public override void Load() {
+            AchievementsHelper.OnTileDestroyed += this.checkGoalFailed;
+        }
+
+        private void checkGoalFailed(Player player, ushort tileId) {
+            if (TileID.Sets.IsATreeTrunk[tileId]) {
+                untrigger(player);
+            }
+        }
     }
     public class OpponentChopTrees : Goal {
         public override Item icon => VanillaIcons.Achievement.Timber;
@@ -253,5 +305,20 @@ namespace BingoSyncGoalPack.Content.Goals {
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode == BingoMode.Lockout && numPlayers == 2;
         public override IList<string> synergyTypes => ["ME.1"];
+
+        public override void Load() {
+            AchievementsHelper.OnTileDestroyed += this.checkGoalFailed;
+        }
+
+        private void checkGoalFailed(Player player, ushort tileId) {
+            if (TileID.Sets.IsATreeTrunk[tileId]) {
+                foreach (var otherPlayer in Main.player) {
+                    if (otherPlayer.active && otherPlayer.team != player.team) {
+                        trigger(otherPlayer);
+                        return;
+                    }
+                }
+            }
+        }
     }
 }

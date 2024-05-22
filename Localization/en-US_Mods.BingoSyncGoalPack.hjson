@@ -27,6 +27,9 @@ GetModifiedWoodSwordBowHammer: Craft a {$ItemName.WoodenSword}, {$ItemName.Woode
 Progress.GetModifiedWoodSwordBowHammer: Craft prefixed tools: Crafted {0}
 ExplodeVillagerEnemySelf: Kill a Town NPC, enemy, and yourself with explosive bunnies
 Progress.ExplodeVillagerEnemySelf: Kill entities with explosive bunnies: Killed {0}
+Progress.ExplodeVillagerEnemySelf.Villager: a Town NPC
+Progress.ExplodeVillagerEnemySelf.Enemy: an enemy
+Progress.ExplodeVillagerEnemySelf.Self: yourself
 GetCookedMarshmallow: Obtain a {$ItemName.CookedMarshmallow}
 NoChopTrees: Never use an axe to fully chop a tree
 OpponentChopTrees: The opponent uses an axe to fully chop a tree
