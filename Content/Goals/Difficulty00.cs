@@ -203,9 +203,7 @@ namespace BingoSyncGoalPack.Content.Goals {
                             if (suffocationDuration % 60 == 0) {
                                 var durInSecs = suffocationDuration / 60;
                                 if (durInSecs < 7) {
-                                    if (this.Player.whoAmI == Main.myPlayer) {
-                                        goal.reportProgress((7 - durInSecs).ToString()!);
-                                    }
+                                    goal.reportProgress(Player, (7 - durInSecs).ToString()!);
                                 } else {
                                     goal.trigger(Player);
                                     goal = null;

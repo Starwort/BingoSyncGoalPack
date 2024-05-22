@@ -33,9 +33,7 @@ namespace BingoSyncGoalPack.Content.Goals {
                 }
                 switch (obtainedSpears.Count) {
                     case 1:
-                        if (Player.whoAmI == Main.myPlayer) {
-                            goal?.reportProgress(item.Name);
-                        }
+                        goal?.reportProgress(Player, item.Name);
                         break;
                     case 2:
                         goal?.trigger(Player);
@@ -141,8 +139,8 @@ namespace BingoSyncGoalPack.Content.Goals {
 
             public override void onEquipAccessory(Item acc) {
                 wornAccs.Add(acc.type);
-                if (wornAccs.Count < 5 && Player.whoAmI == Main.myPlayer) {
-                    goal?.reportProgress(acc.Name);
+                if (wornAccs.Count < 5) {
+                    goal?.reportProgress(Player, acc.Name);
                 } else if (wornAccs.Count >= 5) {
                     goal?.trigger(Player);
                 }
@@ -172,21 +170,15 @@ namespace BingoSyncGoalPack.Content.Goals {
             public override void onAnyObtain(Item item) {
                 if (item.type == ItemID.WoodenSword && item.prefix != 0) {
                     obtained.Add(item.type);
-                    if (Player.whoAmI == Main.myPlayer) {
-                        goal?.reportProgress(item.AffixName());
-                    }
+                    goal?.reportProgress(Player, item.AffixName());
                 }
                 if (item.type == ItemID.WoodenBow && item.prefix != 0) {
                     obtained.Add(item.type);
-                    if (Player.whoAmI == Main.myPlayer) {
-                        goal?.reportProgress(item.AffixName());
-                    }
+                    goal?.reportProgress(Player, item.AffixName());
                 }
                 if (item.type == ItemID.WoodenHammer && item.prefix != 0) {
                     obtained.Add(item.type);
-                    if (Player.whoAmI == Main.myPlayer) {
-                        goal?.reportProgress(item.AffixName());
-                    }
+                    goal?.reportProgress(Player, item.AffixName());
                 }
                 if (obtained.Count == 3) {
                     goal?.trigger(Player);
@@ -219,7 +211,7 @@ namespace BingoSyncGoalPack.Content.Goals {
             internal void blownUp(string kind) {
                 kind = "Progress.ExplodeVillagerEnemySelf." + kind;
                 this.killed.Add(kind);
-                goal?.reportProgress(kind);
+                goal?.reportProgress(Player, kind);
                 if (killed.Count == 3) {
                     goal?.trigger(Player);
                 }
