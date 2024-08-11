@@ -1,6 +1,6 @@
 # Goals from: https://github.com/kbuzsaki/bingosync/blob/main/bingosync-app/generators/terraria_generator.js
 
-ProgressText.Collections: Currently {0}/{1}:{2}
+ProgressText.Collections: Currently {0}/{1}{2}
 ProgressText.GenericCounter: Currently {0}/{1}
 
 # Difficulty 0
@@ -37,6 +37,7 @@ OpponentChopTrees: The opponent uses an axe to fully chop a tree
 # Difficulty 2
 CompleteFishingQuest: Complete 1 fishing quest
 Get3FrogLegs: Craft 3 {$ItemName.SauteedFrogLegs}
+Progress.Get3FrogLegs: Craft 3 {$ItemName.SauteedFrogLegs}: {0}/3
 GetRockLobster: Obtain {$ItemName.RockLobster}
 PlaceAllSandcastles: Place all 4 kinds of sandcastle
 Progress.PlaceAllSandcastles: Place unique sandcastles: {0}/4

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria;
 using BingoBoardCore.AnimationHelpers;
+using BingoBoardCore.Icons;
+using BingoSyncGoalPack.MonitorHooks;
+using Terraria.GameContent.Achievements;
+using BingoBoardCore.Trackers;
 
 namespace BingoSyncGoalPack.Content.Goals {
     public class Get2Crates : Goal {
@@ -32,10 +36,47 @@ namespace BingoSyncGoalPack.Content.Goals {
     }
 
     public class Complete2FishingQuests : Goal {
-        public override Item icon => Icons.Misc.QuestFish;
+        public override Item icon => VanillaIcons.Achievement.GoodLittleSlave;
         public override int difficultyTier => 13;
         public override string modifierText => "2";
-        public override IList<string> synergyTypes => new[] { "ME.11" };
+        public override IList<string> synergyTypes => ["ME.11"];
+
+        class Tracker : PlayerTracker {
+            internal Goal? goal = null;
+            internal int completeQuests = 0;
+            public void onFishingQuestComplete() {
+                if (goal is null) {
+                    return;
+                }
+                completeQuests++;
+                if (completeQuests >= 2) {
+                    goal.trigger(Player);
+                    goal = null;
+                } else {
+                    goal.reportProgress(Player);
+                }
+            }
+        }
+
+        class Detour : TrackerSystem {
+            public override void Load() {
+                On_AchievementsHelper.HandleAnglerService += onFishingQuestComplete;
+            }
+            private void onFishingQuestComplete(On_AchievementsHelper.orig_HandleAnglerService orig) {
+                Main.LocalPlayer.GetModPlayer<Tracker>().onFishingQuestComplete();
+                orig();
+            }
+        }
+
+        public override void onGameStart(Player player) {
+            var tracker = Main.LocalPlayer.GetModPlayer<Tracker>();
+            tracker.goal = this;
+            tracker.completeQuests = 0;
+        }
+
+        public override void onGameEnd(Player player) {
+            Main.LocalPlayer.GetModPlayer<Tracker>().goal = null;
+        }
     }
 
     public class DieToDG : Goal {

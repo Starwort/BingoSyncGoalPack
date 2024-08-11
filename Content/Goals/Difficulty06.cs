@@ -13,10 +13,10 @@ namespace BingoSyncGoalPack.Content.Goals {
         );
         public override int difficultyTier => 6;
         public override Item? modifierIcon => Icons.Misc.Craft;
-        internal static HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained, 2
-        );
+        //internal static HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained, 2
+        //);
     }
     public class MakePotions_Explore : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
@@ -26,10 +26,10 @@ namespace BingoSyncGoalPack.Content.Goals {
         );
         public override int difficultyTier => 6;
         public override Item? modifierIcon => Icons.Misc.Craft;
-        internal static HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained, 3
-        );
+        //internal static HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained, 3
+        //);
     }
     public class MakePotions_Water : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
@@ -38,10 +38,10 @@ namespace BingoSyncGoalPack.Content.Goals {
         );
         public override int difficultyTier => 6;
         public override Item? modifierIcon => Icons.Misc.Craft;
-        internal static HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained, 2
-        );
+        //internal static HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained, 2
+        //);
     }
     public class MakePotions_Trans : Goal {
         public override Item icon => new(ItemID.GenderChangePotion);

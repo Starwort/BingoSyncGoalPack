@@ -30,7 +30,7 @@ namespace BingoSyncGoalPack.MonitorHooks {
             }
         }
 
-        internal HashSet<int> allObtainedItems = new();
+        internal HashSet<int> allObtainedItems = [];
         public override void PostUpdate() {
             var foundTiles = new HashSet<int>();
             for (int i = 0; i < Player.inventory.Length; i++) {
@@ -57,7 +57,7 @@ namespace BingoSyncGoalPack.MonitorHooks {
             allObtainedItems.Add(item.type);
         }
 
-        internal HashSet<int> usedAccs = new();
+        internal HashSet<int> usedAccs = [];
         public void onEquipAccessory(Item acc) {
             if (usedAccs.Contains(acc.type)) {
                 return;

@@ -10,7 +10,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Pylons);
         public override int difficultyTier => 14;
         public override string modifierText => "2";
-        public override IList<string> synergyTypes => new[] {"ME.12"};
+        public override IList<string> synergyTypes => ["ME.12"];
     }
 
     public class KillClothier : Goal {

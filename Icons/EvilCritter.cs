@@ -19,7 +19,7 @@ namespace BingoSyncGoalPack.Icons {
             int variantFrameStart,
             int variantFrameCount,
             int variantFrameDuration
-        )[] parameters = new[] {
+        )[] parameters = [
             (NPCID.CorruptBunny, 7, 1, 6, 6),
             (NPCID.CrimsonBunny, 7, 1, 6, 6),
             (NPCID.CrimsonGoldfish, 6, 0, 4, 6),
@@ -34,7 +34,7 @@ namespace BingoSyncGoalPack.Icons {
             (NPCID.CrimsonPenguin, 12, 3, 3, 6),
             (NPCID.CrimsonPenguin, 12, 6, 3, 6),
             (NPCID.CrimsonPenguin, 12, 9, 3, 6),
-        };
+        ];
 
         public override Asset<Texture2D> getFrame(uint frame) {
             var animParams = parameters[frame % parameters.Length];

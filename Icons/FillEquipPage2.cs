@@ -12,13 +12,13 @@ namespace BingoSyncGoalPack.Icons {
             Main.RegisterItemAnimation(Type, new DrawAnimationSheetSlice(slice));
         }
 
-        (int, int)[] frames = new[] {
+        (int, int)[] frames = [
             (1, 3),
             (2, 5),
             (1, 2),
             (1, 4),
             (1, 1),
-        };
+        ];
 
         public override void animate(uint frame) {
             (var x, var y) = frames[frame % frames.Length];

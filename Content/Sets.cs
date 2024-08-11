@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -7,51 +8,111 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace BingoSyncGoalPack.Content {
+    internal class Set : IList<int>, IReadOnlyList<int> {
+        HashSet<int> lookup = [];
+        List<int> items = [];
+
+        public int this[int index] { 
+            get => items[index]; 
+            set => throw new InvalidOperationException(); 
+        }
+
+        public int Count => items.Count;
+        public bool IsReadOnly => false;
+
+        public void Add(int item) {
+            if (Contains(item)){
+                throw new InvalidOperationException($"{item} already in set");
+            }
+            lookup.Add(item);
+            items.Add(item);
+        }
+
+        public void Clear() {
+            lookup.Clear();
+            items.Clear();
+        }
+
+        public bool Contains(int item) => lookup.Contains(item);
+
+        public void CopyTo(int[] array, int arrayIndex) => items.CopyTo(array, arrayIndex);
+
+        public int IndexOf(int item) {
+            if (!Contains(item)) return -1;
+            return items.IndexOf(item);
+        }
+
+        public void Insert(int index, int item) {
+            if (Contains(item)){
+                throw new InvalidOperationException($"{item} already in set");
+            }
+            lookup.Add(item);
+            items.Insert(index, item);
+        }
+
+        public bool Remove(int item) {
+            if (!Contains(item)) {
+                return false;
+            }
+            lookup.Remove(item);
+            items.Remove(item);
+            return true;
+        }
+
+        public void RemoveAt(int index) {
+            lookup.Remove(items[index]);
+            items.RemoveAt(index);
+        }
+
+        public IEnumerator<int> GetEnumerator() => items.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => items.GetEnumerator();
+    }
     public class Sets {
         #region Item IDs
-        internal static List<int> Tiles = new() {ItemID.DirtBlock};
-        internal static List<int> Spears = new() {ItemID.Spear};
-        internal static List<int> Accessories = new() {ItemID.Shackle};
-        internal static List<int> QuestFish = new() {ItemID.AmanitaFungifin};
-        internal static List<int> CritterCages = new() {ItemID.BunnyCage};
-        internal static List<int> SummonStaves = new() {ItemID.SlimeStaff};
-        internal static List<int> Hooks = new() {ItemID.GrapplingHook};
-        internal static List<int> Swords = new() {ItemID.CopperShortsword};
-        internal static List<int> Minecarts = new() {ItemID.Minecart};
-        internal static List<int> CraftablePianos = new() {ItemID.Piano};
-        internal static List<int> Platforms = new() {ItemID.WoodPlatform};
-        internal static List<int> DungeonWeapons = new() {ItemID.Muramasa};
-        internal static List<int> Torches = new() {ItemID.Torch};
-        internal static List<int> Paintings = new() {ItemID.PaintingAcorns};
-        internal static List<int> Crates = new() {ItemID.WoodenCrate};
-        internal static List<int> Yoyos = new() {ItemID.WoodYoyo};
-        internal static List<int> Flasks = new() {ItemID.FlaskofCursedFlames};
-        internal static List<int> Pylons = new() {ItemID.TeleportationPylonPurity};
-        internal static List<int> GlowingMosses = new() {ItemID.ArgonMoss};
-        internal static List<int> ObsidianSkullUpgrades = new() {ItemID.ObsidianShield};
-        internal static List<int> Toilets = new() {ItemID.Toilet};
-        internal static List<int> Anvils = new() {ItemID.IronAnvil};
-        internal static List<int> LightRedItems = new() {ItemID.TitaniumSword};
-        internal static List<int> Phaseblades = new() {ItemID.WhitePhaseblade};
+        internal static Set Tiles = [ItemID.DirtBlock];
+        internal static Set Spears = [ItemID.Spear];
+        internal static Set Accessories = [ItemID.Shackle];
+        internal static Set QuestFish = [ItemID.AmanitaFungifin];
+        internal static Set CritterCages = [ItemID.BunnyCage];
+        internal static Set SummonStaves = [ItemID.SlimeStaff];
+        internal static Set Hooks = [ItemID.GrapplingHook];
+        internal static Set Swords = [ItemID.CopperShortsword];
+        internal static Set Minecarts = [ItemID.Minecart];
+        internal static Set CraftablePianos = [ItemID.Piano];
+        internal static Set Platforms = [ItemID.WoodPlatform];
+        internal static Set DungeonWeapons = [ItemID.Muramasa];
+        internal static Set Torches = [ItemID.Torch];
+        internal static Set Paintings = [ItemID.PaintingAcorns];
+        internal static Set Crates = [ItemID.WoodenCrate];
+        internal static Set Yoyos = [ItemID.WoodYoyo];
+        internal static Set Flasks = [ItemID.FlaskofCursedFlames];
+        internal static Set Pylons = [ItemID.TeleportationPylonPurity];
+        internal static Set GlowingMosses = [ItemID.ArgonMoss];
+        internal static Set ObsidianSkullUpgrades = [ItemID.ObsidianShield];
+        internal static Set Toilets = [ItemID.Toilet];
+        internal static Set Anvils = [ItemID.IronAnvil];
+        internal static Set LightRedItems = [ItemID.TitaniumSword];
+        internal static Set Phaseblades = [ItemID.WhitePhaseblade];
+        internal static Set Flails = [ItemID.BallOHurt];
 
         #region Hardcoded sets
-        internal static List<int> PreHardmodeCampfires = new() {
+        internal static Set PreHardmodeCampfires = [
             ItemID.Campfire, ItemID.CoralCampfire, ItemID.CorruptCampfire,
             ItemID.CrimsonCampfire, ItemID.DemonCampfire, ItemID.DesertCampfire,
             ItemID.FrozenCampfire, ItemID.JungleCampfire, ItemID.MushroomCampfire,
-        };
+        ];
 
-        internal static List<int> Herbs = new() {
+        internal static Set Herbs = [
             ItemID.Blinkroot, ItemID.Daybloom, ItemID.Deathweed,
             ItemID.Fireblossom, ItemID.Moonglow, ItemID.Shiverthorn,
             ItemID.Waterleaf,
-        };
-        internal static List<int> HerbSeeds = new() {
+        ];
+        internal static Set HerbSeeds = [
             ItemID.BlinkrootSeeds, ItemID.DaybloomSeeds, ItemID.DeathweedSeeds,
             ItemID.FireblossomSeeds, ItemID.MoonglowSeeds, ItemID.ShiverthornSeeds,
             ItemID.WaterleafSeeds,
-        };
-        internal static List<int> Mushrooms = new() {
+        ];
+        internal static Set Mushrooms = [
             ItemID.GlowingMushroom,
             ItemID.GreenMushroom,
             ItemID.Mushroom,
@@ -59,9 +120,9 @@ namespace BingoSyncGoalPack.Content {
             ItemID.TealMushroom,
             ItemID.ViciousMushroom,
             ItemID.VileMushroom,
-        };
+        ];
 
-        internal static List<int> LowTierBars = new() {
+        internal static Set LowTierBars = [
             // Tier 1
             ItemID.CopperBar, ItemID.TinBar,
             // Tier 2
@@ -70,9 +131,9 @@ namespace BingoSyncGoalPack.Content {
             ItemID.SilverBar, ItemID.TungstenBar,
             // Tier 4
             ItemID.GoldBar, ItemID.PlatinumBar,
-        };
+        ];
 
-        internal static List<int> AnyBars = new() {
+        internal static Set AnyBars = [
             // Tier 1
             ItemID.CopperBar, ItemID.TinBar,
             // Tier 2
@@ -101,9 +162,9 @@ namespace BingoSyncGoalPack.Content {
             ItemID.ShroomiteBar, ItemID.SpectreBar,
             // Tier 14
             ItemID.LunarBar,
-        };
+        ];
 
-        internal static List<int> GrassSeeds = new() {
+        internal static Set GrassSeeds = [
             ItemID.GrassSeeds,
             ItemID.AshGrassSeeds,
             ItemID.JungleGrassSeeds,
@@ -111,9 +172,9 @@ namespace BingoSyncGoalPack.Content {
             ItemID.CorruptSeeds,
             ItemID.CrimsonSeeds,
             ItemID.HallowedSeeds,
-        };
+        ];
 
-        internal static List<int> GemCritterCages = new() {
+        internal static Set GemCritterCages = [
             ItemID.AmberBunnyCage,
             ItemID.AmberSquirrelCage,
             ItemID.AmethystBunnyCage,
@@ -128,9 +189,9 @@ namespace BingoSyncGoalPack.Content {
             ItemID.SapphireSquirrelCage,
             ItemID.TopazBunnyCage,
             ItemID.TopazSquirrelCage,
-        };
+        ];
 
-        internal static List<int> Arrows = new() {
+        internal static Set Arrows = [
             ItemID.WoodenArrow,
             ItemID.FlamingArrow,
             ItemID.UnholyArrow,
@@ -145,9 +206,9 @@ namespace BingoSyncGoalPack.Content {
             ItemID.BoneArrow,
             ItemID.MoonlordArrow,
             ItemID.ShimmerArrow,
-        };
+        ];
 
-        internal static List<int> GemStaves = new() {
+        internal static Set GemStaves = [
             ItemID.AmethystStaff,
             ItemID.TopazStaff,
             ItemID.SapphireStaff,
@@ -155,9 +216,9 @@ namespace BingoSyncGoalPack.Content {
             ItemID.AmberStaff,
             ItemID.RubyStaff,
             ItemID.DiamondStaff,
-        };
+        ];
 
-        internal static List<int> Fountains = new() {
+        internal static Set Fountains = [
             ItemID.PureWaterFountain,
             ItemID.DesertWaterFountain,
             ItemID.JungleWaterFountain,
@@ -168,43 +229,43 @@ namespace BingoSyncGoalPack.Content {
             ItemID.BloodWaterFountain,
             ItemID.CavernFountain,
             ItemID.OasisFountain,
-        };
+        ];
 
-        internal static List<int> GoldGraves = new() {
+        internal static Set GoldGraves = [
             ItemID.RichGravestone1,
             ItemID.RichGravestone2,
             ItemID.RichGravestone3,
             ItemID.RichGravestone4,
             ItemID.RichGravestone5,
-        };
+        ];
 
-        internal static List<int> Watches = new() {
+        internal static Set Watches = [
             ItemID.CopperWatch,
             ItemID.TinWatch,
             ItemID.SilverWatch,
             ItemID.TungstenWatch,
             ItemID.GoldWatch,
             ItemID.PlatinumWatch,
-        };
+        ];
 
-        internal static List<int> FishingTrash = new() {
+        internal static Set FishingTrash = [
             ItemID.FishingSeaweed,
             ItemID.OldShoe,
             ItemID.TinCan,
-        };
+        ];
         #endregion
         #endregion
 
         #region NPC IDs
-        internal static List<int> TownNPCs = new() {NPCID.Angler};
+        internal static Set TownNPCs = [NPCID.Angler];
         #endregion
 
         #region Tile IDs
-        internal static List<int> Leaves = new() {TileID.LeafBlock};
+        internal static Set Leaves = [TileID.LeafBlock];
         #endregion
 
         internal static void load() {
-            void createItemSets(params (Func<int, Item, bool> shouldBeInSet, List<int> storage)[] rules) {
+            void createItemSets(params (Func<int, Item, bool> shouldBeInSet, Set storage)[] rules) {
                 foreach ((var _, var storage) in rules) {
                     storage.Clear();
                 }
@@ -216,7 +277,7 @@ namespace BingoSyncGoalPack.Content {
                     }
                 }
             }
-            void createNpcSets(params (Func<int, NPC, bool> shouldBeInSet, List<int> storage)[] rules) {
+            void createNpcSets(params (Func<int, NPC, bool> shouldBeInSet, Set storage)[] rules) {
                 foreach ((var _, var storage) in rules) {
                     storage.Clear();
                 }
@@ -228,7 +289,7 @@ namespace BingoSyncGoalPack.Content {
                     }
                 }
             }
-            void createRecipeSets(params (Func<Recipe, bool> shouldBeInSet, List<int> storage)[] rules) {
+            void createRecipeSets(params (Func<Recipe, bool> shouldBeInSet, Set storage)[] rules) {
                 foreach ((var _, var storage) in rules) {
                     storage.Clear();
                 }
@@ -240,11 +301,11 @@ namespace BingoSyncGoalPack.Content {
                     }
                 }
             }
-            void filterDropRules(params (List<IItemDropRule> what, Func<DropRateInfo, bool> when, List<int> where)[] rules) {
+            void filterDropRules(params (List<IItemDropRule> what, Func<DropRateInfo, bool> when, Set where)[] rules) {
                 foreach ((var what, var when, var where) in rules) {
                     where.Clear();
 
-                    List<DropRateInfo> list = new();
+                    List<DropRateInfo> list = [];
                     DropRateInfoChainFeed ratesInfo = new(1f);
                     foreach (var item in what) {
                         item.ReportDroprates(list, ratesInfo);
@@ -256,7 +317,7 @@ namespace BingoSyncGoalPack.Content {
                     }
                 }
             }
-            void fromBoolSets(params (bool[] when, List<int> where)[] rules) {
+            void fromBoolSets(params (bool[] when, Set where)[] rules) {
                 foreach ((var when, var where) in rules) {
                     where.Clear();
                     for (int i = 0; i < when.Length; i++) {
@@ -329,6 +390,13 @@ namespace BingoSyncGoalPack.Content {
                 (
                     (_, item) => item.rare == ItemRarityID.LightRed,
                     LightRedItems
+                ),
+                (
+                    (_, item) => item.shoot != -1 && (
+                        ContentSamples.ProjectilesByType[item.shoot].aiStyle == ProjAIStyleID.Flail
+                        || ContentSamples.ProjectilesByType[item.shoot].aiStyle == ProjAIStyleID.Flairon
+                    ),
+                    Flails
                 )
             );
             fromBoolSets(

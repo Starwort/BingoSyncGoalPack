@@ -4,12 +4,13 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using BingoBoardCore.AnimationHelpers;
+using BingoBoardCore.Trackers;
 
 namespace BingoSyncGoalPack.Content.Goals {
     public class DownEvilBoss : Goal {
         public override Item icon => Icons.Misc.EvilBoss;
         public override int difficultyTier => 4;
-        public override IList<string> synergyTypes => new[] {"ME.4.1", "ME.4.2"};
+        public override IList<string> synergyTypes => ["ME.4.1", "ME.4.2"];
     }
     public class WearEvilArmour : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
@@ -21,7 +22,7 @@ namespace BingoSyncGoalPack.Content.Goals {
             ItemID.ShadowGreaves
         );
         public override int difficultyTier => 4;
-        public override IList<string> synergyTypes => new[] {"ME.14"};
+        public override IList<string> synergyTypes => ["ME.14"];
     }
     public class KillEvilCritter : Goal {
         public override Item icon => ModContent.GetInstance<Icons.EvilCritter>().Item;
@@ -33,12 +34,25 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override int difficultyTier => 4;
         public override Item? modifierIcon => Icons.Misc.Sell;
         public override string modifierText => "100";
-        internal static int sold = 0;
-        public override string? progressText() => translate(
+        public override string? progressTextFor(Player player) => translate(
             "ProgressText.GenericCounter",
-            sold.ToString(),
+            player.GetModPlayer<Tracker>().sold.ToString(),
             "100"
         );
+
+        class Tracker : PlayerTracker {
+            internal int sold = 0;
+            internal static Goal? goal = null;
+        }
+
+        public override void onGameStart(Player player) {
+            player.GetModPlayer<Tracker>().sold = 0;
+            Tracker.goal = this;
+        }
+
+        public override void onGameEnd(Player player) {
+            Tracker.goal = null;
+        }
     }
     public class SellFlamingMace : Goal {
         public override Item icon => new(ItemID.FlamingMace);

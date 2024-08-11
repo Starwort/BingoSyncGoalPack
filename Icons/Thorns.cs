@@ -16,12 +16,12 @@ namespace BingoSyncGoalPack.Icons {
             Main.RegisterItemAnimation(Type, slice);
         }
 
-        static ushort[] sheets = new[] {
+        static ushort[] sheets = [
             TileID.CorruptThorns,
             TileID.CrimsonThorns,
             TileID.JungleThorns,
             TileID.PlanteraThorns,
-        };
+        ];
 
         public override Asset<Texture2D> getFrame(uint frame) {
             slice.frame.X = 162 + 18 * rng.Next(3);

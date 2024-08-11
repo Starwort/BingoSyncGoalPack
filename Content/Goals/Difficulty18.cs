@@ -13,7 +13,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
-        public override IList<string> synergyTypes => new[] {"ME.9", "ME.10", "ME.1"};
+        public override IList<string> synergyTypes => ["ME.9", "ME.10", "ME.1"];
         public override void onGameStart(Player player) {
             trigger(player);
         }
@@ -25,7 +25,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode == BingoMode.Lockout && numPlayers == 2;
-        public override IList<string> synergyTypes => new[] {"ME.9", "ME.10", "ME.1"};
+        public override IList<string> synergyTypes => ["ME.9", "ME.10", "ME.1"];
     }
 
     public class GetLightRedItem : Goal {
@@ -45,13 +45,13 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => Icons.Misc.SummonStaves;
         public override int difficultyTier => 18;
         public override string modifierText => "5";
-        public override IList<string> synergyTypes => new[] {"ME.6.1"};
+        public override IList<string> synergyTypes => ["ME.6.1"];
     }
 
     public class GetPhaseblade : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Phaseblades);
         public override int difficultyTier => 18;
-        public override IList<string> synergyTypes => new[] {"ME.13"};
+        public override IList<string> synergyTypes => ["ME.13"];
     }
 
     public class GetPhoenixBlaster : Goal {

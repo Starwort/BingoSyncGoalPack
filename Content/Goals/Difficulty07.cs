@@ -9,7 +9,7 @@ namespace BingoSyncGoalPack.Content.Goals {
     public class DeadMenTellNoTales : Goal {
         public override Item icon => VanillaIcons.Achievement.DeadMenTellNoTales;
         public override int difficultyTier => 7;
-        public override IList<string> synergyTypes => new[] {"ME.9"};
+        public override IList<string> synergyTypes => ["ME.9"];
     }
     public class Get5WoodArmour : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
@@ -43,11 +43,11 @@ namespace BingoSyncGoalPack.Content.Goals {
         );
         public override int difficultyTier => 7;
         public override string modifierText => "5";
-        public override IList<string> synergyTypes => new[] {"ME.14"};
-        internal static HashSet<int> armours = new();
-        public override string? progressText() => Util.progressTextFor(
-            armours, 5
-        );
+        public override IList<string> synergyTypes => ["ME.14"];
+        //internal static HashSet<int> armours = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    armours, 5
+        //);
     }
     public class WearPumpkinArmour : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
@@ -69,21 +69,21 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => Icons.Misc.SummonStaves;
         public override int difficultyTier => 7;
         public override string modifierText => "7";
-        internal static HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained, 7
-        );
+        //internal static HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained, 7
+        //);
     }
     public class Get100Gel : Goal {
         public override Item icon => new(ItemID.Gel);
         public override int difficultyTier => 7;
         public override string modifierText => "100";
-        internal static int gelHeld = 0;
-        public override string? progressText() => translate(
-            "ProgressText.GenericCounter",
-            gelHeld.ToString(),
-            modifierText
-        );
+        //internal static int gelHeld = 0;
+        //public override string? progressText() => translate(
+        //    "ProgressText.GenericCounter",
+        //    gelHeld.ToString(),
+        //    modifierText
+        //);
     }
     public class StackHighTierBars : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
@@ -101,10 +101,10 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.GrassSeeds);
         public override int difficultyTier => 7;
         public override string modifierText => "4";
-        internal static HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained,
-            4
-        );
+        //internal static HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained,
+        //    4
+        //);
     }
 }

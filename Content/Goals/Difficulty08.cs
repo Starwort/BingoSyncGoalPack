@@ -14,12 +14,12 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => new(ItemID.Seed);
         public override int difficultyTier => 8;
         public override string modifierText => "99";
-        internal static int obtainedSeeds = 0;
-        public override string? progressText() => translate(
-            "ProgressText.GenericCounter",
-            obtainedSeeds.ToString(),
-            modifierText
-        );
+        //internal static int obtainedSeeds = 0;
+        //public override string? progressText() => translate(
+        //    "ProgressText.GenericCounter",
+        //    obtainedSeeds.ToString(),
+        //    modifierText
+        //);
     }
     public class HelpGolfer : Goal {
         public override Item icon => Icons.Npc.Golfer;
@@ -32,11 +32,11 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Arrows);
         public override int difficultyTier => 8;
         public override string modifierText => "6";
-        internal HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained,
-            6
-        );
+        //internal HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained,
+        //    6
+        //);
     }
     public class GetSilverBullets : Goal {
         public override Item icon => IconAnimationSystem.registerCycleAnimation(
@@ -44,29 +44,29 @@ namespace BingoSyncGoalPack.Content.Goals {
             ItemID.TungstenBullet
         );
         public override int difficultyTier => 8;
-        internal HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained,
-            2
-        );
+        //internal HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained,
+        //    2
+        //);
     }
     public class Get8Hooks : Goal {
         public override Item icon => IconAnimationSystem.registerRandAnimation(Sets.Hooks);
         public override int difficultyTier => 8;
         public override string modifierText => "8";
-        internal HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained,
-            8
-        );
+        //internal HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained,
+        //    8
+        //);
     }
     public class Have5Debuffs : Goal {
         public override Item icon => Icons.Buff.AnyDebuff;
         public override int difficultyTier => 8;
-        internal HashSet<int> obtained = new();
-        public override string? progressText() => Util.progressTextFor(
-            obtained,
-            2
-        );
+        //internal HashSet<int> obtained = [];
+        //public override string? progressText() => Util.progressTextFor(
+        //    obtained,
+        //    2
+        //);
     }
 }

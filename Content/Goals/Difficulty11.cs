@@ -30,7 +30,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => new(ItemID.KingSlimeTrophy);
         public override int difficultyTier => 11;
         public override Item? modifierIcon => VanillaIcons.Bestiary.SkyIsland;
-        public override IList<string> synergyTypes => new[] {"ME.3.1"};
+        public override IList<string> synergyTypes => ["ME.3.1"];
     }
 
     public class See3BlazingWheels : Goal {

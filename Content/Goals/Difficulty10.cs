@@ -22,14 +22,14 @@ namespace BingoSyncGoalPack.Content.Goals {
     public class DownSkele : Goal {
         public override Item icon => new(ItemID.SkeletronTrophy);
         public override int difficultyTier => 10;
-        public override IList<string> synergyTypes => new[] {"ME.7.1", "ME.7.2"};
+        public override IList<string> synergyTypes => ["ME.7.1", "ME.7.2"];
     }
 
     public class NoEquipAccessories : Goal {
         public override Item icon => Icons.Misc.Accessories;
         public override int difficultyTier => 10;
         public override Item? modifierIcon => Icons.Misc.Disallow;
-        public override IList<string> synergyTypes => new[] {"ME.1", "ME.15"};
+        public override IList<string> synergyTypes => ["ME.1", "ME.15"];
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
@@ -42,7 +42,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => Icons.Misc.Accessories;
         public override int difficultyTier => 10;
         public override Item? modifierIcon => Icons.Misc.Disallow;
-        public override IList<string> synergyTypes => new[] {"ME.1", "ME.15"};
+        public override IList<string> synergyTypes => ["ME.1", "ME.15"];
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode == BingoMode.Lockout && numPlayers == 2;
@@ -52,7 +52,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => Icons.Misc.Platforms;
         public override int difficultyTier => 10;
         public override Item? modifierIcon => Icons.Misc.Disallow;
-        public override IList<string> synergyTypes => new[] {"ME.1"};
+        public override IList<string> synergyTypes => ["ME.1"];
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
@@ -65,7 +65,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override Item icon => Icons.Misc.Platforms;
         public override int difficultyTier => 10;
         public override Item? modifierIcon => Icons.Misc.Disallow;
-        public override IList<string> synergyTypes => new[] {"ME.1"};
+        public override IList<string> synergyTypes => ["ME.1"];
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode == BingoMode.Lockout && numPlayers == 2;

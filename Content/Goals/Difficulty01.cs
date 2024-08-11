@@ -20,7 +20,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         );
 
         class Tracker : ObtainedItemTracker {
-            internal HashSet<int> obtainedSpears = new();
+            internal HashSet<int> obtainedSpears = [];
             internal static Goal? goal = null;
 
             public override void prepare() {
@@ -30,14 +30,14 @@ namespace BingoSyncGoalPack.Content.Goals {
             public override void onAnyObtain(Item item) {
                 if (ItemID.Sets.Spears[item.type]) {
                     obtainedSpears.Add(item.type);
-                }
-                switch (obtainedSpears.Count) {
-                    case 1:
-                        goal?.reportProgress(Player, item.Name);
-                        break;
-                    case 2:
-                        goal?.trigger(Player);
-                        break;
+                    switch (obtainedSpears.Count) {
+                        case 1:
+                            goal?.reportProgress(Player, item.Name);
+                            break;
+                        case 2:
+                            goal?.trigger(Player);
+                            break;
+                    }
                 }
             }
         }
@@ -134,7 +134,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         );
 
         class Tracker : ObtainedItemTracker {
-            internal HashSet<int> wornAccs = new();
+            internal HashSet<int> wornAccs = [];
             internal static Goal? goal = null;
 
             public override void onEquipAccessory(Item acc) {
@@ -164,7 +164,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         );
 
         class Tracker : ObtainedItemTracker {
-            internal HashSet<int> obtained = new();
+            internal HashSet<int> obtained = [];
             internal static Goal? goal = null;
 
             public override void onAnyObtain(Item item) {
@@ -199,13 +199,13 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override int difficultyTier => 1;
         public override Item? modifierIcon => Icons.Misc.Die;
         public override string modifierText => "3";
-        internal static HashSet<string> killed = new();
+        internal static HashSet<string> killed = [];
         public override string? progressTextFor(Player player) => Util.progressTextFor(
             player.GetModPlayer<Tracker>().killed, 3
         );
 
         class Tracker : PlayerTracker {
-            internal HashSet<string> killed = new();
+            internal HashSet<string> killed = [];
             internal static Goal? goal = null;
 
             internal void blownUp(string kind) {

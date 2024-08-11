@@ -13,7 +13,7 @@ namespace BingoSyncGoalPack.Content.Goals {
             ItemID.NecroGreaves
         );
         public override int difficultyTier => 12;
-        public override IList<string> synergyTypes => new[] { "ME.14" };
+        public override IList<string> synergyTypes => ["ME.14"];
     }
 
     public class WearHeroHat : Goal {
@@ -39,7 +39,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode != BingoMode.Lockout;
-        public override IList<string> synergyTypes => new[] {"ME.1"};
+        public override IList<string> synergyTypes => ["ME.1"];
         public override void onGameStart(Player player) {
             trigger(player);
         }
@@ -52,7 +52,7 @@ namespace BingoSyncGoalPack.Content.Goals {
         public override bool enable(
             BingoMode mode, int numPlayers, bool isSharedWorld
         ) => mode == BingoMode.Lockout && numPlayers == 2;
-        public override IList<string> synergyTypes => new[] {"ME.1"};
+        public override IList<string> synergyTypes => ["ME.1"];
     }
 
     public class PlaceArt : Goal {
@@ -63,13 +63,13 @@ namespace BingoSyncGoalPack.Content.Goals {
     public class DownQB : Goal {
         public override Item icon => new(ItemID.QueenBeeTrophy);
         public override int difficultyTier => 12;
-        public override IList<string> synergyTypes => new[] {"ME.6.1", "ME.6.2"};
+        public override IList<string> synergyTypes => ["ME.6.1", "ME.6.2"];
     }
 
     public class DownEoCMelee : Goal {
         public override Item icon => new(ItemID.EyeofCthulhuTrophy);
         public override int difficultyTier => 12;
         public override Item? modifierIcon => Icons.Misc.SwordOrSpear;
-        public override IList<string> synergyTypes => new[] {"ME.5.2"};
+        public override IList<string> synergyTypes => ["ME.5.2"];
     }
 }

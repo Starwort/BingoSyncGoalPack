@@ -43,7 +43,7 @@ namespace BingoSyncGoalPack.Content.Goals {
     public class GetTongued : Goal {
         public override Item icon => Icons.Buff.TheTongue;
         public override int difficultyTier => 16;
-        public override IList<string> synergyTypes => new[] {"ME.8.1"};
+        public override IList<string> synergyTypes => ["ME.8.1"];
     }
 
     public class Hellevator : Goal {
