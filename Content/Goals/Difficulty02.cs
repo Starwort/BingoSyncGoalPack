@@ -124,7 +124,7 @@ namespace BingoSyncGoalPack.Content.Goals {
             }
         }
 
-        class PlacementTracker : GlobalTile {
+        class PlacementTracker : TileTracker {
             public override void PlaceInWorld(int i, int j, int type, Item item) {
                 if (item.type != ItemID.SandcastleBucket) {
                     return;
@@ -177,7 +177,7 @@ namespace BingoSyncGoalPack.Content.Goals {
             }
         }
 
-        class PlacementTracker : GlobalTile {
+        class PlacementTracker : TileTracker {
             public override void PlaceInWorld(int i, int j, int type, Item item) {
                 if (!Sets.HerbSeeds.Contains(item.type)) {
                     return;
